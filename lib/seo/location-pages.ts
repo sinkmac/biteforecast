@@ -26,3 +26,18 @@ export function getLocationPageSlugs(): string[] {
 export function getLocationPageBySlug(slug: string): LocationPage | undefined {
   return LOCATION_PAGES.find((page) => page.slug === slug);
 }
+
+export function getLocationPageByQuery(query: string | undefined): LocationPage | undefined {
+  if (!query) {
+    return undefined;
+  }
+
+  const normalizedQuery = decodeURIComponent(query).trim().toLowerCase();
+
+  return LOCATION_PAGES.find((page) => {
+    return (
+      page.slug.toLowerCase() === normalizedQuery ||
+      page.name.toLowerCase() === normalizedQuery
+    );
+  });
+}

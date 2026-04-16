@@ -1,5 +1,6 @@
 import { BANDS } from "../../lib/scoring/bands";
 
+import { STANDARD_SEASONAL_BANDS } from "./seasonal-bands";
 import type { LocationPage } from "./types";
 
 export const fortWilliamLocationPage: LocationPage = {
@@ -7,6 +8,8 @@ export const fortWilliamLocationPage: LocationPage = {
   name: "Fort William",
   region: "Lochaber",
   broaderArea: "West Highlands",
+  coordinates: { latitude: 56.798077, longitude: -5.095093 },
+  seasonalFallbackByMonth: STANDARD_SEASONAL_BANDS,
   terrainType: "mountain gateway town with lochside, woodland edges, and sheltered valley approaches",
   intro:
     "Fort William is a classic mountain-gateway location where visitors often move between exposed travel corridors and much more sheltered evening stops. That means midge pressure can feel surprisingly local: open transit can feel fine while calmer lochside or campsite periods turn noticeably worse.",
@@ -75,3 +78,4 @@ export const fortWilliamLocationPage: LocationPage = {
   liveCalculatorHref: "/midge-wind-watch/?location=Fort%20William",
   affiliateCategory: "moderate-risk planning kit",
 };
+

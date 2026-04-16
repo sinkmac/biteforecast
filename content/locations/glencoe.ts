@@ -1,5 +1,6 @@
 import { BANDS } from "../../lib/scoring/bands";
 
+import { STANDARD_SEASONAL_BANDS } from "./seasonal-bands";
 import type { LocationPage } from "./types";
 
 export const glencoeLocationPage: LocationPage = {
@@ -7,6 +8,8 @@ export const glencoeLocationPage: LocationPage = {
   name: "Glencoe",
   region: "Lochaber",
   broaderArea: "West Highlands",
+  coordinates: { latitude: 56.653614, longitude: -5.117935 },
+  seasonalFallbackByMonth: STANDARD_SEASONAL_BANDS,
   terrainType: "sheltered glen with steep valley walls, burns, and damp ground",
   intro:
     "Glencoe is one of the clearest examples of why Scottish midges are a planning problem rather than just a weather problem. Even when the wider forecast looks breezy, the valley floor, lochside stops, and sheltered evening parking areas can feel much more midge-friendly than the ridgelines above them.",
@@ -75,3 +78,4 @@ export const glencoeLocationPage: LocationPage = {
   liveCalculatorHref: "/midge-wind-watch/?location=Glencoe",
   affiliateCategory: "moderate-risk planning kit",
 };
+

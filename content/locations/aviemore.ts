@@ -1,5 +1,6 @@
 import { BANDS } from "../../lib/scoring/bands";
 
+import { STANDARD_SEASONAL_BANDS } from "./seasonal-bands";
 import type { LocationPage } from "./types";
 
 export const aviemoreLocationPage: LocationPage = {
@@ -7,6 +8,8 @@ export const aviemoreLocationPage: LocationPage = {
   name: "Aviemore",
   region: "Cairngorms",
   broaderArea: "Strathspey",
+  coordinates: { latitude: 57.1952, longitude: -3.8284 },
+  seasonalFallbackByMonth: STANDARD_SEASONAL_BANDS,
   terrainType: "forest edge, river corridor, moorland approaches, and mountain gateway base",
   intro:
     "Aviemore sits in a landscape where forest edges, river-side ground, and calmer lower-level stops can all feel much midge-friendlier than the more open upland image visitors often have in mind. It is a good example of why a mountain gateway still needs a careful midge planning page.",
@@ -43,3 +46,4 @@ export const aviemoreLocationPage: LocationPage = {
   liveCalculatorHref: "/midge-wind-watch/?location=Aviemore",
   affiliateCategory: "moderate-risk planning kit",
 };
+

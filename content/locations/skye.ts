@@ -1,5 +1,6 @@
 import { BANDS } from "../../lib/scoring/bands";
 
+import { STANDARD_SEASONAL_BANDS } from "./seasonal-bands";
 import type { LocationPage } from "./types";
 
 export const skyeLocationPage: LocationPage = {
@@ -7,6 +8,8 @@ export const skyeLocationPage: LocationPage = {
   name: "Isle of Skye",
   region: "Inner Hebrides",
   broaderArea: "Northwest Highlands and Islands",
+  coordinates: { latitude: 57.412525, longitude: -6.194458 },
+  seasonalFallbackByMonth: STANDARD_SEASONAL_BANDS,
   terrainType: "island mix of coast, moorland, sheltered inlets, and lochside stops",
   intro:
     "Skye can fool visitors because it often looks windswept on the big scenic lines while still holding pockets of sheltered, damp air around campsites, woodland edges, and lochside stops. The island is best treated as a place where exposure changes quickly, so your comfort level can shift a lot between open coast and tucked-in ground.",
@@ -75,3 +78,4 @@ export const skyeLocationPage: LocationPage = {
   liveCalculatorHref: "/midge-wind-watch/?location=Isle%20of%20Skye",
   affiliateCategory: "moderate-risk planning kit",
 };
+

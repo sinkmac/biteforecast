@@ -1,5 +1,6 @@
 import { BANDS } from "../../lib/scoring/bands";
 
+import { STANDARD_SEASONAL_BANDS } from "./seasonal-bands";
 import type { LocationPage } from "./types";
 
 export const lochLomondLocationPage: LocationPage = {
@@ -7,6 +8,8 @@ export const lochLomondLocationPage: LocationPage = {
   name: "Loch Lomond",
   region: "Loch Lomond and The Trossachs",
   broaderArea: "West Central Scotland",
+  coordinates: { latitude: 56.0833, longitude: -4.5833 },
+  seasonalFallbackByMonth: STANDARD_SEASONAL_BANDS,
   terrainType: "lochside, wooded shorelines, sheltered bays, and low rolling hills",
   intro:
     "Loch Lomond is one of the easiest places for visitors to underestimate midges because the setting feels open at first glance while many stops are actually low, sheltered, and damp. The loch edge, wooded banks, and slower evening air all create the kind of planning conditions where midge nuisance can build fast.",
@@ -43,3 +46,4 @@ export const lochLomondLocationPage: LocationPage = {
   liveCalculatorHref: "/midge-wind-watch/?location=Loch%20Lomond",
   affiliateCategory: "moderate-risk planning kit",
 };
+

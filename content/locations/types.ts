@@ -12,11 +12,20 @@ export type LocationFaq = {
   answer: string;
 };
 
+export type Coordinates = {
+  latitude: number;
+  longitude: number;
+};
+
+export type SeasonalBandByMonth = Record<number, PublicBand>;
+
 export type LocationPage = {
   slug: string;
   name: string;
   region: string;
   broaderArea: string;
+  coordinates: Coordinates;
+  seasonalFallbackByMonth: SeasonalBandByMonth;
   terrainType: string;
   intro: string;
   seasonalSummary: string[];

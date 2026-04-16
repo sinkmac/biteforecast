@@ -1,5 +1,6 @@
 import { BANDS } from "../../lib/scoring/bands";
 
+import { STANDARD_SEASONAL_BANDS } from "./seasonal-bands";
 import type { LocationPage } from "./types";
 
 export const cairngormsLocationPage: LocationPage = {
@@ -7,6 +8,8 @@ export const cairngormsLocationPage: LocationPage = {
   name: "Cairngorms",
   region: "Cairngorms National Park",
   broaderArea: "Central Highlands",
+  coordinates: { latitude: 57.0783, longitude: -3.7281 },
+  seasonalFallbackByMonth: STANDARD_SEASONAL_BANDS,
   terrainType: "national-park mix of forest edge, glens, rivers, moorland, and exposed mountain terrain",
   intro:
     "The Cairngorms are broad enough that a single midge story never quite fits. Exposed upland movement can feel much easier than forest-edge stops, glen shelter, and calmer evening base locations, which is why this page works best as a planning guide rather than a claim of live hyperlocal certainty.",
@@ -43,3 +46,4 @@ export const cairngormsLocationPage: LocationPage = {
   liveCalculatorHref: "/midge-wind-watch/?location=Cairngorms",
   affiliateCategory: "moderate-risk planning kit",
 };
+

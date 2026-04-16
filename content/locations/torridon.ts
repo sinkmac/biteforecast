@@ -1,5 +1,6 @@
 import { BANDS } from "../../lib/scoring/bands";
 
+import { STANDARD_SEASONAL_BANDS } from "./seasonal-bands";
 import type { LocationPage } from "./types";
 
 export const torridonLocationPage: LocationPage = {
@@ -7,6 +8,8 @@ export const torridonLocationPage: LocationPage = {
   name: "Torridon",
   region: "Wester Ross",
   broaderArea: "Northwest Highlands",
+  coordinates: { latitude: 57.5486, longitude: -5.5048 },
+  seasonalFallbackByMonth: STANDARD_SEASONAL_BANDS,
   terrainType: "mountain base, lochside, glen shelter, and exposed high-level terrain",
   intro:
     "Torridon is one of the best examples of why exposed mountain scenery does not guarantee an easy midge experience. The surrounding ridges can feel clear and airy while lower stops, lochside pauses, and sheltered glen sections turn markedly worse once the air settles.",
@@ -43,3 +46,4 @@ export const torridonLocationPage: LocationPage = {
   liveCalculatorHref: "/midge-wind-watch/?location=Torridon",
   affiliateCategory: "moderate-risk planning kit",
 };
+

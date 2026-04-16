@@ -1,5 +1,6 @@
 import { BANDS } from "../../lib/scoring/bands";
 
+import { STANDARD_SEASONAL_BANDS } from "./seasonal-bands";
 import type { LocationPage } from "./types";
 
 export const mullLocationPage: LocationPage = {
@@ -7,6 +8,8 @@ export const mullLocationPage: LocationPage = {
   name: "Isle of Mull",
   region: "Inner Hebrides",
   broaderArea: "West Coast islands",
+  coordinates: { latitude: 56.4469, longitude: -6.0008 },
+  seasonalFallbackByMonth: STANDARD_SEASONAL_BANDS,
   terrainType: "island mix of coast, lochside, woodland pockets, and sheltered inland roads",
   intro:
     "Mull combines exposed coastal travel with quieter inland pockets that can feel much more midge-prone than visitors expect. Like Skye, the island effect is not simply 'windy equals safe'; stop choice and local shelter still matter a lot for comfort.",
@@ -43,3 +46,4 @@ export const mullLocationPage: LocationPage = {
   liveCalculatorHref: "/midge-wind-watch/?location=Isle%20of%20Mull",
   affiliateCategory: "moderate-risk planning kit",
 };
+
