@@ -1,6 +1,8 @@
 import Link from "next/link";
 
+import { ForecastCalendar } from "../../components/forecast-calendar";
 import type { AffiliateTier } from "../../lib/calculator/engine";
+import { buildSevenDayForecast } from "../../lib/calculator/forecast";
 import {
   buildFallbackCalculatorState,
   buildLiveCalculatorState,
@@ -10,7 +12,10 @@ import {
   getCalculatorLocationOptions,
   getCalculatorTimePreset,
 } from "../../lib/calculator/location-resolver";
-import { fetchOpenMeteoSnapshot } from "../../lib/providers/open-meteo";
+import {
+  fetchOpenMeteoSevenDayForecast,
+  fetchOpenMeteoSnapshot,
+} from "../../lib/providers/open-meteo";
 
 type PageProps = {
   searchParams?: Promise<{
@@ -41,6 +46,18 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
   const result = snapshot
     ? buildLiveCalculatorState({ location, currentDate, snapshot })
     : buildFallbackCalculatorState({ location, currentDate });
+  const sevenDaySnapshots = await fetchOpenMeteoSevenDayForecast({
+    location,
+    currentDate,
+    preset: timePreset,
+  });
+  const sevenDayForecast = sevenDaySnapshots
+    ? buildSevenDayForecast({
+        location,
+        currentDate,
+        snapshots: sevenDaySnapshots,
+      })
+    : [];
 
   const affiliateRecommendations = getAffiliateRecommendations(result.affiliateTier);
 
@@ -212,6 +229,12 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
             </div>
           </div>
         </section>
+
+        <ForecastCalendar
+          days={sevenDayForecast}
+          intro="This 7-day view runs the same scoring engine across forecast conditions for the next week so you can compare likely nuisance windows day by day."
+          title={`7-day midge risk forecast for ${location.name}`}
+        />
       </article>
     </main>
   );

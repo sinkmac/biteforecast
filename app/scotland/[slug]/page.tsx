@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { ForecastCalendar } from "../../../components/forecast-calendar";
+import { buildSevenDayForecast } from "../../../lib/calculator/forecast";
+import { fetchOpenMeteoSevenDayForecast } from "../../../lib/providers/open-meteo";
 import { getBandAdvice } from "../../../lib/scoring/bands";
 import {
   getLocationPageBySlug,
@@ -13,6 +16,8 @@ type PageProps = {
     slug: string;
   }>;
 };
+
+export const revalidate = 1800;
 
 export async function generateStaticParams() {
   return getLocationPageSlugs().map((slug) => ({ slug }));
@@ -43,6 +48,18 @@ export default async function LocationPage({ params }: PageProps) {
   }
 
   const bandAdvice = getBandAdvice(page.planningRiskBand);
+  const sevenDaySnapshots = await fetchOpenMeteoSevenDayForecast({
+    location: page,
+    currentDate: new Date(),
+    preset: "sunset",
+  });
+  const sevenDayForecast = sevenDaySnapshots
+    ? buildSevenDayForecast({
+        location: page,
+        currentDate: new Date(),
+        snapshots: sevenDaySnapshots,
+      })
+    : [];
 
   return (
     <main className="min-h-screen bg-stone-950 px-6 py-16 text-stone-50">
@@ -161,6 +178,12 @@ export default async function LocationPage({ params }: PageProps) {
             <li>Lightweight long-sleeve layer or buff for exposed skin</li>
           </ul>
         </section>
+
+        <ForecastCalendar
+          days={sevenDayForecast}
+          intro={`This 7-day forecast runs the live midge scoring engine against predicted conditions for ${page.name}, so you can compare likely day-by-day nuisance before you travel.`}
+          title={`7-day forecast for ${page.name}`}
+        />
 
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
           <h2 className="text-2xl font-semibold">FAQ</h2>
