@@ -68,6 +68,20 @@ export const CALCULATOR_FAQS: FaqEntry[] = [
   },
 ];
 
+export function buildCanonicalUrl(pathname: string) {
+  if (pathname === "/") {
+    return SITE_URL;
+  }
+
+  return `${SITE_URL}${pathname}`;
+}
+
+export function buildMetadataAlternates(pathname: string) {
+  return {
+    canonical: buildCanonicalUrl(pathname),
+  };
+}
+
 export function buildOpenGraph(args: {
   title: string;
   description: string;

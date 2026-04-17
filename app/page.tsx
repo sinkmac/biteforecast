@@ -6,6 +6,7 @@ import {
   HOMEPAGE_DESCRIPTION,
   HOMEPAGE_FAQS,
   SITE_URL,
+  buildMetadataAlternates,
   buildOpenGraph,
 } from "../lib/seo/site-metadata";
 import {
@@ -20,6 +21,7 @@ const locationCards = getLocationPageSlugs()
 export const metadata: Metadata = {
   title: "Scotland's midge forecast and planning tool",
   description: HOMEPAGE_DESCRIPTION,
+  alternates: buildMetadataAlternates("/"),
   openGraph: buildOpenGraph({
     title: "Scotland's midge forecast and planning tool",
     description: HOMEPAGE_DESCRIPTION,

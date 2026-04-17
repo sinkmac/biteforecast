@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { buildMetadataAlternates } from "../../lib/seo/site-metadata";
+
 export const metadata: Metadata = {
   title: "Privacy policy",
   description:
     "How BiteForecast handles basic site data, cookies, Google AdSense, affiliate links, and contact requests.",
+  alternates: buildMetadataAlternates("/privacy-policy"),
 };
 
 export default function PrivacyPolicyPage() {

@@ -10,6 +10,7 @@ import { getBandAdvice } from "../../../lib/scoring/bands";
 import {
   LOCATION_META_DESCRIPTIONS,
   SITE_URL,
+  buildMetadataAlternates,
   buildOpenGraph,
 } from "../../../lib/seo/site-metadata";
 import {
@@ -46,6 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `Midges in ${page.name}: seasonal patterns, best times, and what to expect`,
     description,
+    alternates: buildMetadataAlternates(`/scotland/${slug}`),
     openGraph: buildOpenGraph({
       title: `Midges in ${page.name}: seasonal patterns, best times, and what to expect`,
       description,

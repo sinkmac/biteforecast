@@ -7,6 +7,7 @@ import {
   CALCULATOR_DESCRIPTION,
   CALCULATOR_FAQS,
   SITE_URL,
+  buildMetadataAlternates,
   buildOpenGraph,
   getBandColorClasses,
 } from "../../lib/seo/site-metadata";
@@ -36,6 +37,7 @@ type PageProps = {
 export const metadata: Metadata = {
   title: "Live midge forecast calculator",
   description: CALCULATOR_DESCRIPTION,
+  alternates: buildMetadataAlternates("/midge-wind-watch"),
   openGraph: buildOpenGraph({
     title: "Live midge forecast calculator",
     description: CALCULATOR_DESCRIPTION,

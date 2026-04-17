@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { buildMetadataAlternates } from "../../lib/seo/site-metadata";
+
 export const metadata: Metadata = {
   title: "Terms",
   description:
     "Plain-language terms of use for BiteForecast as a Scottish midge planning and weather-information utility site.",
+  alternates: buildMetadataAlternates("/terms"),
 };
 
 export default function TermsPage() {

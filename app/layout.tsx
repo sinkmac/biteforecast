@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import { HOMEPAGE_DESCRIPTION, SITE_URL, buildOpenGraph } from "../lib/seo/site-metadata";
+import {
+  HOMEPAGE_DESCRIPTION,
+  SITE_URL,
+  buildMetadataAlternates,
+  buildOpenGraph,
+} from "../lib/seo/site-metadata";
 
 import "./globals.css";
 
@@ -23,6 +28,7 @@ export const metadata: Metadata = {
     template: "%s | BiteForecast",
   },
   description: HOMEPAGE_DESCRIPTION,
+  alternates: buildMetadataAlternates("/"),
   openGraph: buildOpenGraph({
     title: "BiteForecast | Scottish midge planning and live risk checks",
     description: HOMEPAGE_DESCRIPTION,
