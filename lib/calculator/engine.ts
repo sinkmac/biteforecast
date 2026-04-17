@@ -2,7 +2,7 @@ import { getBandAdvice, getBandForScore, type PublicBand } from "../scoring/band
 import type { LocationPage } from "../../content/locations/types";
 
 export type CalculatorMode = "live" | "fallback";
-export type AffiliateTier = "light" | "moderate" | "full";
+export type AffiliateTier = "none" | "moderate" | "high" | "veryHigh";
 export type TimePreset = "now" | "sunrise" | "sunset";
 
 export type LiveWeatherSnapshot = {
@@ -145,14 +145,18 @@ function isGoldenHour(target: Date, sunrise: Date, sunset: Date): boolean {
   );
 }
 
-function getAffiliateTierForBand(band: PublicBand): AffiliateTier {
-  if (band === "High" || band === "Very High") {
-    return "full";
+export function getAffiliateTierForBand(band: PublicBand): AffiliateTier {
+  if (band === "Very High") {
+    return "veryHigh";
   }
 
-  if (band === "Moderate") {
+  if (band === "High") {
+    return "high";
+  }
+
+  if (band === "Guarded" || band === "Moderate") {
     return "moderate";
   }
 
-  return "light";
+  return "none";
 }

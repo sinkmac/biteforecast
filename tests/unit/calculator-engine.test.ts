@@ -4,6 +4,7 @@ import { getLocationPageBySlug } from "../../lib/seo/location-pages";
 import {
   buildFallbackCalculatorState,
   buildLiveCalculatorState,
+  getAffiliateTierForBand,
 } from "../../lib/calculator/engine";
 
 describe("calculator engine", () => {
@@ -46,10 +47,33 @@ describe("calculator engine", () => {
 
     expect(result.mode).toBe("live");
     expect(result.band).toBe("Low");
+    expect(result.affiliateTier).toBe("none");
     expect(result.peakTimeMessage).toBeUndefined();
   });
 
-  it("adds the golden-hour warning text and score modifier near sunset", () => {
+  it("maps guarded and moderate live bands to the moderate affiliate block", () => {
+    const glencoe = getLocationPageBySlug("glencoe-midges");
+
+    expect(glencoe).toBeDefined();
+
+    const result = buildLiveCalculatorState({
+      location: glencoe!,
+      currentDate: new Date("2026-06-18T16:00:00+01:00"),
+      snapshot: {
+        windMph: 8.5,
+        humidity: 88,
+        temperatureC: 14,
+        targetTimeIso: "2026-06-18T16:00:00+01:00",
+        sunriseIso: "2026-06-18T04:30:00+01:00",
+        sunsetIso: "2026-06-18T22:10:00+01:00",
+      },
+    });
+
+    expect(["Guarded", "Moderate"]).toContain(result.band);
+    expect(result.affiliateTier).toBe("moderate");
+  });
+
+  it("adds the golden-hour warning text and high affiliate block near sunset", () => {
     const glencoe = getLocationPageBySlug("glencoe-midges");
 
     expect(glencoe).toBeDefined();
@@ -71,6 +95,11 @@ describe("calculator engine", () => {
       "Peak midge time: Dusk approaching",
     );
     expect(result.band).toBe("High");
+    expect(result.affiliateTier).toBe("high");
     expect(result.showNumericScore).toBe(false);
+  });
+
+  it("maps very high bands to the strongest affiliate block", () => {
+    expect(getAffiliateTierForBand("Very High")).toBe("veryHigh");
   });
 });

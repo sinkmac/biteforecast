@@ -150,21 +150,34 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
             ) : null}
           </div>
 
-          <aside className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-stone-400">
-              Protection tier
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold">{affiliateRecommendations.title}</h2>
-            <p className="mt-3 text-stone-300">{affiliateRecommendations.description}</p>
-            <ul className="mt-5 list-disc space-y-2 pl-5 text-stone-300">
-              {affiliateRecommendations.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <p className="mt-5 text-sm text-stone-500">
-              Product prompts stay secondary to utility. When in doubt, choose a breezier spot before buying more kit.
-            </p>
-          </aside>
+          {affiliateRecommendations ? (
+            <aside className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-stone-400">
+                Protection tier
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold">{affiliateRecommendations.title}</h2>
+              <p className="mt-3 text-stone-300">{affiliateRecommendations.description}</p>
+              <div className="mt-5 space-y-4">
+                {affiliateRecommendations.items.map((item) => (
+                  <div key={item.label} className="rounded-2xl border border-stone-800 bg-stone-950/80 p-4">
+                    <p className="font-medium text-stone-100">{item.label}</p>
+                    <p className="mt-2 text-sm text-stone-400">{item.note}</p>
+                    <a
+                      className="mt-4 inline-flex rounded-full bg-emerald-300 px-4 py-2 text-sm font-medium text-stone-950 transition hover:bg-emerald-200"
+                      href={item.href}
+                      rel="nofollow sponsored noreferrer"
+                      target="_blank"
+                    >
+                      Buy on Amazon
+                    </a>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-5 text-sm text-stone-500">
+                Product prompts stay secondary to utility. When in doubt, choose a breezier spot before buying more kit.
+              </p>
+            </aside>
+          ) : null}
         </section>
       </div>
     </main>
@@ -180,28 +193,59 @@ function MetricCard({ label, value }: { label: string; value: string }) {
   );
 }
 
-function getAffiliateRecommendations(tier: "light" | "moderate" | "full") {
-  if (tier === "light") {
+type AffiliateRecommendation = {
+  title: string;
+  description: string;
+  items: Array<{
+    label: string;
+    note: string;
+    href: string;
+  }>;
+};
+
+function getAffiliateRecommendations(
+  tier: "none" | "moderate" | "high" | "veryHigh",
+): AffiliateRecommendation | null {
+  if (tier === "none") {
+    return null;
+  }
+
+  if (tier === "veryHigh") {
     return {
-      title: "Light protection",
+      title: "Very high protection",
       description:
-        "If you are mostly exposed to moving air, keep the kit light and focus on shorter sheltered stops.",
+        "Strong nuisance is likely in sheltered spots. If you still need to stop there, use the strongest repellent and bring a head net.",
       items: [
-        "A light repellent option for evening pauses",
-        "A buff or lightweight layer for exposed skin",
+        {
+          label: "Lifesystems Expedition 100",
+          note: "Stronger repellent option for heavier conditions.",
+          href: "https://amzn.to/3QhUkUT",
+        },
+        {
+          label: "Head net",
+          note: "Useful when still air and shelter make exposed skin hard to manage.",
+          href: "https://amzn.to/42i5LOY",
+        },
       ],
     };
   }
 
-  if (tier === "full") {
+  if (tier === "high") {
     return {
-      title: "Full defence",
+      title: "High protection",
       description:
-        "Conditions are strong enough to justify full kit, especially if you expect still or sheltered stops.",
+        "Sheltered stops are likely to be uncomfortable without proper kit. Prioritise a strong repellent and keep heavier coverage ready.",
       items: [
-        "Repellent for repeated evening use",
-        "Head net for calm, humid periods",
-        "Lightweight long-sleeve layer or buff",
+        {
+          label: "Smidge 75ml",
+          note: "Portable repellent option for day-of travel and repeat use.",
+          href: "https://amzn.to/4mBlUbS",
+        },
+        {
+          label: "Lifesystems Expedition 100",
+          note: "Step up to this when conditions look stronger or more persistent.",
+          href: "https://amzn.to/3QhUkUT",
+        },
       ],
     };
   }
@@ -209,11 +253,18 @@ function getAffiliateRecommendations(tier: "light" | "moderate" | "full") {
   return {
     title: "Moderate protection",
     description:
-      "This is the default planning tier: enough kit to stay useful without overreacting to uncertain conditions.",
+      "This is the practical default when nuisance is possible but not extreme: keep a lighter spray option and a stronger backup close by.",
     items: [
-      "Repellent for sheltered stops",
-      "Head net kept in reserve for still periods",
-      "Lightweight long-sleeve layer or buff",
+      {
+        label: "Avon SSS Citronella spray",
+        note: "Lighter option for planning-level nuisance and shorter sheltered stops.",
+        href: "https://amzn.to/4tX26lN",
+      },
+      {
+        label: "Smidge 75ml",
+        note: "Useful step-up option if the air drops still or the evening gets worse than expected.",
+        href: "https://amzn.to/4mBlUbS",
+      },
     ],
   };
 }
