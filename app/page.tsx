@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
+import { FaqSchema, FaqSection } from "../components/faq-block";
+import {
+  HOMEPAGE_DESCRIPTION,
+  HOMEPAGE_FAQS,
+  SITE_URL,
+  buildOpenGraph,
+} from "../lib/seo/site-metadata";
 import {
   getLocationPageBySlug,
   getLocationPageSlugs,
@@ -9,10 +17,22 @@ const locationCards = getLocationPageSlugs()
   .map((slug) => getLocationPageBySlug(slug))
   .filter((page) => page !== undefined);
 
+export const metadata: Metadata = {
+  title: "Scotland's midge forecast and planning tool",
+  description: HOMEPAGE_DESCRIPTION,
+  openGraph: buildOpenGraph({
+    title: "Scotland's midge forecast and planning tool",
+    description: HOMEPAGE_DESCRIPTION,
+    url: SITE_URL,
+  }),
+};
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-stone-950 px-6 py-16 text-stone-50">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10">
+    <>
+      <FaqSchema faqs={HOMEPAGE_FAQS} />
+      <main className="min-h-screen bg-stone-950 px-6 py-16 text-stone-50">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10">
         <section className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">
             BiteForecast
@@ -68,7 +88,10 @@ export default function Home() {
             </Link>
           ))}
         </section>
+
+        <FaqSection faqs={HOMEPAGE_FAQS} title="Homepage FAQ" />
       </div>
-    </main>
+      </main>
+    </>
   );
 }

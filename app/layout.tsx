@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { HOMEPAGE_DESCRIPTION, SITE_URL, buildOpenGraph } from "../lib/seo/site-metadata";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,12 +17,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "BiteForecast | Scottish midge planning and live risk checks",
     template: "%s | BiteForecast",
   },
-  description:
-    "BiteForecast helps Scottish travellers plan around midge-prone locations with place-pattern guides and a live weather-backed calculator.",
+  description: HOMEPAGE_DESCRIPTION,
+  openGraph: buildOpenGraph({
+    title: "BiteForecast | Scottish midge planning and live risk checks",
+    description: HOMEPAGE_DESCRIPTION,
+    url: SITE_URL,
+  }),
 };
 
 export default function RootLayout({

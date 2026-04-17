@@ -2,10 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { FaqSchema, FaqSection } from "../../../components/faq-block";
 import { ForecastCalendar } from "../../../components/forecast-calendar";
 import { buildSevenDayForecast } from "../../../lib/calculator/forecast";
 import { fetchOpenMeteoSevenDayForecast } from "../../../lib/providers/open-meteo";
 import { getBandAdvice } from "../../../lib/scoring/bands";
+import {
+  LOCATION_META_DESCRIPTIONS,
+  SITE_URL,
+  buildOpenGraph,
+} from "../../../lib/seo/site-metadata";
 import {
   getLocationPageBySlug,
   getLocationPageSlugs,
@@ -33,9 +39,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const description =
+    LOCATION_META_DESCRIPTIONS[slug] ??
+    `Planning a trip to ${page.name}? Learn the typical midge patterns, terrain effects, and when to check current conditions before you go.`;
+
   return {
     title: `Midges in ${page.name}: seasonal patterns, best times, and what to expect`,
-    description: `Planning a trip to ${page.name}? Learn the typical midge patterns, terrain effects, and when to check current conditions before you go.`,
+    description,
+    openGraph: buildOpenGraph({
+      title: `Midges in ${page.name}: seasonal patterns, best times, and what to expect`,
+      description,
+      url: `${SITE_URL}/scotland/${slug}`,
+      type: "article",
+    }),
   };
 }
 
@@ -62,8 +78,10 @@ export default async function LocationPage({ params }: PageProps) {
     : [];
 
   return (
-    <main className="min-h-screen bg-stone-950 px-6 py-16 text-stone-50">
-      <article className="mx-auto flex max-w-4xl flex-col gap-10">
+    <>
+      <FaqSchema faqs={page.faqs} />
+      <main className="min-h-screen bg-stone-950 px-6 py-16 text-stone-50">
+        <article className="mx-auto flex max-w-4xl flex-col gap-10">
         <header className="space-y-4">
           <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
             ← Back to BiteForecast
@@ -185,18 +203,9 @@ export default async function LocationPage({ params }: PageProps) {
           title={`7-day forecast for ${page.name}`}
         />
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
-          <h2 className="text-2xl font-semibold">FAQ</h2>
-          <div className="mt-4 space-y-4">
-            {page.faqs.map((faq) => (
-              <div key={faq.question}>
-                <h3 className="font-medium text-stone-100">{faq.question}</h3>
-                <p className="mt-1 text-stone-300">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <FaqSection faqs={page.faqs} />
       </article>
-    </main>
+      </main>
+    </>
   );
 }

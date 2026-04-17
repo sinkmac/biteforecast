@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
+import { FaqSchema, FaqSection } from "../../components/faq-block";
 import { ForecastCalendar } from "../../components/forecast-calendar";
+import {
+  CALCULATOR_DESCRIPTION,
+  CALCULATOR_FAQS,
+  SITE_URL,
+  buildOpenGraph,
+  getBandColorClasses,
+} from "../../lib/seo/site-metadata";
 import type { AffiliateTier } from "../../lib/calculator/engine";
 import { buildSevenDayForecast } from "../../lib/calculator/forecast";
 import {
@@ -22,6 +31,16 @@ type PageProps = {
     location?: string;
     time?: string;
   }>;
+};
+
+export const metadata: Metadata = {
+  title: "Live midge forecast calculator",
+  description: CALCULATOR_DESCRIPTION,
+  openGraph: buildOpenGraph({
+    title: "Live midge forecast calculator",
+    description: CALCULATOR_DESCRIPTION,
+    url: `${SITE_URL}/midge-wind-watch`,
+  }),
 };
 
 export const dynamic = "force-dynamic";
@@ -62,8 +81,10 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
   const affiliateRecommendations = getAffiliateRecommendations(result.affiliateTier);
 
   return (
-    <main className="min-h-screen bg-stone-950 px-6 py-16 text-stone-50">
-      <article className="mx-auto flex max-w-6xl flex-col gap-10">
+    <>
+      <FaqSchema faqs={CALCULATOR_FAQS} />
+      <main className="min-h-screen bg-stone-950 px-6 py-16 text-stone-50">
+        <article className="mx-auto flex max-w-6xl flex-col gap-10">
         <header className="space-y-4">
           <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
             ← Back to BiteForecast
@@ -235,13 +256,16 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
           intro="This 7-day view runs the same scoring engine across forecast conditions for the next week so you can compare likely nuisance windows day by day."
           title={`7-day midge risk forecast for ${location.name}`}
         />
+
+        <FaqSection faqs={CALCULATOR_FAQS} title="Calculator FAQ" />
       </article>
-    </main>
+      </main>
+    </>
   );
 }
 
 function ScoreRing({ band }: { band: string }) {
-  const tone = getBandToneClasses(band);
+  const tone = getBandColorClasses(band);
 
   return (
     <div className={`flex h-28 w-28 shrink-0 items-center justify-center rounded-full border-4 ${tone.border} ${tone.bg}`}>
@@ -339,32 +363,3 @@ function getAffiliateRecommendations(
   };
 }
 
-function getBandToneClasses(band: string) {
-  switch (band) {
-    case "Very High":
-      return {
-        border: "border-rose-400/60",
-        bg: "bg-rose-500/10",
-        text: "text-rose-200",
-      };
-    case "High":
-      return {
-        border: "border-amber-300/60",
-        bg: "bg-amber-500/10",
-        text: "text-amber-200",
-      };
-    case "Moderate":
-    case "Guarded":
-      return {
-        border: "border-emerald-300/50",
-        bg: "bg-emerald-500/10",
-        text: "text-emerald-200",
-      };
-    default:
-      return {
-        border: "border-sky-300/45",
-        bg: "bg-sky-500/10",
-        text: "text-sky-200",
-      };
-  }
-}
