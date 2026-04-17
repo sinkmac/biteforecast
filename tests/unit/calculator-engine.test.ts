@@ -73,7 +73,7 @@ describe("calculator engine", () => {
     expect(result.affiliateTier).toBe("moderate");
   });
 
-  it("adds the golden-hour warning text and high affiliate block near sunset", () => {
+  it("shows the dusk warning near sunset when risk is not low", () => {
     const glencoe = getLocationPageBySlug("glencoe-midges");
 
     expect(glencoe).toBeDefined();
@@ -97,6 +97,50 @@ describe("calculator engine", () => {
     expect(result.band).toBe("High");
     expect(result.affiliateTier).toBe("high");
     expect(result.showNumericScore).toBe(false);
+  });
+
+  it("does not show the dusk warning on sunrise queries", () => {
+    const glencoe = getLocationPageBySlug("glencoe-midges");
+
+    expect(glencoe).toBeDefined();
+
+    const result = buildLiveCalculatorState({
+      location: glencoe!,
+      currentDate: new Date("2026-06-18T05:00:00+01:00"),
+      snapshot: {
+        windMph: 4.5,
+        humidity: 85,
+        temperatureC: 16,
+        targetTimeIso: "2026-06-18T05:00:00+01:00",
+        sunriseIso: "2026-06-18T04:30:00+01:00",
+        sunsetIso: "2026-06-18T22:10:00+01:00",
+      },
+    });
+
+    expect(result.band).toBe("Moderate");
+    expect(result.peakTimeMessage).toBeUndefined();
+  });
+
+  it("does not show the dusk warning on low-risk results", () => {
+    const glencoe = getLocationPageBySlug("glencoe-midges");
+
+    expect(glencoe).toBeDefined();
+
+    const result = buildLiveCalculatorState({
+      location: glencoe!,
+      currentDate: new Date("2026-06-18T21:40:00+01:00"),
+      snapshot: {
+        windMph: 12.4,
+        humidity: 92,
+        temperatureC: 15,
+        targetTimeIso: "2026-06-18T21:40:00+01:00",
+        sunriseIso: "2026-06-18T04:30:00+01:00",
+        sunsetIso: "2026-06-18T22:10:00+01:00",
+      },
+    });
+
+    expect(result.band).toBe("Low");
+    expect(result.peakTimeMessage).toBeUndefined();
   });
 
   it("maps very high bands to the strongest affiliate block", () => {

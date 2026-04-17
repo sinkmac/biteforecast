@@ -78,13 +78,12 @@ export function buildLiveCalculatorState({
     computeHumidityContribution(snapshot.humidity) +
     computeTemperatureContribution(snapshot.temperatureC);
 
-  const goldenHour = isGoldenHour(
+  const duskWindow = isWithinHour(
     new Date(snapshot.targetTimeIso),
-    new Date(snapshot.sunriseIso),
     new Date(snapshot.sunsetIso),
   );
 
-  const scoreWithGoldenHour = baseScore + (goldenHour ? 2 : 0);
+  const scoreWithGoldenHour = baseScore + (duskWindow ? 2 : 0);
   const finalScore = applyWindSuppressor(scoreWithGoldenHour, snapshot.windMph);
   const band = getBandForScore(finalScore);
 
@@ -92,7 +91,8 @@ export function buildLiveCalculatorState({
     mode: "live",
     band,
     advice: getBandAdvice(band),
-    peakTimeMessage: goldenHour ? "Peak midge time: Dusk approaching" : undefined,
+    peakTimeMessage:
+      duskWindow && band !== "Low" ? "Peak midge time: Dusk approaching" : undefined,
     affiliateTier: getAffiliateTierForBand(band),
     showNumericScore: false,
     liveSnapshot: snapshot,
@@ -135,14 +135,9 @@ function applyWindSuppressor(score: number, windMph: number): number {
   return score * factor;
 }
 
-function isGoldenHour(target: Date, sunrise: Date, sunset: Date): boolean {
+function isWithinHour(target: Date, anchor: Date): boolean {
   const hourWindow = 60 * 60 * 1000;
-  const targetTime = target.getTime();
-
-  return (
-    Math.abs(targetTime - sunrise.getTime()) <= hourWindow ||
-    Math.abs(targetTime - sunset.getTime()) <= hourWindow
-  );
+  return Math.abs(target.getTime() - anchor.getTime()) <= hourWindow;
 }
 
 export function getAffiliateTierForBand(band: PublicBand): AffiliateTier {
