@@ -57,7 +57,7 @@ export default function Home() {
             </p>
             <h2 className="mt-3 text-2xl font-semibold">Midge Wind-Watch</h2>
             <p className="mt-2 text-stone-300">
-              Check live midge conditions for your location right now — wind speed, humidity, and time of day all factored in.
+              Check live midge conditions for your location right now, with wind speed, humidity, and time of day factored in.
             </p>
           </Link>
 
@@ -70,6 +70,47 @@ export default function Home() {
               Jump straight to the destination you care about, then use the live calculator before you travel.
             </p>
           </div>
+        </section>
+
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {[
+            {
+              href: "/about",
+              label: "About",
+              title: "What BiteForecast is for",
+              body: "Understand how the site fits together and how to use it well.",
+            },
+            {
+              href: "/how-we-calculate",
+              label: "Method",
+              title: "How risk is calculated",
+              body: "See the plain-English logic behind the live scoring approach.",
+            },
+            {
+              href: "/midge-hotspots",
+              label: "Hotspots",
+              title: "Where midges usually feel worst",
+              body: "Learn the kinds of sheltered Scottish spots that often catch visitors out.",
+            },
+            {
+              href: "/midge-repellents",
+              label: "Practical kit",
+              title: "Repellents and protection",
+              body: "Keep product advice realistic and secondary to timing and location choice.",
+            },
+          ].map((card) => (
+            <Link
+              key={card.href}
+              className="rounded-2xl border border-stone-800 bg-stone-900 p-6 transition hover:border-emerald-400/40 hover:bg-stone-800"
+              href={card.href}
+            >
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-300">
+                {card.label}
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold">{card.title}</h2>
+              <p className="mt-2 text-stone-300">{card.body}</p>
+            </Link>
+          ))}
         </section>
 
         <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { buildMetadataAlternates } from "../../lib/seo/site-metadata";
+import {
+  SITE_URL,
+  buildMetadataAlternates,
+  buildOpenGraph,
+} from "../../lib/seo/site-metadata";
 
 export const metadata: Metadata = {
   title: "Terms",
   description:
-    "Plain-language terms of use for BiteForecast as a Scottish midge planning and weather-information utility site.",
+    "Terms of use for BiteForecast, including site purpose, no-guarantee language, acceptable use, and advertising disclosures.",
   alternates: buildMetadataAlternates("/terms"),
+  openGraph: buildOpenGraph({
+    title: "Terms",
+    description:
+      "Terms of use for BiteForecast, including site purpose, no-guarantee language, acceptable use, and advertising disclosures.",
+    url: `${SITE_URL}/terms`,
+  }),
 };
 
 export default function TermsPage() {
@@ -23,31 +33,34 @@ export default function TermsPage() {
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Terms for using BiteForecast</h1>
           <p className="max-w-3xl text-lg text-stone-300">
-            BiteForecast is a practical information tool for planning around Scottish midge conditions. These terms are meant to be readable: use the site responsibly, understand what it is for, and do not treat it as a guaranteed field forecast or professional advice.
+            These terms explain the basis on which BiteForecast is made available. By using the site, you agree to use it lawfully and to understand its limits as an information and planning tool.
           </p>
-          <p className="text-sm text-stone-500">Last updated: 17 April 2026</p>
+          <p className="text-sm text-stone-500">Last updated: 27 April 2026</p>
         </header>
 
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
-          <h2 className="text-2xl font-semibold">What the site is</h2>
+          <h2 className="text-2xl font-semibold">Purpose of the site</h2>
           <div className="mt-4 space-y-3 text-stone-300">
             <p>
-              BiteForecast provides planning guides, location pattern summaries, and a weather-backed calculator intended to help with trip timing and kit decisions.
+              BiteForecast provides planning guides, forecast-driven tools, and practical content about Scottish midge conditions. The aim is to help users make better timing, route, stop, and kit decisions.
             </p>
             <p>
-              It is an informational utility, not a promise that real-world conditions will match the site output.
+              The site is intended for general informational use only. It is not a substitute for official weather forecasts, professional outdoor guidance, medical advice, or your own judgement in the field.
             </p>
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
-          <h2 className="text-2xl font-semibold">No guarantee of conditions</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+        <section className="rounded-2xl border border-amber-300/25 bg-amber-500/10 p-6">
+          <h2 className="text-2xl font-semibold">No guarantee of conditions or outcomes</h2>
+          <div className="mt-4 space-y-3 text-stone-100/90">
             <p>
-              Weather, terrain, shelter, humidity, time of day, and local variation can change quickly. Even when live data is available, BiteForecast should be treated as guidance rather than a guarantee.
+              Scottish midge activity varies with weather, shelter, dampness, terrain, season, and micro-location. Conditions can change quickly and can differ sharply over short distances.
             </p>
             <p>
-              You remain responsible for your own travel, safety, comfort, health decisions, and equipment choices.
+              Because of that, BiteForecast does not guarantee the accuracy, completeness, availability, or real-world outcome of any score, summary, route, recommendation, or product mention on the site.
+            </p>
+            <p>
+              You remain responsible for your own travel plans, outdoor decisions, equipment choices, health considerations, and personal safety.
             </p>
           </div>
         </section>
@@ -56,63 +69,87 @@ export default function TermsPage() {
           <h2 className="text-2xl font-semibold">Acceptable use</h2>
           <div className="mt-4 space-y-3 text-stone-300">
             <p>
-              You may use BiteForecast for personal trip planning, research, and general information. Do not misuse the site, interfere with its operation, scrape it abusively, or use it in a way that creates security or availability problems.
+              You may use BiteForecast for personal planning, general research, editorial reference, and other lawful purposes.
             </p>
             <p>
-              Do not represent BiteForecast outputs as guaranteed official forecasts or attribute statements to the site that it does not make.
+              You must not misuse the site, interfere with its operation, attempt unauthorised access, scrape or automate requests in a way that harms service availability, or use the content in a misleading or unlawful manner.
+            </p>
+            <p>
+              You must not present BiteForecast output as an official guarantee or falsely imply endorsement by the site operator.
             </p>
           </div>
         </section>
 
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
-          <h2 className="text-2xl font-semibold">Third-party services and links</h2>
+          <h2 className="text-2xl font-semibold">Content, methods, and changes</h2>
           <div className="mt-4 space-y-3 text-stone-300">
             <p>
-              BiteForecast depends on third-party services such as hosting, weather data, advertising systems, and affiliate partners. Those services may change, fail, or behave differently from what BiteForecast expects.
+              BiteForecast may update or remove pages, change calculation logic, revise wording, add or remove locations, alter affiliate links, or modify site features without notice.
             </p>
             <p>
-              Links to retailers, ad networks, or external resources are provided for convenience. BiteForecast is not responsible for the content, availability, pricing, or conduct of those third-party services.
+              The site may also be unavailable from time to time because of maintenance, data-source outages, infrastructure problems, policy updates, or other operational reasons.
             </p>
           </div>
         </section>
 
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
-          <h2 className="text-2xl font-semibold">Affiliate and advertising disclosures</h2>
+          <h2 className="text-2xl font-semibold">Advertising and affiliate disclosure</h2>
           <div className="mt-4 space-y-3 text-stone-300">
             <p>
-              BiteForecast may show advertising and may use affiliate links. That means the site operator may receive revenue if you view ads or buy through a qualifying referral link.
+              BiteForecast may display advertising, including Google AdSense placements, and may include affiliate links to third-party retailers.
             </p>
             <p>
-              That commercial relationship does not turn product mentions into safety guarantees, expert certification, or a promise that a given item is right for your situation.
+              This means the site operator may receive revenue when ads are displayed or when qualifying purchases are made through affiliate links.
+            </p>
+            <p>
+              Advertising or commercial relationships do not create a warranty, endorsement, or promise that any product, service, or destination will be right for your circumstances.
             </p>
           </div>
         </section>
 
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
-          <h2 className="text-2xl font-semibold">Changes and availability</h2>
+          <h2 className="text-2xl font-semibold">Third-party services and external links</h2>
           <div className="mt-4 space-y-3 text-stone-300">
             <p>
-              BiteForecast may change pages, methods, routes, recommendations, legal pages, or available features without notice. Parts of the site may also be unavailable temporarily for maintenance, data-source issues, or infrastructure problems.
+              BiteForecast relies on third-party services, including hosting, weather-data providers, advertising systems, contact-form processing, and external retailers.
+            </p>
+            <p>
+              External links are provided for convenience and context. BiteForecast is not responsible for the content, pricing, availability, or practices of third-party services or websites.
             </p>
           </div>
         </section>
 
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+          <h2 className="text-2xl font-semibold">Intellectual property and reuse</h2>
+          <div className="mt-4 space-y-3 text-stone-300">
+            <p>
+              Unless stated otherwise, the BiteForecast site design, copy, and original compiled content remain the property of the site operator.
+            </p>
+            <p>
+              Short quotations or references may be fair and reasonable when properly attributed, but wholesale copying, deceptive republishing, or unauthorised commercial reuse is not permitted.
+            </p>
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+          <h2 className="text-2xl font-semibold">Limitation of liability</h2>
+          <div className="mt-4 space-y-3 text-stone-300">
+            <p>
+              To the fullest extent permitted by law, BiteForecast is provided on an as-is and as-available basis without warranties of any kind.
+            </p>
+            <p>
+              The site operator is not liable for losses or damages arising from reliance on the site, inability to access the site, third-party outages, product purchases, travel choices, or changing outdoor conditions.
+            </p>
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-emerald-400/30 bg-emerald-500/10 p-6">
           <h2 className="text-2xl font-semibold">Contact</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-stone-100/90">
             <p>
-              For site-level questions or policy issues, use the public project contact point:
+              For legal, privacy, policy, or site-use questions, please use the <Link className="text-emerald-200 underline-offset-4 hover:underline" href="/contact">contact page</Link>.
             </p>
-            <p>
-              <a
-                className="text-emerald-300 underline-offset-4 hover:underline"
-                href="https://github.com/sinkmac/biteforecast/issues"
-                rel="noreferrer"
-                target="_blank"
-              >
-                https://github.com/sinkmac/biteforecast/issues
-              </a>
-            </p>
+            <p>Continued use of BiteForecast after changes are published means you accept the updated terms.</p>
           </div>
         </section>
       </article>

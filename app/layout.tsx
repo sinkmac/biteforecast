@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
+
+import { FooterNav, SiteHeader } from "../components/site-nav";
 
 import {
   HOMEPAGE_DESCRIPTION,
@@ -55,20 +56,14 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col bg-stone-950 text-stone-50 antialiased`}>
+        <SiteHeader />
         <div className="flex-1">{children}</div>
         <footer className="border-t border-stone-800 bg-stone-950/95 px-6 py-6 text-sm text-stone-400">
           <div className="mx-auto flex max-w-5xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p>
               BiteForecast is an information and planning tool, not a guarantee of real-world conditions.
             </p>
-            <nav className="flex flex-wrap items-center gap-4">
-              <Link className="underline-offset-4 hover:text-stone-200 hover:underline" href="/privacy-policy">
-                Privacy policy
-              </Link>
-              <Link className="underline-offset-4 hover:text-stone-200 hover:underline" href="/terms">
-                Terms
-              </Link>
-            </nav>
+            <FooterNav />
           </div>
         </footer>
       </body>
