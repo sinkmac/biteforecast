@@ -81,6 +81,18 @@ export default function TermsPage() {
         </section>
 
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+          <h2 className="text-2xl font-semibold">No scraping or abusive automation</h2>
+          <div className="mt-4 space-y-3 text-stone-300">
+            <p>
+              You must not use bots, scripts, scrapers, or other automated methods to extract, copy, mirror, or monitor BiteForecast content in a way that is excessive, deceptive, commercially exploitative, or harmful to service availability.
+            </p>
+            <p>
+              Reasonable search-engine crawling and normal browser use are not the target of this rule. The rule is aimed at abusive collection, unauthorised reuse, and activity that puts the service or its content at risk.
+            </p>
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
           <h2 className="text-2xl font-semibold">Content, methods, and changes</h2>
           <div className="mt-4 space-y-3 text-stone-300">
             <p>
@@ -139,6 +151,15 @@ export default function TermsPage() {
             </p>
             <p>
               The site operator is not liable for losses or damages arising from reliance on the site, inability to access the site, third-party outages, product purchases, travel choices, or changing outdoor conditions.
+            </p>
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+          <h2 className="text-2xl font-semibold">Governing law</h2>
+          <div className="mt-4 space-y-3 text-stone-300">
+            <p>
+              These terms are governed by the law of Scotland. Any dispute or claim relating to BiteForecast or your use of the site should be interpreted in line with Scottish law, subject to any mandatory rights that apply in your place of residence.
             </p>
           </div>
         </section>

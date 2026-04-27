@@ -89,6 +89,21 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+          <h2 className="text-2xl font-semibold">Third-party services used by the site</h2>
+          <div className="mt-4 space-y-3 text-stone-300">
+            <p>
+              BiteForecast relies on third-party services to operate parts of the site. These may include hosting and delivery providers, Open-Meteo for weather data, Formspree for contact form handling, and Google AdSense for advertising.
+            </p>
+            <p>
+              If aggregate analytics tools such as Google Analytics are added in future, this policy will be updated so visitors can see what changed and how that data is handled.
+            </p>
+            <p>
+              Each provider operates under its own terms and privacy practices for the service it supplies.
+            </p>
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
           <h2 className="text-2xl font-semibold">Affiliate links and outbound retailers</h2>
           <div className="mt-4 space-y-3 text-stone-300">
             <p>
@@ -143,9 +158,10 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
-          <h2 className="text-2xl font-semibold">Your choices</h2>
+          <h2 className="text-2xl font-semibold">Your choices and rights</h2>
           <div className="mt-4 space-y-3 text-stone-300">
             <p>You can choose not to submit the contact form, block or clear cookies in your browser, and use Google&apos;s own advertising controls where available.</p>
+            <p>You can also contact BiteForecast to raise a privacy concern, request deletion of information you submitted through the contact form where appropriate, or ask how a site-level privacy issue is being handled.</p>
             <p>If you contact BiteForecast about a privacy issue, please provide enough detail for the request to be understood and handled.</p>
           </div>
         </section>

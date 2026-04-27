@@ -9,21 +9,52 @@ import {
 import { getLocationPageSlugs, getLocationPageBySlug } from "../../lib/seo/location-pages";
 
 export const metadata: Metadata = {
-  title: "Scottish midge hotspots",
+  title: "The Worst Midge Hotspots in Scotland",
   description:
-    "Common Scottish midge hotspots, why they feel worse, and where BiteForecast already has matching location guides.",
+    "From Glencoe to Torridon, a guide to Scotland's highest midge pressure locations, why they feel worse, and how to plan around them.",
   alternates: buildMetadataAlternates("/midge-hotspots"),
   openGraph: buildOpenGraph({
-    title: "Scottish midge hotspots",
+    title: "The Worst Midge Hotspots in Scotland",
     description:
-      "Common Scottish midge hotspots, why they feel worse, and where BiteForecast already has matching location guides.",
+      "From Glencoe to Torridon, a guide to Scotland's highest midge pressure locations, why they feel worse, and how to plan around them.",
     url: `${SITE_URL}/midge-hotspots`,
   }),
 };
 
-const linkedHotspots = getLocationPageSlugs()
-  .map((slug) => getLocationPageBySlug(slug))
-  .filter((page) => page !== undefined);
+const locationLookup = Object.fromEntries(
+  getLocationPageSlugs()
+    .map((slug) => getLocationPageBySlug(slug))
+    .filter((page) => page !== undefined)
+    .map((page) => [page.slug, page]),
+);
+
+const namedHotspots = [
+  {
+    slug: "glencoe-midges",
+    name: "Glencoe",
+    note: "A classic sheltered-glen example. Dramatic scenery, wet ground, and evening stillness can combine to create a much harsher experience than the broader regional forecast suggests.",
+  },
+  {
+    slug: "fort-william-midges",
+    name: "Fort William",
+    note: "The wider area mixes exposed and sheltered terrain, but calm damp pockets around water, woodland edges, and low-lying campsites can feel much worse than passing roadside conditions.",
+  },
+  {
+    slug: "loch-lomond-midges",
+    name: "Loch Lomond",
+    note: "Loch edges, tree cover, and still summer evenings make this one of the better-known places for nuisance spikes, especially when visitors assume the whole shoreline will behave the same way.",
+  },
+  {
+    slug: "skye-midges",
+    name: "Isle of Skye",
+    note: "Skye can feel very different from one stop to the next. Exposed, breezier spots can stay manageable, while sheltered damp corners can turn unpleasant quickly.",
+  },
+  {
+    slug: "torridon-midges",
+    name: "Torridon",
+    note: "Torridon often illustrates the exposed-versus-sheltered split perfectly. Open ground can feel fine, while a tucked-away campsite or lochside pause at dusk can be a different story entirely.",
+  },
+];
 
 const extraHotspots = [
   {
@@ -52,10 +83,10 @@ export default function MidgeHotspotsPage() {
             Hotspots
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            Scottish midge hotspots to treat carefully
+            The worst midge hotspots in Scotland
           </h1>
           <p className="max-w-3xl text-lg text-stone-300">
-            Midges are rarely about a whole region being uniformly bad. The worst experiences usually come from sheltered, damp, still micro-locations inside otherwise manageable areas.
+            Midges are rarely about a whole region being uniformly bad. The worst experiences usually come from sheltered, damp, still micro-locations inside otherwise manageable areas, especially in famous Highland destinations where people naturally stop, camp, or linger at the wrong time of day.
           </p>
         </header>
 
@@ -71,25 +102,33 @@ export default function MidgeHotspotsPage() {
 
         <section className="space-y-4">
           <div>
-            <h2 className="text-2xl font-semibold">Hotspots with BiteForecast guides</h2>
+            <h2 className="text-2xl font-semibold">Five hotspot locations to watch</h2>
             <p className="mt-2 text-stone-300">
-              These places already have matching planning pages you can use for broader seasonal context, terrain notes, and a route into the live calculator.
+              These are the places visitors ask about most often. Each one can feel manageable in the right conditions, but each can also turn difficult quickly when the air settles and the ground stays damp.
             </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {linkedHotspots.map((page) => (
-              <Link
-                key={page.slug}
-                className="rounded-2xl border border-stone-800 bg-stone-900 p-6 transition hover:border-emerald-400/40 hover:bg-stone-800"
-                href={`/scotland/${page.slug}`}
-              >
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-300">
-                  {page.region}
-                </p>
-                <h3 className="mt-3 text-2xl font-semibold">{page.name}</h3>
-                <p className="mt-3 text-stone-300">{page.planningTakeaway}</p>
-              </Link>
-            ))}
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {namedHotspots.map((item) => {
+              const linkedPage = locationLookup[item.slug];
+
+              return (
+                <div
+                  key={item.slug}
+                  className="rounded-2xl border border-stone-800 bg-stone-900 p-6"
+                >
+                  <h3 className="text-2xl font-semibold">{item.name}</h3>
+                  <p className="mt-3 text-stone-300">{item.note}</p>
+                  {linkedPage ? (
+                    <Link
+                      className="mt-5 inline-flex text-emerald-300 underline-offset-4 hover:underline"
+                      href={`/scotland/${linkedPage.slug}`}
+                    >
+                      Read the {linkedPage.name} guide
+                    </Link>
+                  ) : null}
+                </div>
+              );
+            })}
           </div>
         </section>
 
