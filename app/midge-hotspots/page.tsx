@@ -45,7 +45,7 @@ const namedHotspots = [
     note: "Loch edges, tree cover, and still summer evenings make this one of the better-known places for nuisance spikes, especially when visitors assume the whole shoreline will behave the same way.",
   },
   {
-    slug: "skye-midges",
+    slug: "isle-of-skye-midges",
     name: "Isle of Skye",
     note: "Skye can feel very different from one stop to the next. Exposed, breezier spots can stay manageable, while sheltered damp corners can turn unpleasant quickly.",
   },

@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/how-we-calculate",
     "/midge-hotspots",
     "/midge-repellents",
+    "/smidge-vs-avon-skin-so-soft",
     "/contact",
     "/midge-wind-watch",
     "/privacy-policy",

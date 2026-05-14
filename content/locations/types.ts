@@ -22,6 +22,7 @@ export type SeasonalBandByMonth = Record<number, PublicBand>;
 export type LocationPage = {
   slug: string;
   name: string;
+  h1?: string;
   region: string;
   broaderArea: string;
   coordinates: Coordinates;

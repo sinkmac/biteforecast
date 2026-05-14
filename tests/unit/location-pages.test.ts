@@ -10,7 +10,7 @@ describe("location page registry", () => {
     expect(getLocationPageSlugs()).toEqual(
       expect.arrayContaining([
         "glencoe-midges",
-        "skye-midges",
+        "isle-of-skye-midges",
         "fort-william-midges",
         "loch-lomond-midges",
         "aviemore-midges",
@@ -32,11 +32,12 @@ describe("location page registry", () => {
   });
 
   it("returns the first three benchmark records with moderate planning-band defaults", () => {
-    const skye = getLocationPageBySlug("skye-midges");
+    const skye = getLocationPageBySlug("isle-of-skye-midges");
     const fortWilliam = getLocationPageBySlug("fort-william-midges");
 
     expect(skye).toBeDefined();
     expect(skye?.name).toBe("Isle of Skye");
+    expect(skye?.slug).toBe("isle-of-skye-midges");
     expect(skye?.planningRiskBand).toBe("Moderate");
     expect(skye?.liveCalculatorHref).toBe("/midge-wind-watch/?location=Isle%20of%20Skye");
 

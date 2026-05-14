@@ -10,13 +10,13 @@ export const CALCULATOR_DESCRIPTION =
 
 export const LOCATION_META_DESCRIPTIONS: Record<string, string> = {
   "glencoe-midges":
-    "Check midge risk for Glencoe — seasonal patterns, best times to visit, and a live 7-day forecast. Plan your trip around the conditions.",
-  "skye-midges":
-    "Midge forecast for the Isle of Skye — when midges are worst, which spots to avoid at dusk, and live conditions before you travel.",
+    "Glencoe midge forecast, seasonal patterns, and practical advice on when to visit and what to bring. Check live conditions before you go.",
+  "isle-of-skye-midges":
+    "Isle of Skye midge forecast, seasonal patterns, and practical advice for visitors. Check live conditions before you go.",
   "fort-william-midges":
-    "Fort William midge forecast — seasonal risk, calmer times to visit, and live 7-day conditions before you head out.",
+    "Fort William midge forecast, seasonal patterns, and practical advice for visitors and hikers. Check live conditions before you go.",
   "loch-lomond-midges":
-    "Loch Lomond midge forecast — seasonal patterns, dusk risk, and live 7-day conditions for planning your stop or stay.",
+    "Loch Lomond midge forecast, seasonal patterns, and practical advice for visitors and campers. Check live conditions before you go.",
   "aviemore-midges":
     "Aviemore midge forecast — when nuisance builds, which conditions matter most, and a live 7-day outlook before you travel.",
   "mull-midges":
@@ -24,7 +24,7 @@ export const LOCATION_META_DESCRIPTIONS: Record<string, string> = {
   "torridon-midges":
     "Torridon midge forecast — exposed vs sheltered risk, best visiting windows, and live 7-day conditions before you travel.",
   "cairngorms-midges":
-    "Cairngorms midge forecast — seasonal patterns, exposed vs sheltered risk, and a live 7-day outlook before your trip.",
+    "Cairngorms midge forecast, seasonal patterns, and practical advice for hikers and visitors. Check live conditions before you go.",
 };
 
 export type FaqEntry = {

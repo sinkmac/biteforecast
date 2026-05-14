@@ -6,31 +6,32 @@ import type { LocationPage } from "./types";
 export const fortWilliamLocationPage: LocationPage = {
   slug: "fort-william-midges",
   name: "Fort William",
+  h1: "Midges in Fort William: when they're bad, when they're not, and how to deal with them",
   region: "Lochaber",
   broaderArea: "West Highlands",
   coordinates: { latitude: 56.798077, longitude: -5.095093 },
   seasonalFallbackByMonth: STANDARD_SEASONAL_BANDS,
-  terrainType: "mountain gateway town with lochside, woodland edges, and sheltered valley approaches",
+  terrainType: "mountain gateway town with Loch Linnhe, wooded edges, lower Ben Nevis slopes, campsites, and sheltered valley approaches",
   intro:
-    "Fort William is a classic mountain-gateway location where visitors often move between exposed travel corridors and much more sheltered evening stops. That means midge pressure can feel surprisingly local: open transit can feel fine while calmer lochside or campsite periods turn noticeably worse.",
+    "Fort William gets proper west coast midge pressure. It is a base for Ben Nevis, the West Highland Way and Great Glen trips, but it is also damp, sheltered in places and surrounded by water, woodland and lower slopes where midges can gather fast. If the Fort William midge forecast is bad and the air is still, expect it to be bad on the ground.",
   seasonalSummary: [
-    "Fort William usually starts to feel midge-prone from late May, with the strongest nuisance windows often arriving through June and July and lingering into August when the air is still and humid.",
-    "Because it is a gateway rather than a single exposed landscape, the difference between town edges, lochside stops, and more sheltered nearby ground often matters more than broad weather summaries alone.",
+    "The main season usually runs from late May through September, with June, July and August the months that need the most planning. September can still bite if conditions stay mild and damp. Early spring and later autumn are usually easier.",
+    "Dawn and dusk are the worst windows. That matters because visitors are often setting off early for Ben Nevis, finishing walks late, camping, or standing around lochside stops on Loch Linnhe.",
   ],
   terrainNote: [
-    "Loch influence, wooded edges, and the surrounding valley geography all create the kind of calmer pockets that midges favour when the air settles.",
-    "For planning purposes, Fort William should be treated as a place where the wider weather picture is only half the story; local stop choice and timing still matter a lot.",
+    "The lower Ben Nevis path can be especially annoying in still, humid air before you gain height and wind exposure. Great Glen campsites and lochside stops can be the same.",
+    "If you are moving quickly on open ground, you may be fine. If you are changing boots, waiting at a campsite, sorting bags beside the car or cooking near trees and water, the midges get their chance.",
   ],
   planningTakeaway:
-    "If you are using Fort William as a base, assume the most comfortable windows are the brighter, breezier daytime ones and be more cautious about still evening stops near damp or sheltered ground.",
+    "Use Fort William's forecast as a practical check before Ben Nevis, the Great Glen, Loch Linnhe stops or a campsite night. High risk plus still air means cover up and bring proper protection.",
   bestWindowsSummary:
-    "Open daytime windows with moving air are often the easiest for travel, walks, and short stops.",
+    "Breezy days, open viewpoints, higher ground, wind-exposed sections and the middle of the day are usually easier.",
   worstWindowsSummary:
-    "Calm evening periods near lochside, woodland edges, or sheltered campsites are the most likely to feel uncomfortable.",
+    "Calm evenings near Loch Linnhe, wooded campsites, Great Glen stops and the lower Ben Nevis path are the usual problem windows.",
   calmerExperienceTip:
-    "Shorter pauses in more open areas usually feel better than long still stops low and sheltered later in the day.",
+    "For Ben Nevis midges, the worst part is often not the summit; it is the lower, slower, sheltered start and finish.",
   campingTip:
-    "If staying nearby, expect nuisance to rise quickly once the air settles around camp in summer, especially after humid or damp conditions.",
+    "Campers and walkers feel midges more because they are still for longer. Keep a head net in the bag if you are stopping overnight.",
   timePatterns: [
     {
       label: "Late May",
@@ -40,8 +41,8 @@ export const fortWilliamLocationPage: LocationPage = {
     },
     {
       label: "June",
-      typicallyBetter: "Breezier daytime periods",
-      typicallyWorse: "Dusk and still evening periods",
+      typicallyBetter: "Breezier daytime periods and higher movement on open ground",
+      typicallyWorse: "Dusk, still evening periods and Great Glen campsites",
       terrainNote: "Town-edge shelter and wooded approaches can hold midge pressure even when transit feels comfortable.",
     },
     {
@@ -51,7 +52,7 @@ export const fortWilliamLocationPage: LocationPage = {
       terrainNote: "Local stop choice matters more than visitors often expect.",
     },
     {
-      label: "August",
+      label: "August to September",
       typicallyBetter: "Fresher periods after wind or rain clears through",
       typicallyWorse: "Settled evenings after warm damp days",
       terrainNote: "Residual dampness and shelter can keep nuisance elevated later in the season.",
@@ -64,18 +65,17 @@ export const fortWilliamLocationPage: LocationPage = {
         "They can be, especially through June and July when evenings turn still and humid. Open daytime periods are often more manageable than sheltered evening stops.",
     },
     {
-      question: "What time are midges worst around Fort William?",
+      question: "Are there midges on Ben Nevis?",
       answer:
-        "For many visitors, dusk and calm evening periods are the worst windows, especially near lochside or sheltered ground.",
+        "Ben Nevis midges are most likely to annoy you on the lower, slower, more sheltered start and finish rather than high exposed ground.",
     },
     {
-      question: "Should I rely on the planning page or the live calculator for Fort William?",
+      question: "What time are midges worst around Fort William?",
       answer:
-        "Use this page for typical seasonal behaviour and timing. Use the live calculator when you need a current decision for today, tonight, or this weekend.",
+        "For many visitors, dusk and calm evening periods are the worst windows, especially near Loch Linnhe, woodland, campsites or sheltered ground.",
     },
   ],
   planningRiskBand: BANDS.moderate,
   liveCalculatorHref: "/midge-wind-watch/?location=Fort%20William",
-  affiliateCategory: "moderate-risk planning kit",
+  affiliateCategory: "west coast high-risk planning kit",
 };
-
