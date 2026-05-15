@@ -14,6 +14,12 @@ const FOOTER_NAV_LINKS = [
   { href: "/terms", label: "Terms" },
 ];
 
+const GUIDE_LINKS = [
+  { href: "/about-scottish-midges", label: "About Scottish Midges" },
+  { href: "/midge-season-scotland", label: "Midge Season Guide" },
+  { href: "/how-to-avoid-midges-scotland", label: "How to Avoid Midges" },
+];
+
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-20 border-b border-stone-800 bg-stone-950/95 backdrop-blur">
@@ -39,16 +45,30 @@ export function SiteHeader() {
 
 export function FooterNav() {
   return (
-    <nav className="flex flex-wrap items-center gap-4">
-      {FOOTER_NAV_LINKS.map((link) => (
-        <Link
-          key={link.href}
-          className="underline-offset-4 hover:text-stone-200 hover:underline"
-          href={link.href}
-        >
-          {link.label}
-        </Link>
-      ))}
-    </nav>
+    <div className="flex flex-col gap-3 sm:items-end">
+      <nav className="flex flex-wrap items-center gap-4">
+        {FOOTER_NAV_LINKS.map((link) => (
+          <Link
+            key={link.href}
+            className="underline-offset-4 hover:text-stone-200 hover:underline"
+            href={link.href}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+      <nav aria-label="Guides" className="flex flex-wrap items-center gap-4 sm:justify-end">
+        <span className="font-semibold uppercase tracking-[0.16em] text-stone-500">Guides</span>
+        {GUIDE_LINKS.map((link) => (
+          <Link
+            key={link.href}
+            className="underline-offset-4 hover:text-stone-200 hover:underline"
+            href={link.href}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+    </div>
   );
 }

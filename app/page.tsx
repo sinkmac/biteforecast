@@ -72,6 +72,52 @@ export default function Home() {
             </div>
           </section>
 
+          <section className="space-y-4 rounded-2xl border border-emerald-400/30 bg-emerald-500/10 p-6">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-300">
+                Read our guides
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold">Scottish midge advice before you go</h2>
+              <p className="mt-2 max-w-3xl text-stone-300">
+                Practical background on Scottish midges, the season, and the kit and habits that actually help.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-3">
+              {[
+                {
+                  href: "/about-scottish-midges",
+                  label: "Guide",
+                  title: "About Scottish midges",
+                  body: "What they are, why the Highlands suit them, and why calm summer evenings get so bad.",
+                },
+                {
+                  href: "/midge-season-scotland",
+                  label: "Guide",
+                  title: "Midge season month by month",
+                  body: "When the season starts, when it peaks, and which months give you the best chance of peace.",
+                },
+                {
+                  href: "/how-to-avoid-midges-scotland",
+                  label: "Guide",
+                  title: "How to avoid midges",
+                  body: "Forecast checks, timing, repellent, head nets, clothing, camp choice, and what to do after bites.",
+                },
+              ].map((guide) => (
+                <Link
+                  key={guide.href}
+                  className="rounded-2xl border border-emerald-400/30 bg-emerald-500/10 p-6 transition hover:border-emerald-300/60 hover:bg-emerald-500/15"
+                  href={guide.href}
+                >
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-300">
+                    {guide.label}
+                  </p>
+                  <h2 className="mt-3 text-2xl font-semibold">{guide.title}</h2>
+                  <p className="mt-2 text-stone-300">{guide.body}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+
           <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {[
               {
