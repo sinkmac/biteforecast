@@ -28,3 +28,22 @@ body {
 body:has(.biteforecast-home) > header {
   display: none;
 }
+
+.bf-tool-shell {
+  width: min(15rem, calc(100vw - 3rem));
+}
+
+.bf-tool-card {
+  width: 100%;
+  max-width: 15rem;
+}
+
+@media (min-width: 640px) {
+  .bf-tool-shell {
+    width: min(36rem, calc(100vw - 3rem));
+  }
+
+  .bf-tool-card {
+    max-width: 36rem;
+  }
+}

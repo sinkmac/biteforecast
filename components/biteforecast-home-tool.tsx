@@ -274,23 +274,22 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
   const showProductsAbove = result ? result.level.number >= 3 : false;
 
   return (
-    <main className="biteforecast-home bg-stone-950 text-stone-50">
-      <section className="relative flex min-h-[100svh] px-4 py-4 sm:px-6">
+    <main className="biteforecast-home overflow-x-hidden bg-stone-950 text-stone-50">
+      <section className="relative flex min-h-[100svh] items-center justify-center overflow-x-hidden px-4 py-4 sm:px-6">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.18),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(132,204,22,0.14),transparent_32%)]" />
-        <div className="relative mx-auto flex min-h-[calc(100svh-2rem)] w-full max-w-5xl flex-col">
-          <div className="shrink-0">
+        <div className="absolute left-4 top-4 z-10 sm:left-6 sm:top-6">
             <p className="text-base font-black tracking-tight text-stone-50">BiteForecast</p>
             <p className="mt-1 text-xs font-medium text-emerald-200 sm:text-sm">Skip the midges. Not the scenery.</p>
-          </div>
+        </div>
 
-          <div className="flex flex-1 items-center justify-center py-4">
-            <div className="w-full max-w-xl rounded-[2rem] border border-white/10 bg-stone-900/88 p-4 shadow-2xl shadow-black/30 backdrop-blur sm:p-7">
+        <div className="bf-tool-shell relative mx-auto flex items-center justify-center pt-14 sm:pt-16">
+            <div className="bf-tool-card rounded-[2rem] border border-white/10 bg-stone-900/88 p-4 shadow-2xl shadow-black/30 backdrop-blur sm:p-7">
               <div className="space-y-3 sm:space-y-5">
                 <label className="block">
                   <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-stone-400">Location</span>
                   <select
                     aria-label="Location"
-                    className="w-full rounded-2xl border border-stone-700 bg-stone-950 px-4 py-3 text-base font-semibold text-stone-50 outline-none transition focus:border-emerald-300 sm:text-lg"
+                    className="block w-full min-w-0 max-w-full rounded-2xl border border-stone-700 bg-stone-950 px-4 py-3 text-base font-semibold text-stone-50 outline-none transition focus:border-emerald-300 sm:text-lg"
                     value={selectedSlug}
                     onChange={(event) => {
                       setSelectedSlug(event.target.value);
@@ -311,7 +310,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
                   <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-stone-400">Date</span>
                   <input
                     aria-label="Date"
-                    className="w-full rounded-2xl border border-stone-700 bg-stone-950 px-4 py-3 text-base font-semibold text-stone-50 outline-none transition focus:border-emerald-300 sm:text-lg"
+                    className="block w-full min-w-0 max-w-full rounded-2xl border border-stone-700 bg-stone-950 px-4 py-3 text-base font-semibold text-stone-50 outline-none transition focus:border-emerald-300 sm:text-lg"
                     min={toDateInputValue(new Date())}
                     type="date"
                     value={selectedDate}
@@ -324,8 +323,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
 
                 {result ? (
                   <div className="rounded-[1.5rem] border border-emerald-300/20 bg-stone-950 p-4 text-center sm:p-6">
-                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-200">Level {result.level.number}</p>
-                    <h1 className="mt-2 text-3xl font-black leading-none tracking-tight text-white sm:text-5xl">{result.level.name}</h1>
+                    <h1 className="text-3xl font-black leading-none tracking-tight text-white sm:text-5xl">{result.level.name}</h1>
                     <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-stone-200 sm:text-base">{result.level.copy}</p>
                     <p className="mt-3 text-xs text-stone-500">Based on live weather data. Updated hourly.</p>
                     {result.mode === "fallback" ? <p className="mt-2 text-xs text-amber-200">Live feed unavailable — showing a seasonal estimate.</p> : null}
@@ -358,7 +356,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
                   </div>
                 ) : (
                   <button
-                    className="w-full rounded-2xl bg-emerald-300 px-5 py-4 text-lg font-black text-stone-950 shadow-lg shadow-emerald-950/30 transition hover:bg-emerald-200 disabled:cursor-wait disabled:bg-stone-600 disabled:text-stone-300"
+                    className="block w-full min-w-0 max-w-full rounded-2xl bg-emerald-300 px-5 py-4 text-lg font-black text-stone-950 shadow-lg shadow-emerald-950/30 transition hover:bg-emerald-200 disabled:cursor-wait disabled:bg-stone-600 disabled:text-stone-300"
                     disabled={isChecking || !selectedPlace}
                     onClick={checkRisk}
                     type="button"
@@ -368,7 +366,6 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
                 )}
               </div>
             </div>
-          </div>
         </div>
       </section>
 
