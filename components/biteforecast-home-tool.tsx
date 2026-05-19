@@ -62,40 +62,40 @@ const RISK_LEVELS: Record<PublicBand, RiskLevel> = {
     number: 1,
     band: "Low",
     name: "Scotland Is Being Kind Today",
-    copy: "Rare conditions. Get out there before it changes its mind.",
-    shortCopy: "Rare conditions. Get out there before it changes its mind.",
+    copy: "All units stand down. The Hooligans are not in the field. You are clear to proceed. For now.",
+    shortCopy: "All units stand down. You are clear to proceed. For now.",
     tone: "from-emerald-300 to-lime-200 text-stone-950",
   },
   Guarded: {
     number: 2,
     band: "Guarded",
     name: "One Or Two About",
-    copy: "Barely worth mentioning. Dawn and dusk, maybe. Otherwise you'll be fine.",
-    shortCopy: "Barely worth mentioning. Dawn and dusk, maybe.",
+    copy: "Low-level hostile activity detected. Hooligan scouts in the area. Threat assessment: manageable. They are watching.",
+    shortCopy: "Low-level hostile activity detected. They are watching.",
     tone: "from-lime-200 to-yellow-100 text-stone-950",
   },
   Moderate: {
     number: 3,
     band: "Moderate",
     name: "Smidge Up",
-    copy: "They mean it today. Repellent on before you leave the car. Don't negotiate with midges.",
-    shortCopy: "Repellent on before you leave the car.",
+    copy: "THREAT LEVEL ELEVATED. Hooligans mobilising across the glen. Exit the vehicle with Command-issue Smidge. Command does not negotiate.",
+    shortCopy: "THREAT LEVEL ELEVATED. Command does not negotiate.",
     tone: "from-yellow-200 to-amber-300 text-stone-950",
   },
   High: {
     number: 4,
     band: "High",
     name: "They've Organised",
-    copy: "Full kit required. Long sleeves, repellent, keep moving. They've had a meeting about you.",
-    shortCopy: "Full kit required. They've had a meeting about you.",
+    copy: "HILL KILL PROTOCOL INITIATED. You have been designated a target. Hooligan is in the field. The Hooligans have their orders. Keep moving. Do not stand in a bog.",
+    shortCopy: "HILL KILL PROTOCOL INITIATED. Keep moving. Do not stand in a bog.",
     tone: "from-orange-300 to-red-300 text-stone-950",
   },
   "Very High": {
     number: 5,
     band: "Very High",
     name: "Stay In The Car",
-    copy: "Heroic conditions. Scotland is doing its thing. The head net is not optional. We recommend Smidge. We don't work for them. We just know.",
-    shortCopy: "The head net is not optional.",
+    copy: "TOTAL INCURSION. The glen has fallen. Hooligan has the high ground, the low ground, and your neck. Nowhere is safe. Stay in the car. We recommend Smidge. We don't work for them. We just know.",
+    shortCopy: "TOTAL INCURSION. Nowhere is safe. Stay in the car.",
     tone: "from-red-400 to-rose-500 text-white",
   },
 };
@@ -366,6 +366,15 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
                 )}
               </div>
             </div>
+        </div>
+      </section>
+
+      <section className="mx-auto -mt-24 max-w-3xl px-4 pb-20 sm:-mt-20 sm:px-6">
+        <div className="rounded-3xl border border-emerald-300/20 bg-stone-900/90 p-5 shadow-2xl shadow-black/20 backdrop-blur sm:p-6">
+          <h2 className="text-xl font-black tracking-tight text-stone-50">Who are the Hooligans?</h2>
+          <p className="mt-3 text-sm leading-6 text-stone-300 sm:text-base">
+            Some say the word hooligan comes from meanbh-chuileag — the Gaelic for midgie — mangled beyond recognition by a baffled Redcoat in 1745. Etymologists disagree. Hooligan doesn&apos;t care. Neither do his troops.
+          </p>
         </div>
       </section>
 
