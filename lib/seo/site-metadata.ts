@@ -3,7 +3,7 @@ import type { PublicBand } from "../scoring/bands";
 export const SITE_URL = "https://www.biteforecast.scot";
 
 export const HOMEPAGE_DESCRIPTION =
-  "Scotland's midge forecast and planning tool. Location guides for every major Highland destination plus a live risk calculator.";
+  "BiteForecast tells you midge risk for your Highland destination today, in plain English, updated hourly. Free, no registration, built for Scotland.";
 
 export const CALCULATOR_DESCRIPTION =
   "Live midge forecast for Scotland — check wind, humidity, time of day, and a 7-day risk outlook before you travel.";

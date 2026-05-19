@@ -369,6 +369,12 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
         </div>
       </section>
 
+      <section className="mx-auto -mt-14 max-w-2xl px-4 pb-10 text-center sm:-mt-12 sm:px-6">
+        <p className="text-sm leading-6 text-stone-400 sm:text-base">
+          BiteForecast tells you midge risk for your Highland destination today, in plain English, updated hourly.
+        </p>
+      </section>
+
       <section className="mx-auto -mt-24 max-w-3xl px-4 pb-20 sm:-mt-20 sm:px-6">
         <div className="rounded-3xl border border-emerald-300/20 bg-stone-900/90 p-5 shadow-2xl shadow-black/20 backdrop-blur sm:p-6">
           <h2 className="text-xl font-black tracking-tight text-stone-50">Who are the Hooligans?</h2>
