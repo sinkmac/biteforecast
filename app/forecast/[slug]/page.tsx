@@ -26,22 +26,22 @@ type PageProps = {
 
 const PRODUCTS = [
   {
-    name: "Smidge That Midge",
+    name: "Smidge Repellent 75ml — 2 Pack",
     note: "The dedicated Scottish default for high-risk dusk and woodland stops.",
-    href: "https://www.amazon.co.uk/s?k=Smidge+That+Midge+B00CXIPGCC&tag=biteforecast2-21",
-    asinNote: "Requested ASIN B00CXIPGCC returned 404 in automated verification, so this uses a tagged Amazon UK search fallback.",
+    href: "https://www.amazon.co.uk/dp/B07DPW8W66?tag=biteforecast2-21",
+    asin: "B07DPW8W66",
   },
   {
-    name: "Avon Skin So Soft Original",
+    name: "Avon Skin So Soft Original Dry Oil Spray — 300ml Pack of 2",
     note: "The reputation pick for lighter nuisance; not a dedicated repellent.",
-    href: "https://www.amazon.co.uk/s?k=Avon+Skin+So+Soft+Original+B004IJKSEY&tag=biteforecast2-21",
-    asinNote: "Requested ASIN B004IJKSEY returned 404 in automated verification, so this uses a tagged Amazon UK search fallback.",
+    href: "https://www.amazon.co.uk/dp/B075PHYQTR?tag=biteforecast2-21",
+    asin: "B075PHYQTR",
   },
   {
-    name: "Incognito spray",
+    name: "Incognito Insect Repellent Spray — 100ml",
     note: "A plant-based spray option to compare with Smidge and Avon.",
-    href: "https://www.amazon.co.uk/s?k=Incognito+insect+repellent+spray+B001E5C7CE&tag=biteforecast2-21",
-    asinNote: "Requested ASIN B001E5C7CE returned 404 in automated verification, so this uses a tagged Amazon UK search fallback.",
+    href: "https://www.amazon.co.uk/dp/B001EJOHYG?tag=biteforecast2-21",
+    asin: "B001EJOHYG",
   },
 ];
 
