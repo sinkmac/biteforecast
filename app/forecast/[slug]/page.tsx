@@ -16,6 +16,11 @@ import {
   getMidgeLevelClasses,
   getMidgeRecommendation,
 } from "../../../lib/forecast/midge-index";
+import { CopyShareTextButton } from "../../../components/copy-share-text-button";
+import {
+  HooliganState,
+  getHooliganAdversaryLine,
+} from "../../../components/hooligan-state";
 import { SITE_URL, buildMetadataAlternates, buildOpenGraph } from "../../../lib/seo/site-metadata";
 
 export const revalidate = 10800;
@@ -78,8 +83,8 @@ export default async function ForecastPage({ params }: PageProps) {
     notFound();
   }
 
-  const peakLabel = getMidgeLabel(forecast.current.peakTonight);
-  const shareText = `🦟 ${forecast.location.name} midge forecast tonight: ${peakLabel.toUpperCase()} (${forecast.current.peakTonight}/10)\nPeak: ${forecast.current.peakTime}\nPack the Smidge.\nbiteforecast.scot/forecast/${forecast.location.slug}`;
+  const hooliganLine = getHooliganAdversaryLine(forecast.current.index);
+  const shareText = `🦟 ${forecast.location.name} midge forecast: ${forecast.current.label.toUpperCase()} (${forecast.current.index}/10)\n${hooliganLine}\nbiteforecast.scot/forecast/${forecast.location.slug}`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -123,8 +128,14 @@ export default async function ForecastPage({ params }: PageProps) {
             </p>
           </div>
           <div className="rounded-3xl border border-emerald-400/25 bg-emerald-500/10 p-6">
-            <h2 className="text-2xl font-black">Recommendation</h2>
-            <p className="mt-3 text-lg leading-7 text-stone-100">{forecast.current.recommendation}</p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+              <HooliganState indexLevel={forecast.current.index} size="md" />
+              <div>
+                <h2 className="text-2xl font-black">Recommendation</h2>
+                <p className="mt-3 text-sm font-medium italic leading-6 text-stone-400">{hooliganLine}</p>
+                <p className="mt-3 text-lg leading-7 text-stone-100">{forecast.current.recommendation}</p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -166,6 +177,7 @@ export default async function ForecastPage({ params }: PageProps) {
         <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
           <h2 className="text-2xl font-black">Share forecast</h2>
           <pre className="mt-4 overflow-x-auto whitespace-pre-wrap rounded-2xl bg-stone-950 p-4 text-sm leading-6 text-stone-100">{shareText}</pre>
+          <CopyShareTextButton text={shareText} />
         </section>
 
         {forecast.location.existingPageSlug ? (

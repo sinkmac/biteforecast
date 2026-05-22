@@ -3,6 +3,11 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import {
+  HooliganState,
+  getHooliganAdversaryLine,
+  getHooliganIndexFromRiskLevel,
+} from "./hooligan-state";
 import type { PublicBand } from "../lib/scoring/bands";
 
 type HomeLocation = {
@@ -323,8 +328,16 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
 
                 {result ? (
                   <div className="rounded-[1.5rem] border border-emerald-300/20 bg-stone-950 p-4 text-center sm:p-6">
-                    <h1 className="text-3xl font-black leading-none tracking-tight text-white sm:text-5xl">{result.level.name}</h1>
-                    <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-stone-200 sm:text-base">{result.level.copy}</p>
+                    <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-center sm:text-left">
+                      <HooliganState indexLevel={getHooliganIndexFromRiskLevel(result.level.number)} size="lg" />
+                      <div>
+                        <h1 className="text-3xl font-black leading-none tracking-tight text-white sm:text-5xl">{result.level.name}</h1>
+                        <p className="mt-3 text-sm font-medium italic leading-6 text-stone-400 sm:text-base">
+                          {getHooliganAdversaryLine(getHooliganIndexFromRiskLevel(result.level.number))}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-stone-200 sm:text-base">{result.level.copy}</p>
                     <p className="mt-3 text-xs text-stone-500">Based on live weather data. Updated hourly.</p>
                     {result.mode === "fallback" ? <p className="mt-2 text-xs text-amber-200">Live feed unavailable — showing a seasonal estimate.</p> : null}
                     <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:justify-center">

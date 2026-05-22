@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -76,6 +77,32 @@ export default function AboutPage() {
             <li>Favour exposed, breezier ground when conditions look marginal.</li>
             <li>Keep practical kit secondary to location choice and timing, not the other way round.</li>
           </ol>
+        </section>
+
+        <section id="hooligan" className="rounded-2xl border border-amber-200/20 bg-amber-100/10 p-6">
+          <h2 className="text-2xl font-semibold">Who is Hooligan?</h2>
+          <div className="mt-4 space-y-4 text-stone-300">
+            <p>
+              Some say the word hooligan comes from meanbh-chuileag — the Gaelic for midge — mangled beyond recognition by a baffled Redcoat in 1745.
+            </p>
+            <p>Etymologists disagree.</p>
+            <p>Hooligan doesn&apos;t care.</p>
+            <p>
+              He and his troops have been making themselves known across the Scottish Highlands since long before anyone was forecasting them. BiteForecast is his official record of operations.
+            </p>
+          </div>
+          <figure className="mt-6 overflow-hidden rounded-2xl border border-amber-100/30 bg-[#f5eedf] p-2">
+            <Image
+              alt="Hooligan character sheet showing five midge operational states"
+              className="h-auto w-full rounded-xl"
+              height={900}
+              src="/hooligan-character-sheet.svg"
+              width={1600}
+            />
+            <figcaption className="px-2 py-3 text-center text-sm font-medium text-stone-700">
+              Hooligan — operational states
+            </figcaption>
+          </figure>
         </section>
 
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
