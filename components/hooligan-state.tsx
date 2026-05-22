@@ -29,15 +29,15 @@ export function getHooliganAdversaryLine(indexLevel: number): string {
 
   switch (pose) {
     case "asleep":
-      return "Quiet shift. Don't get used to it.";
+      return "The wee beggars are having a quiet one. Don't get used to it.";
     case "one-eye-open":
-      return "We're stirring. Take precautions.";
+      return "The wee beggars are stirring. Take precautions.";
     case "smidge-up":
-      return "Smidge up. You've been warned.";
+      return "Smidge up. The wee beggars have been warned you're coming.";
     case "organised":
-      return "They've organised. Pack the Smidge and cover up.";
+      return "The wee beggars have organised. Pack the Smidge and cover up.";
     case "victory":
-      return "Stay in the car. We mean it. This is not a drill.";
+      return "The wee beggars are absolutely steaming. Stay in the car. We mean it.";
   }
 }
 
