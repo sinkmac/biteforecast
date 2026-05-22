@@ -142,6 +142,9 @@ export default async function ForecastPage({ params }: PageProps) {
         <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
           <h2 className="text-2xl font-black">48-hour activity chart</h2>
           <MidgeBarChart forecast={forecast} />
+          <p className="mt-4 text-xs text-stone-500">
+            Weather data: <a className="underline-offset-4 hover:text-stone-300 hover:underline" href="https://open-meteo.com" rel="noopener noreferrer" target="_blank">Open-Meteo</a>
+          </p>
         </section>
 
         <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
