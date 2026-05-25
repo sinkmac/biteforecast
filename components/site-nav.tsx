@@ -11,6 +11,7 @@ const FOOTER_NAV_LINKS = [
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy-policy", label: "Privacy policy" },
+  { href: "/affiliate-disclosure", label: "Affiliate disclosure" },
   { href: "/terms", label: "Terms" },
 ];
 

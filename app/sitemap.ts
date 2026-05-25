@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
     "/midge-wind-watch",
     "/privacy-policy",
+    "/affiliate-disclosure",
     "/terms",
   ];
   const locationRoutes = getLocationPageSlugs().map((slug) => `/scotland/${slug}`);

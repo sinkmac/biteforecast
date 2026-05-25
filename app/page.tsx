@@ -17,6 +17,32 @@ import {
   getLocationPageSlugs,
 } from "../lib/seo/location-pages";
 
+const homepageApplicationSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: "BiteForecast",
+      url: SITE_URL,
+      description: HOMEPAGE_DESCRIPTION,
+    },
+    {
+      "@type": "WebApplication",
+      name: "BiteForecast live midge forecast",
+      url: SITE_URL,
+      description: HOMEPAGE_DESCRIPTION,
+      applicationCategory: "WeatherApplication",
+      operatingSystem: "Web",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" },
+    },
+    {
+      "@type": "Organization",
+      name: "AI Scotland Productions",
+      url: "https://aiscotlandproductions.com",
+    },
+  ],
+};
+
 const locationCards = getLocationPageSlugs()
   .map((slug) => getLocationPageBySlug(slug))
   .filter((page) => page !== undefined);
@@ -39,6 +65,7 @@ export default async function Home() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageApplicationSchema) }} />
       <FaqSchema faqs={HOMEPAGE_FAQS} />
       <main className="bg-stone-950 text-stone-50">
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
