@@ -7,3 +7,48 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/scotland/skye"
+  to = "/scotland/isle-of-skye-midges"
+  status = 301
+
+[[redirects]]
+  from = "/scotland/skye-midges"
+  to = "/scotland/isle-of-skye-midges"
+  status = 301
+
+[[redirects]]
+  from = "/scotland/glencoe"
+  to = "/scotland/glencoe-midges"
+  status = 301
+
+[[redirects]]
+  from = "/scotland/fort-william"
+  to = "/scotland/fort-william-midges"
+  status = 301
+
+[[redirects]]
+  from = "/scotland/loch-lomond"
+  to = "/scotland/loch-lomond-midges"
+  status = 301
+
+[[redirects]]
+  from = "/scotland/aviemore"
+  to = "/scotland/aviemore-midges"
+  status = 301
+
+[[redirects]]
+  from = "/scotland/mull"
+  to = "/scotland/mull-midges"
+  status = 301
+
+[[redirects]]
+  from = "/scotland/torridon"
+  to = "/scotland/torridon-midges"
+  status = 301
+
+[[redirects]]
+  from = "/scotland/cairngorms"
+  to = "/scotland/cairngorms-midges"
+  status = 301
