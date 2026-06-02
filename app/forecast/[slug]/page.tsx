@@ -33,19 +33,19 @@ const PRODUCTS = [
   {
     name: "Smidge Repellent 75ml — 2 Pack",
     note: "The dedicated Scottish default for high-risk dusk and woodland stops.",
-    href: "https://www.amazon.co.uk/dp/B07DPW8W66?tag=biteforecast2-21",
+    href: "https://www.amazon.co.uk/dp/B07DPW8W66?tag=biteforecas00-21",
     asin: "B07DPW8W66",
   },
   {
     name: "Avon Skin So Soft Original Dry Oil Spray — 300ml Pack of 2",
     note: "The reputation pick for lighter nuisance; not a dedicated repellent.",
-    href: "https://www.amazon.co.uk/dp/B075PHYQTR?tag=biteforecast2-21",
+    href: "https://www.amazon.co.uk/dp/B075PHYQTR?tag=biteforecas00-21",
     asin: "B075PHYQTR",
   },
   {
     name: "Incognito Insect Repellent Spray — 100ml",
     note: "A plant-based spray option to compare with Smidge and Avon.",
-    href: "https://www.amazon.co.uk/dp/B001EJOHYG?tag=biteforecast2-21",
+    href: "https://www.amazon.co.uk/dp/B001EJOHYG?tag=biteforecas00-21",
     asin: "B001EJOHYG",
   },
 ];

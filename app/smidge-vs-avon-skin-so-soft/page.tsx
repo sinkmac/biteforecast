@@ -48,7 +48,7 @@ export default function SmidgeVsAvonPage() {
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
           <h2 className="text-2xl font-semibold">Smidge That Midge</h2>
           <p className="mt-4">
-            <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=smidge+that+midge&tag=biteforecast2-21" rel="sponsored nofollow noopener" target="_blank">
+            <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=smidge+that+midge&tag=biteforecas00-21" rel="sponsored nofollow noopener" target="_blank">
               Smidge That Midge on Amazon UK
             </a>
           </p>
@@ -62,7 +62,7 @@ export default function SmidgeVsAvonPage() {
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
           <h2 className="text-2xl font-semibold">Avon Skin So Soft Dry Oil Spray</h2>
           <p className="mt-4">
-            <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=avon+skin+so+soft+dry+oil+spray&tag=biteforecast2-21" rel="sponsored nofollow noopener" target="_blank">
+            <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=avon+skin+so+soft+dry+oil+spray&tag=biteforecas00-21" rel="sponsored nofollow noopener" target="_blank">
               Avon Skin So Soft Dry Oil Spray on Amazon UK
             </a>
           </p>
@@ -106,7 +106,7 @@ export default function SmidgeVsAvonPage() {
         <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
           <h2 className="text-2xl font-semibold">What about DEET?</h2>
           <p className="mt-4">
-            <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=deet+insect+repellent&tag=biteforecast2-21" rel="sponsored nofollow noopener" target="_blank">
+            <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=deet+insect+repellent&tag=biteforecas00-21" rel="sponsored nofollow noopener" target="_blank">
               DEET insect repellent on Amazon UK
             </a>
           </p>
@@ -124,7 +124,7 @@ export default function SmidgeVsAvonPage() {
             <p><strong className="text-stone-100">Casual visitor, beer garden, short walk or low-risk evening:</strong> Smidge. Avon is fine if you already use it, but it is the less dependable bet.</p>
             <p>
               <strong className="text-stone-100">Hillwalker, camper, or anyone heading into Glencoe, Skye, Argyll or lochside woodland at dusk:</strong> Smidge or DEET, plus a {" "}
-              <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=midge+head+net&tag=biteforecast2-21" rel="sponsored nofollow noopener" target="_blank">
+              <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=midge+head+net&tag=biteforecas00-21" rel="sponsored nofollow noopener" target="_blank">
                 midge head net
               </a>
               . A head net looks ridiculous until it saves your walk.
