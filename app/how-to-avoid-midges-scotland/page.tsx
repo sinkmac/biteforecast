@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { GuideAffiliatePlacement } from "../../components/affiliate-kit";
 import {
   SITE_URL,
   buildMetadataAlternates,
@@ -69,6 +70,8 @@ export default function HowToAvoidMidgesScotlandPage() {
             <strong className="text-stone-100">Watch the weather:</strong> A breezy day is always better than a calm one. Rain during the day suppresses activity, though the calm period after rain can see a surge.
           </p>
         </section>
+
+        <GuideAffiliatePlacement intro="The simple version is repellent first, a head net when conditions are bad, and no faith in still evening air." />
 
         <section className={sectionClass}>
           <h2 className={headingClass}>3. Use an Effective Repellent</h2>

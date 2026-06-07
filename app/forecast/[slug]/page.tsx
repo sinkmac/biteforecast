@@ -16,6 +16,7 @@ import {
   getMidgeLevelClasses,
   getMidgeRecommendation,
 } from "../../../lib/forecast/midge-index";
+import { ForecastWhatToBring } from "../../../components/affiliate-kit";
 import { CopyShareTextButton } from "../../../components/copy-share-text-button";
 import {
   HooliganState,
@@ -28,27 +29,6 @@ export const revalidate = 10800;
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
-
-const PRODUCTS = [
-  {
-    name: "Smidge Repellent 75ml — 2 Pack",
-    note: "The dedicated Scottish default for high-risk dusk and woodland stops.",
-    href: "https://www.amazon.co.uk/dp/B07DPW8W66?tag=biteforecas00-21",
-    asin: "B07DPW8W66",
-  },
-  {
-    name: "Avon Skin So Soft Original Dry Oil Spray — 300ml Pack of 2",
-    note: "The reputation pick for lighter nuisance; not a dedicated repellent.",
-    href: "https://www.amazon.co.uk/dp/B075PHYQTR?tag=biteforecas00-21",
-    asin: "B075PHYQTR",
-  },
-  {
-    name: "Incognito Insect Repellent Spray — 100ml",
-    note: "A plant-based spray option to compare with Smidge and Avon.",
-    href: "https://www.amazon.co.uk/dp/B001EJOHYG?tag=biteforecas00-21",
-    asin: "B001EJOHYG",
-  },
-];
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -139,6 +119,8 @@ export default async function ForecastPage({ params }: PageProps) {
           </div>
         </section>
 
+        <ForecastWhatToBring index={forecast.current.index} />
+
         <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
           <h2 className="text-2xl font-black">48-hour activity chart</h2>
           <MidgeBarChart forecast={forecast} />
@@ -161,19 +143,8 @@ export default async function ForecastPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="rounded-3xl border border-amber-300/20 bg-amber-500/10 p-6">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-200">What to bring</p>
-          <h2 className="mt-2 text-2xl font-black">Repellents that actually work in Scottish conditions</h2>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
-            {PRODUCTS.map((product) => (
-              <a className="rounded-2xl border border-amber-300/20 bg-stone-950/70 p-4 transition hover:border-amber-200/50" href={product.href} key={product.name} rel="sponsored nofollow noopener" target="_blank">
-                <p className="font-bold text-stone-100">{product.name}</p>
-                <p className="mt-2 text-sm leading-5 text-stone-400">{product.note}</p>
-                <p className="mt-4 text-sm font-bold text-amber-200">View on Amazon →</p>
-              </a>
-            ))}
-          </div>
-          <p className="mt-4 text-xs leading-5 text-stone-500">As an Amazon Associate, BiteForecast may earn from qualifying purchases. ASIN checks returned 404 for the supplied IDs, so these are tagged Amazon UK search links pending manual SiteStripe replacement.</p>
+        <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-stone-500">Advertisement</p>
           <ins className="adsbygoogle mt-6 block min-h-24 rounded-2xl border border-stone-800 bg-stone-950/60" data-ad-client="ca-pub-2335335210412692" data-ad-format="auto" data-full-width-responsive="true" />
         </section>
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { GuideAffiliatePlacement } from "../../components/affiliate-kit";
 import {
   SITE_URL,
   buildMetadataAlternates,
@@ -121,6 +122,8 @@ export default function AboutScottishMidgesPage() {
             They are, however, a significant economic issue for Scottish tourism and outdoor industries. Studies have estimated that midges cost the Scottish economy tens of millions of pounds annually through lost tourism revenue and reduced productivity in outdoor workers.
           </p>
         </section>
+
+        <GuideAffiliatePlacement intro="If you are reading up on Scottish midges before a trip, these are the practical items worth sorting before the first still evening." />
 
         <section className={sectionClass}>
           <h2 className={headingClass}>Can Anything Be Done?</h2>

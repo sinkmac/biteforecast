@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { GuideAffiliatePlacement } from "../../components/affiliate-kit";
 import {
   SITE_URL,
   buildMetadataAlternates,
@@ -117,6 +118,8 @@ export default function MidgeSeasonScotlandPage() {
             </p>
           </section>
         </section>
+
+        <GuideAffiliatePlacement intro="If you are visiting during June, July or August, repellent is worth packing before the forecast turns ugly." />
 
         <section className={sectionClass}>
           <h2 className={headingClass}>The Worst Areas</h2>
