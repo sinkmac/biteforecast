@@ -100,6 +100,8 @@ export default async function ForecastPage({ params }: PageProps) {
           </div>
         </section>
 
+        <ForecastWhatToBring index={forecast.current.index} />
+
         <section className="grid gap-4 md:grid-cols-2">
           <div className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
             <h2 className="text-2xl font-black">Tonight&apos;s peak</h2>
@@ -118,8 +120,6 @@ export default async function ForecastPage({ params }: PageProps) {
             </div>
           </div>
         </section>
-
-        <ForecastWhatToBring index={forecast.current.index} />
 
         <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
           <h2 className="text-2xl font-black">48-hour activity chart</h2>
