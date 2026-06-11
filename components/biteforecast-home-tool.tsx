@@ -8,6 +8,7 @@ import {
   getHooliganAdversaryLine,
   getHooliganIndexFromRiskLevel,
 } from "./hooligan-state";
+import { MorishSnackPromo } from "./morish-snack-promo";
 import type { PublicBand } from "../lib/scoring/bands";
 
 type HomeLocation = {
@@ -277,6 +278,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
   }
 
   const showProductsAbove = result ? result.level.number >= 3 : false;
+  const midgeIndex = result ? getHooliganIndexFromRiskLevel(result.level.number) : 0;
 
   return (
     <main className="biteforecast-home overflow-x-hidden bg-stone-950 text-stone-50">
@@ -366,6 +368,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
                         Download share card
                       </a>
                     ) : null}
+                    <MorishSnackPromo show={midgeIndex >= 6} />
                   </div>
                 ) : (
                   <button
