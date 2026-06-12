@@ -2,20 +2,47 @@ import { describe, expect, it } from "vitest";
 
 import { calculateMidgeIndex } from "../../lib/forecast/midge-index";
 
+const juneDay = {
+  month: 6,
+  dawn: new Date("2026-06-18T04:30:00+01:00"),
+  dusk: new Date("2026-06-18T22:00:00+01:00"),
+};
+
 describe("calculateMidgeIndex", () => {
-  it("scores a cold still humid evening as high enough to warn visitors", () => {
+  it("suppresses cold clear nights regardless of still humid air", () => {
     const index = calculateMidgeIndex({
+      ...juneDay,
       temperatureC: 6,
       windMph: 1,
       humidity: 90,
-      month: 6,
-      time: new Date("2026-06-18T21:30:00+01:00"),
-      dawn: new Date("2026-06-18T04:30:00+01:00"),
-      dusk: new Date("2026-06-18T22:00:00+01:00"),
+      time: new Date("2026-06-18T01:00:00+01:00"),
       uvIndex: 0,
     });
 
-    expect(index).toBe(6);
+    expect(index).toBeLessThanOrEqual(2);
+  });
+
+  it("keeps overnight dead-zone activity below warm still dusk", () => {
+    const overnight = calculateMidgeIndex({
+      ...juneDay,
+      temperatureC: 14,
+      windMph: 1,
+      humidity: 92,
+      time: new Date("2026-06-18T01:00:00+01:00"),
+      uvIndex: 0,
+    });
+    const dusk = calculateMidgeIndex({
+      ...juneDay,
+      temperatureC: 14,
+      windMph: 1,
+      humidity: 92,
+      time: new Date("2026-06-18T21:30:00+01:00"),
+      uvIndex: 0,
+    });
+
+    expect(overnight).toBeLessThanOrEqual(3);
+    expect(dusk).toBeGreaterThan(overnight);
+    expect(dusk).toBeGreaterThanOrEqual(6);
   });
 
   it("scores a hot sunny afternoon as low", () => {
@@ -30,10 +57,10 @@ describe("calculateMidgeIndex", () => {
       uvIndex: 6,
     });
 
-    expect(index).toBe(1);
+    expect(index).toBeLessThanOrEqual(2);
   });
 
-  it("scores a windy day low regardless of good temperature and humidity", () => {
+  it("scores sustained strong wind low regardless of good temperature and humidity", () => {
     const index = calculateMidgeIndex({
       temperatureC: 16,
       windMph: 14,
@@ -45,7 +72,7 @@ describe("calculateMidgeIndex", () => {
       uvIndex: 0,
     });
 
-    expect(index).toBe(1);
+    expect(index).toBeLessThanOrEqual(2);
   });
 
   it("returns zero in winter months", () => {

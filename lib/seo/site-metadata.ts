@@ -2,11 +2,17 @@ import type { PublicBand } from "../scoring/bands";
 
 export const SITE_URL = "https://www.biteforecast.scot";
 
+export const OPERATIONAL_FACTS = {
+  updateCadenceLabel: "every 3 hours",
+  forecastHorizonDays: 5,
+  forecastHorizonLabel: "5-day",
+} as const;
+
 export const HOMEPAGE_DESCRIPTION =
-  "BiteForecast tells you midge risk for your Highland destination today, in plain English, updated hourly. Free, no registration, built for Scotland.";
+  `BiteForecast tells you midge risk for your Highland destination today, in plain English, updated ${OPERATIONAL_FACTS.updateCadenceLabel}. Free, no registration, built for Scotland.`;
 
 export const CALCULATOR_DESCRIPTION =
-  "Live midge forecast for Scotland — check wind, humidity, time of day, and a 7-day risk outlook before you travel.";
+  `Live midge forecast for Scotland — check wind, humidity, time of day, and a ${OPERATIONAL_FACTS.forecastHorizonLabel} risk outlook before you travel.`;
 
 export const LOCATION_META_DESCRIPTIONS: Record<string, string> = {
   "glencoe-midges":
@@ -18,11 +24,11 @@ export const LOCATION_META_DESCRIPTIONS: Record<string, string> = {
   "loch-lomond-midges":
     "Loch Lomond midge forecast, seasonal patterns, and practical advice for visitors and campers. Check live conditions before you go.",
   "aviemore-midges":
-    "Aviemore midge forecast — when nuisance builds, which conditions matter most, and a live 7-day outlook before you travel.",
+    "Aviemore midge forecast — when nuisance builds, which conditions matter most, and a live 5-day outlook before you travel.",
   "mull-midges":
-    "Isle of Mull midge forecast — seasonal pressure, sheltered spots to watch, and live 7-day conditions before you go.",
+    "Isle of Mull midge forecast — seasonal pressure, sheltered spots to watch, and live 5-day conditions before you go.",
   "torridon-midges":
-    "Torridon midge forecast — exposed vs sheltered risk, best visiting windows, and live 7-day conditions before you travel.",
+    "Torridon midge forecast — exposed vs sheltered risk, best visiting windows, and live 5-day conditions before you travel.",
   "cairngorms-midges":
     "Cairngorms midge forecast, seasonal patterns, and practical advice for hikers and visitors. Check live conditions before you go.",
 };
@@ -67,6 +73,10 @@ export const CALCULATOR_FAQS: FaqEntry[] = [
       "BiteForecast falls back to a seasonal estimate for that location and month rather than pretending the missing data is live.",
   },
 ];
+
+export function buildForecastPageTitle(locationName: string) {
+  return `${locationName} Midge Forecast Today`;
+}
 
 export function buildCanonicalUrl(pathname: string) {
   if (pathname === "/") {

@@ -85,7 +85,7 @@ export default function AboutPage() {
             <p>
               Some say the word hooligan comes from meanbh-chuileag — the Gaelic for midge — mangled beyond recognition by a baffled Redcoat in 1745.
             </p>
-            <p>Etymologists disagree.</p>
+            <p>Etymologists disagree. Etymologists are wrong about this, but they disagree.</p>
             <p>Hooligan doesn&apos;t care.</p>
             <p>
               He and his troops have been making themselves known across the Scottish Highlands since long before anyone was forecasting them. BiteForecast is his official record of operations.

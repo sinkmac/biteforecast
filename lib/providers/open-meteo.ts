@@ -1,3 +1,4 @@
+import { OPERATIONAL_FACTS } from "../seo/site-metadata";
 import type { LocationPage } from "../../content/locations/types";
 import type { TimePreset, LiveWeatherSnapshot } from "../calculator/engine";
 import type { ForecastWeatherSnapshot } from "../calculator/forecast";
@@ -48,7 +49,7 @@ export async function fetchOpenMeteoSevenDayForecast(args: {
 }): Promise<ForecastWeatherSnapshot[] | null> {
   const payload = await fetchOpenMeteoPayload({
     location: args.location,
-    forecastDays: 7,
+    forecastDays: OPERATIONAL_FACTS.forecastHorizonDays,
     revalidateSeconds: 1800,
   });
 

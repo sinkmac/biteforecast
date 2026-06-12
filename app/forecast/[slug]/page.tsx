@@ -22,7 +22,7 @@ import {
   HooliganState,
   getHooliganAdversaryLine,
 } from "../../../components/hooligan-state";
-import { SITE_URL, buildMetadataAlternates, buildOpenGraph } from "../../../lib/seo/site-metadata";
+import { OPERATIONAL_FACTS, SITE_URL, buildForecastPageTitle, buildMetadataAlternates, buildOpenGraph } from "../../../lib/seo/site-metadata";
 
 export const revalidate = 10800;
 
@@ -42,8 +42,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const index = forecast?.current.index ?? 0;
   const label = forecast?.current.label ?? "Low";
   const recommendation = forecast?.current.recommendation ?? getMidgeRecommendation(index);
-  const title = `${location.name} Midge Forecast Today — BiteForecast`;
-  const description = `Current midge activity at ${location.name}: ${label} (${index}/10). Updated every 3 hours. ${recommendation}`;
+  const title = buildForecastPageTitle(location.name);
+  const description = `Current midge activity at ${location.name}: ${label} (${index}/10). Updated ${OPERATIONAL_FACTS.updateCadenceLabel}. ${recommendation}`;
   const url = `${SITE_URL}/forecast/${slug}`;
 
   return {
@@ -68,7 +68,7 @@ export default async function ForecastPage({ params }: PageProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: `${forecast.location.name} Midge Forecast Today — BiteForecast`,
+    name: buildForecastPageTitle(forecast.location.name),
     url: `${SITE_URL}/forecast/${forecast.location.slug}`,
     description: `Current midge activity at ${forecast.location.name}: ${forecast.current.label} (${forecast.current.index}/10).`,
     dateModified: forecast.generated.toISOString(),
@@ -93,7 +93,7 @@ export default async function ForecastPage({ params }: PageProps) {
           <p className="text-sm font-semibold uppercase tracking-[0.18em] opacity-80">The Index</p>
           <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-8xl font-black leading-none tracking-tight">{forecast.current.index}</p>
+              <Link className="text-8xl font-black leading-none tracking-tight underline decoration-transparent underline-offset-8 transition hover:decoration-current" href="/how-the-index-works">{forecast.current.index}</Link>
               <p className="mt-3 text-3xl font-black uppercase tracking-[0.12em]">{forecast.current.label}</p>
             </div>
             <p className="max-w-xl text-lg leading-7">{forecast.current.sentence}</p>
@@ -130,7 +130,7 @@ export default async function ForecastPage({ params }: PageProps) {
         </section>
 
         <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-          <h2 className="text-2xl font-black">5-day outlook</h2>
+          <h2 className="text-2xl font-black">{OPERATIONAL_FACTS.forecastHorizonLabel} outlook</h2>
           <div className="mt-5 grid gap-4 md:grid-cols-5">
             {forecast.daily.map((day) => (
               <article className="rounded-2xl border border-stone-800 bg-stone-950/80 p-4" key={day.date.toISOString()}>

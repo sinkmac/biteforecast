@@ -78,13 +78,13 @@ export function buildLiveCalculatorState({
     computeHumidityContribution(snapshot.humidity) +
     computeTemperatureContribution(snapshot.temperatureC);
 
-  const duskWindow = isWithinHour(
-    new Date(snapshot.targetTimeIso),
-    new Date(snapshot.sunsetIso),
-  );
+  const target = new Date(snapshot.targetTimeIso);
+  const duskWindow = isWithinHour(target, new Date(snapshot.sunsetIso));
+  const dawnWindow = isWithinHour(target, new Date(snapshot.sunriseIso));
+  const timeMultiplier = getDiurnalMultiplier(target, new Date(snapshot.sunriseIso), new Date(snapshot.sunsetIso));
 
-  const scoreWithGoldenHour = baseScore + (duskWindow ? 2 : 0);
-  const finalScore = applyWindSuppressor(scoreWithGoldenHour, snapshot.windMph);
+  const scoreWithBiology = (baseScore + (duskWindow ? 6 : dawnWindow ? 0 : 0)) * timeMultiplier;
+  const finalScore = applyWindSuppressor(scoreWithBiology, snapshot.windMph);
   const band = getBandForScore(finalScore);
 
   return {
@@ -118,13 +118,17 @@ function computeHumidityContribution(humidity: number): number {
 }
 
 function computeTemperatureContribution(temperatureC: number): number {
+  if (temperatureC < 7) {
+    return -100;
+  }
+
   const distanceFromIdeal = Math.abs(temperatureC - 15);
   return Math.max(0, 18 - distanceFromIdeal * 2);
 }
 
 function applyWindSuppressor(score: number, windMph: number): number {
   if (windMph <= 7) {
-    return score;
+    return Math.max(0, score);
   }
 
   if (windMph >= 12) {
@@ -132,7 +136,34 @@ function applyWindSuppressor(score: number, windMph: number): number {
   }
 
   const factor = 1 - (windMph - 7) / 5;
-  return score * factor;
+  return Math.max(0, score * factor);
+}
+
+function getDiurnalMultiplier(target: Date, sunrise: Date, sunset: Date): number {
+  const targetMs = target.getTime();
+  const sunriseMs = sunrise.getTime();
+  const sunsetMs = sunset.getTime();
+  const minute = 60 * 1000;
+
+  if (targetMs >= sunsetMs - 60 * minute && targetMs <= sunsetMs + 90 * minute) {
+    return 1.2;
+  }
+
+  if (targetMs >= sunriseMs - 60 * minute && targetMs <= sunriseMs + 60 * minute) {
+    return 1;
+  }
+
+  const hour = Number(new Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
+    hour12: false,
+    timeZone: "Europe/London",
+  }).format(target));
+
+  if (hour <= 3 || (targetMs > sunsetMs + 90 * minute && targetMs < sunriseMs - 60 * minute)) {
+    return 0.25;
+  }
+
+  return 0.7;
 }
 
 function isWithinHour(target: Date, anchor: Date): boolean {

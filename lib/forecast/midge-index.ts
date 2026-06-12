@@ -16,6 +16,10 @@ export function calculateMidgeIndex(input: MidgeIndexInput): number {
     return 0;
   }
 
+  if (input.temperatureC < 7) {
+    return 0;
+  }
+
   const tempScore = getTemperatureScore(input.temperatureC);
   const windMultiplier = getWindMultiplier(input.windMph);
   const humidityBoost = getHumidityBoost(input.humidity);
@@ -106,7 +110,7 @@ function getWindMultiplier(windMph: number): number {
   if (windMph <= 3) return 1;
   if (windMph <= 7) return 0.7;
   if (windMph <= 12) return 0.3;
-  return 0.1;
+  return 0.08;
 }
 
 function getHumidityBoost(humidity: number): number {
@@ -123,16 +127,40 @@ function getDuskDawnMultiplier(input: MidgeIndexInput): number {
   const minute = 60 * 1000;
 
   if (time >= dusk - 60 * minute && time <= dusk + 90 * minute) {
-    return 1.4;
+    return 1.5;
   }
 
   if (time >= dawn - 60 * minute && time <= dawn + 60 * minute) {
-    return 1.2;
+    return 1.25;
+  }
+
+  if (isOvernightDeadZone(input.time, input.dawn, input.dusk)) {
+    return 0.3;
   }
 
   if ((input.uvIndex ?? 0) >= 4) {
-    return 0.5;
+    return 0.45;
   }
 
-  return 1;
+  return 0.75;
+}
+
+function isOvernightDeadZone(time: Date, dawn: Date, dusk: Date): boolean {
+  const hour = getLondonHour(time);
+  const timeMs = time.getTime();
+  const dawnMs = dawn.getTime();
+  const duskMs = dusk.getTime();
+  const minute = 60 * 1000;
+
+  return hour <= 3 || (timeMs > duskMs + 90 * minute && timeMs < dawnMs - 60 * minute);
+}
+
+function getLondonHour(date: Date): number {
+  return Number(
+    new Intl.DateTimeFormat("en-GB", {
+      hour: "2-digit",
+      hour12: false,
+      timeZone: "Europe/London",
+    }).format(date),
+  );
 }

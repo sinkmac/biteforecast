@@ -1,3 +1,4 @@
+import { OPERATIONAL_FACTS } from "../seo/site-metadata";
 import { FORECAST_LOCATIONS, type ForecastLocation } from "./locations";
 import {
   calculateMidgeIndex,
@@ -101,7 +102,7 @@ async function fetchOpenMeteoForecast(location: ForecastLocation): Promise<OpenM
   url.searchParams.set("longitude", String(location.lng));
   url.searchParams.set("hourly", "temperature_2m,relative_humidity_2m,wind_speed_10m,uv_index");
   url.searchParams.set("daily", "sunrise,sunset");
-  url.searchParams.set("forecast_days", "5");
+  url.searchParams.set("forecast_days", String(OPERATIONAL_FACTS.forecastHorizonDays));
   url.searchParams.set("wind_speed_unit", "mph");
   url.searchParams.set("timezone", "Europe/London");
 
@@ -120,7 +121,7 @@ function buildForecastFromOpenMeteo(
   generated: Date,
 ): MidgeForecast {
   const points: ForecastPoint[] = payload.hourly.time
-    .slice(0, 5 * 24)
+    .slice(0, OPERATIONAL_FACTS.forecastHorizonDays * 24)
     .filter((_, index) => index % 3 === 0)
     .slice(0, 40)
     .map((iso) => {
@@ -169,10 +170,10 @@ function buildForecastFromOpenMeteo(
     : points.filter((point) => toDateIso(point.time) === tonightIso);
   const peakTonightPoint = tonightPoints.reduce(
     (peak, point) => (point.index > peak.index ? point : peak),
-    currentPoint,
+    tonightPoints[0] ?? currentPoint,
   );
 
-  const daily = payload.daily.time.slice(0, 5).map((dateIso) => {
+  const daily = payload.daily.time.slice(0, OPERATIONAL_FACTS.forecastHorizonDays).map((dateIso) => {
     const dayPoints = points.filter((point) => toDateIso(point.time) === dateIso);
     const peakIndex = dayPoints.length ? Math.max(...dayPoints.map((point) => point.index)) : 0;
     return {
@@ -227,7 +228,7 @@ function buildFallbackOpenMeteoForecast(location: ForecastLocation): OpenMeteoFo
     sunset: [] as string[],
   };
 
-  for (let day = 0; day < 5; day += 1) {
+  for (let day = 0; day < OPERATIONAL_FACTS.forecastHorizonDays; day += 1) {
     const dayDate = new Date(start.getTime() + day * 24 * 60 * 60 * 1000);
     const dateIso = toDateIso(dayDate);
     daily.time.push(dateIso);
@@ -235,7 +236,7 @@ function buildFallbackOpenMeteoForecast(location: ForecastLocation): OpenMeteoFo
     daily.sunset.push(`${dateIso}T21:45`);
   }
 
-  for (let hour = 0; hour < 5 * 24; hour += 1) {
+  for (let hour = 0; hour < OPERATIONAL_FACTS.forecastHorizonDays * 24; hour += 1) {
     const date = new Date(start.getTime() + hour * 60 * 60 * 1000);
     const localHour = Number(new Intl.DateTimeFormat("en-GB", {
       hour: "2-digit",

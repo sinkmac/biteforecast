@@ -138,7 +138,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
   const defaultLocation = locations[0];
   const [selectedSlug, setSelectedSlug] = useState(defaultLocation?.slug ?? "");
   const [gpsLocation, setGpsLocation] = useState<SelectedPlace | null>(null);
-  const [gpsStatus, setGpsStatus] = useState("Detecting your location…");
+  const [gpsStatus, setGpsStatus] = useState("Choose a location, or allow GPS to pick the nearest forecast point.");
   const [selectedDate, setSelectedDate] = useState(() => toDateInputValue(new Date()));
   const [result, setResult] = useState<{ level: RiskLevel; place: SelectedPlace; mode: "live" | "fallback"; snapshot?: WeatherSnapshot } | null>(null);
   const [forecastDays, setForecastDays] = useState<ForecastDay[]>([]);
@@ -340,7 +340,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
                       </div>
                     </div>
                     <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-stone-200 sm:text-base">{result.level.copy}</p>
-                    <p className="mt-3 text-xs text-stone-500">Based on live weather data. Updated hourly.</p>
+                    <p className="mt-3 text-xs text-stone-500">Based on live weather data. Updated every 3 hours.</p>
                     {result.mode === "fallback" ? <p className="mt-2 text-xs text-amber-200">Live feed unavailable — showing a seasonal estimate.</p> : null}
                     <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:justify-center">
                       <button
@@ -387,7 +387,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
 
       <section className="mx-auto -mt-14 max-w-2xl px-4 pb-10 text-center sm:-mt-12 sm:px-6">
         <p className="text-sm leading-6 text-stone-400 sm:text-base">
-          BiteForecast tells you midge risk for your Highland destination today, in plain English, updated hourly.
+          BiteForecast tells you midge risk for your Highland destination today, in plain English, updated every 3 hours.
         </p>
       </section>
 
@@ -395,7 +395,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
         <div className="rounded-3xl border border-emerald-300/20 bg-stone-900/90 p-5 shadow-2xl shadow-black/20 backdrop-blur sm:p-6">
           <h2 className="text-xl font-black tracking-tight text-stone-50">Who are the Hooligans?</h2>
           <p className="mt-3 text-sm leading-6 text-stone-300 sm:text-base">
-            Some say the word hooligan comes from meanbh-chuileag — the Gaelic for midgie — mangled beyond recognition by a baffled Redcoat in 1745. Etymologists disagree. Hooligan doesn&apos;t care. Neither do his troops.
+            Some say the word hooligan comes from meanbh-chuileag — the Gaelic for midgie — mangled beyond recognition by a baffled Redcoat in 1745. Etymologists disagree. Etymologists are wrong about this, but they disagree. Hooligan doesn&apos;t care. Neither do his troops.
           </p>
         </div>
       </section>
@@ -411,7 +411,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
             {locations.map((location) => (
               <Link
                 className="rounded-2xl border border-stone-800 bg-stone-950/80 p-4 transition hover:border-emerald-400/50"
-                href={`/scotland/${location.slug}`}
+                href={`/forecast/${location.slug}`}
                 key={location.slug}
               >
                 <p className="text-sm font-semibold text-stone-100">{location.name}</p>
@@ -427,6 +427,9 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
           <p className="mt-3 max-w-3xl text-stone-300">
             BiteForecast checks weather conditions that change midge activity fast: wind, humidity, temperature, time of day, and season. Wind usually helps. Warm, damp, still air usually does not.
           </p>
+          <Link className="mt-5 inline-flex text-sm font-bold text-emerald-200 underline underline-offset-4" href="/how-the-index-works">
+            How the index works →
+          </Link>
         </section>
 
         <section className="grid gap-4 md:grid-cols-2">
@@ -447,18 +450,13 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
 
 function SevenDayForecast({ days, locationName }: { days: ForecastDay[]; locationName: string }) {
   if (!days.length) {
-    return (
-      <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-        <h2 className="text-2xl font-black tracking-tight">7-day forecast for {locationName}</h2>
-        <p className="mt-3 text-stone-400">Run a check above to load the 7-day view for your selected location.</p>
-      </section>
-    );
+    return null;
   }
 
   return (
     <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-      <h2 className="text-2xl font-black tracking-tight">7-day forecast for {locationName}</h2>
-      <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-7">
+      <h2 className="text-2xl font-black tracking-tight">5-day forecast for {locationName}</h2>
+      <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
         {days.map((day) => (
           <article className="rounded-2xl border border-stone-800 bg-stone-950/80 p-4" key={day.dateIso}>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">{day.label}</p>
@@ -512,13 +510,13 @@ async function calculateRisk(place: SelectedPlace, dateIso: string): Promise<{ l
 }
 
 async function calculateSevenDayForecast(place: SelectedPlace): Promise<ForecastDay[]> {
-  const payload = await fetchOpenMeteoPayload(place, 7);
+  const payload = await fetchOpenMeteoPayload(place, 5);
 
   if (!payload?.daily?.time?.length) {
     return [];
   }
 
-  return payload.daily.time.slice(0, 7).map((dateIso: string, dayIndex: number) => {
+  return payload.daily.time.slice(0, 5).map((dateIso: string, dayIndex: number) => {
     const sunsetIso = payload.daily.sunset[dayIndex];
     const targetTimeIso = findNearestHourIso(payload.hourly.time, sunsetIso ?? `${dateIso}T18:00`);
     const index = targetTimeIso ? payload.hourly.time.indexOf(targetTimeIso) : -1;

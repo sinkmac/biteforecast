@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/about",
     "/how-we-calculate",
+    "/how-the-index-works",
     "/midge-hotspots",
     "/midge-repellents",
     "/smidge-vs-avon-skin-so-soft",

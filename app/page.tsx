@@ -4,18 +4,16 @@ import Link from "next/link";
 import { BiteForecastHomeTool } from "../components/biteforecast-home-tool";
 import { FaqSchema } from "../components/faq-block";
 import { getMidgeLevelClasses } from "../lib/forecast/midge-index";
+import { FORECAST_LOCATIONS } from "../lib/forecast/locations";
 import { getHomepageForecastSummaries } from "../lib/forecast/service";
 import {
   HOMEPAGE_DESCRIPTION,
   HOMEPAGE_FAQS,
+  OPERATIONAL_FACTS,
   SITE_URL,
   buildMetadataAlternates,
   buildOpenGraph,
 } from "../lib/seo/site-metadata";
-import {
-  getLocationPageBySlug,
-  getLocationPageSlugs,
-} from "../lib/seo/location-pages";
 
 const homepageApplicationSchema = {
   "@context": "https://schema.org",
@@ -43,9 +41,30 @@ const homepageApplicationSchema = {
   ],
 };
 
-const locationCards = getLocationPageSlugs()
-  .map((slug) => getLocationPageBySlug(slug))
-  .filter((page) => page !== undefined);
+const DEFAULT_SEASONAL_FALLBACK = {
+  1: "Low",
+  2: "Low",
+  3: "Low",
+  4: "Guarded",
+  5: "Moderate",
+  6: "High",
+  7: "High",
+  8: "High",
+  9: "Moderate",
+  10: "Guarded",
+  11: "Low",
+  12: "Low",
+} as const;
+
+const locationCards = FORECAST_LOCATIONS.map((location) => ({
+  ...location,
+  region: location.midgeSeason,
+  broaderArea: location.description,
+  coordinates: { latitude: location.lat, longitude: location.lng },
+  seasonalFallbackByMonth: DEFAULT_SEASONAL_FALLBACK,
+  planningRiskBand: "Moderate" as const,
+  planningTakeaway: location.description,
+}));
 
 export const metadata: Metadata = {
   title: "Will there be midges where I'm going?",
@@ -73,7 +92,7 @@ export default async function Home() {
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">Live Midge Forecast</p>
             <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">Live Midge Forecast</h1>
             <p className="mt-3 max-w-3xl text-stone-300">
-              Updated every 3 hours. Click any location to see current conditions.
+              {`Updated ${OPERATIONAL_FACTS.updateCadenceLabel}. Click any location to see current conditions.`}
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {forecastSummaries.map((summary) => (

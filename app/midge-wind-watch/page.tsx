@@ -255,8 +255,8 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
 
         <ForecastCalendar
           days={sevenDayForecast}
-          intro="This 7-day view runs the same scoring engine across forecast conditions for the next week so you can compare likely nuisance windows day by day."
-          title={`7-day midge risk forecast for ${location.name}`}
+          intro="This 5-day view runs the same scoring engine across forecast conditions for the next week so you can compare likely nuisance windows day by day."
+          title={`5-day midge risk forecast for ${location.name}`}
         />
 
         <FaqSection faqs={CALCULATOR_FAQS} title="Calculator FAQ" />

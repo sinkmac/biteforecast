@@ -169,7 +169,6 @@ function SmidgeUpPose() {
       <path className="h-ink" d="M184 465 C220 494 236 530 256 574" />
       <path className="h-inkThin" d="M124 181 L91 120" />
       <path className="h-inkThin" d="M177 181 L211 120" />
-      <text x="24" y="156" className="h-sfx" transform="rotate(-8 24 156)">HEH!</text>
     </g>
   );
 }
