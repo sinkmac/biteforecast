@@ -94,6 +94,9 @@ export default async function Home() {
             <p className="mt-3 max-w-3xl text-stone-300">
               {`Updated ${OPERATIONAL_FACTS.updateCadenceLabel}. Click any location to see current conditions.`}
             </p>
+            <blockquote className="mt-4 border-l-2 border-emerald-400/50 pl-4 text-lg italic text-stone-400">
+              {`"The best defence against insects short of a rolled up newspaper."`}
+            </blockquote>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {forecastSummaries.map((summary) => (
                 <Link

@@ -200,27 +200,27 @@ export default async function LocationPage({ params }: PageProps) {
               </p>
               <p>
                 Start with {" "}
-                <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=smidge+that+midge&tag=biteforecas00-21" rel="sponsored nofollow noopener" target="_blank">
+                <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=smidge+that+midge&tag=biteforecast2-21" rel="sponsored nofollow noopener" target="_blank">
                   Smidge That Midge
                 </a>
                 . It is the straightforward dedicated option for most visitors and a sensible first buy for Scottish midges.
               </p>
               <p>
-                <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=avon+skin+so+soft+dry+oil+spray&tag=biteforecas00-21" rel="sponsored nofollow noopener" target="_blank">
+                <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=avon+skin+so+soft+dry+oil+spray&tag=biteforecast2-21" rel="sponsored nofollow noopener" target="_blank">
                   Avon Skin So Soft Dry Oil Spray
                 </a>{" "}
                 is the reputation pick. Some people swear by it, but it is not a dedicated repellent and reliability varies. Fine if you already use it; less convincing as your only protection in still, damp conditions.
               </p>
               <p>
                 Pack a {" "}
-                <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=midge+head+net&tag=biteforecas00-21" rel="sponsored nofollow noopener" target="_blank">
+                <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=midge+head+net&tag=biteforecast2-21" rel="sponsored nofollow noopener" target="_blank">
                   midge head net
                 </a>{" "}
                 if you are camping, photographing at dusk, fishing, or walking in still conditions. A head net looks ridiculous until it saves your walk.
               </p>
               <p>
                 A {" "}
-                <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=lightweight+waterproof+jacket&tag=biteforecas00-21" rel="sponsored nofollow noopener" target="_blank">
+                <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=lightweight+waterproof+jacket&tag=biteforecast2-21" rel="sponsored nofollow noopener" target="_blank">
                   lightweight waterproof jacket
                 </a>{" "}
                 handles showers and doubles as skin cover when the midges start working your arms and neck.

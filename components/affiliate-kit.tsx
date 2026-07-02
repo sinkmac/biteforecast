@@ -1,4 +1,4 @@
-const AMAZON_TAG = "biteforecas00-21";
+const AMAZON_TAG = "biteforecast2-21";
 
 export type AffiliateProduct = {
   key: "smidge" | "avon" | "head-net";

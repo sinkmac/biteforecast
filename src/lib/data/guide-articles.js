@@ -87,7 +87,7 @@ The Hooligan recommends Smidge. Not because it makes the midges disappear — no
 
 It's available in 75ml (jacket pocket) and 150ml (base camp) sizes. The 75ml is the one you'll forget to replace until you're standing in a glen in July without it.
 
-[Check current Smidge prices on Amazon](https://www.amazon.co.uk/dp/B00GK4BPCK?tag=biteforecas00-21) — affiliate link, opens in new tab.
+[Check current Smidge prices on Amazon](https://www.amazon.co.uk/dp/B00GK4BPCK?tag=biteforecast2-21) — affiliate link, opens in new tab.
 
 *Use the BiteForecast Midge Activity Index to know when you'll need it most.*`,
   },
@@ -134,7 +134,7 @@ The practical answer involves three things, deployed in order of usefulness:
 
 1. Check the forecast — wind above 7mph renders most of this irrelevant. The BiteForecast Midge Activity Index tells you what today looks like before you leave.
 2. Cover up — long sleeves, a midge net for serious conditions, and no gaps at the wrist or collar.
-3. Use repellent — [Smidge](https://www.amazon.co.uk/dp/B00GK4BPCK?tag=biteforecas00-21) for most purposes. DEET-based alternatives for extended exposure in serious conditions. Affiliate link, opens in new tab.
+3. Use repellent — [Smidge](https://www.amazon.co.uk/dp/B00GK4BPCK?tag=biteforecast2-21) for most purposes. DEET-based alternatives for extended exposure in serious conditions. Affiliate link, opens in new tab.
 
 The worst spots are still worth visiting. The Hooligan would not suggest otherwise. They simply require a small amount of intelligence brought to bear on the timing.
 
@@ -237,7 +237,7 @@ This is why the BiteForecast Midge Activity Index weights wind data heavily in i
 - **Safest:** Midday on a bright, breezy day, at altitude or on exposed ground
 - **Manageable:** Early morning with repellent, before conditions still
 - **Prepare properly:** Any evening in June or July, anywhere sheltered, at low altitude
-- **Survive by luck:** Sunset at a west coast sea loch in still conditions — bring [Smidge](https://www.amazon.co.uk/dp/B00GK4BPCK?tag=biteforecas00-21), a midge net, or very fast legs. Affiliate link, opens in new tab.
+- **Survive by luck:** Sunset at a west coast sea loch in still conditions — bring [Smidge](https://www.amazon.co.uk/dp/B00GK4BPCK?tag=biteforecast2-21), a midge net, or very fast legs. Affiliate link, opens in new tab.
 
 The golden hour in Scotland is worth experiencing. The Hooligan simply recommends experiencing it with adequate repellent to hand.
 
