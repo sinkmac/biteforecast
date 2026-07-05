@@ -9,16 +9,16 @@ import {
 } from "../../lib/seo/site-metadata";
 
 const GUIDE_DESCRIPTION =
-  "Practical guides to Scottish midge season — when they're worst, where they're worst, and how to survive both. From the BiteForecast Hooligan.";
+  "Practical guides to Scottish midge season — when they're worst, where they're worst, and how to survive both. Intercepted from BiteForecast intelligence.";
 
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: { absolute: "The Hooligan's Field Guide | BiteForecast" },
+  title: { absolute: "THE BAMPOT Field Guide | BiteForecast" },
   description: GUIDE_DESCRIPTION,
   alternates: buildMetadataAlternates("/guide"),
   openGraph: buildOpenGraph({
-    title: "The Hooligan's Field Guide | BiteForecast",
+    title: "THE BAMPOT Field Guide | BiteForecast",
     description: GUIDE_DESCRIPTION,
     url: `${SITE_URL}/guide`,
     type: "website",
@@ -34,7 +34,7 @@ export default function GuideIndexPage() {
             ← Back to today&apos;s forecast
           </Link>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
-            The Hooligan&apos;s Field Guide
+            THE BAMPOT Field Guide
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             Practical midge intelligence for Scotland

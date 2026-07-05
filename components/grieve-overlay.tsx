@@ -1,6 +1,6 @@
 /**
  * Grieve Overlay — top register: AVM Grieve's communiqué voice
- * Replaces hooligan-state.tsx entirely.
+ * Replaces the retired mascot component.
  *
  * Locked overlay states per BAMPOT_VOICE_CARD.md §4 / §6.
  * Two-register rule: data layer must be readable without this overlay.

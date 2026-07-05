@@ -67,7 +67,7 @@ export default async function GuideArticlePage({ params }: GuideArticlePageProps
             ← Back to Field Guide
           </Link>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
-            The Hooligan&apos;s Field Guide
+            THE BAMPOT Field Guide
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">{article.ogTitle}</h1>
           <p className="text-sm text-stone-400">Published {publishedLabel}</p>

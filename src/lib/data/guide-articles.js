@@ -32,7 +32,7 @@ The Midge Activity Index — what BiteForecast calculates across 20 Highland loc
 
 ## The locations that earn their reputation
 
-The west coast is worse than the east. This is consistent, year on year, and rooted in geography. Higher rainfall, more sheltered glens, more still water. Skye, Torridon, Loch Maree, the Great Glen, and the Ardnamurchan peninsula are the Hooligan's territories of particular honour.
+The west coast is worse than the east. This is consistent, year on year, and rooted in geography. Higher rainfall, more sheltered glens, more still water. Skye, Torridon, Loch Maree, the Great Glen, and the Ardnamurchan peninsula are THE BAMPOT's territories of particular operational interest.
 
 The Cairngorms are genuinely better — higher altitude, more exposed, more wind. Fort William sits awkwardly in the middle: decent altitude on the Ben, but the town itself in a sheltered valley position that the midges appreciate enormously.
 
@@ -55,7 +55,7 @@ If someone tells you there are no midges this year: they are lying, or they have
     publishedDate: "2026-06-16",
     content: `One Amazon reviewer, leaving five stars for Smidge Midge & Insect Repellent, described it as "the best defence against insects short of a rolled up newspaper."
 
-This is, in the Hooligan's estimation, one of the most accurate product reviews ever written. It tells you exactly what you need to know: it works, the bar was low, and the satisfaction was real.
+This is, in THE BAMPOT's estimation, one of the most accurate product reviews ever written. It tells you exactly what you need to know: it works, the bar was low, and the satisfaction was real.
 
 But let's do better than one review.
 
@@ -83,7 +83,7 @@ For most hillwalkers and campers doing day trips or weekend visits, Smidge is th
 
 ## The honest recommendation
 
-The Hooligan recommends Smidge. Not because it makes the midges disappear — nothing does that except October — but because it genuinely shifts the balance in your favour, smells of nothing, and doesn't require you to dip yourself in aviation fuel before leaving the car park.
+Command recommends Smidge. Not because it makes the midges disappear — nothing does that except October — but because it genuinely shifts the balance in your favour, smells of nothing, and doesn't require you to dip yourself in aviation fuel before leaving the car park.
 
 It's available in 75ml (jacket pocket) and 150ml (base camp) sizes. The 75ml is the one you'll forget to replace until you're standing in a glen in July without it.
 
@@ -96,9 +96,9 @@ It's available in 75ml (jacket pocket) and 150ml (base camp) sizes. The 75ml is 
     title: "Scotland's Worst Midge Spots | BiteForecast Field Guide",
     ogTitle: "Scotland's 6 Worst Midge Spots — Ranked",
     metaDescription:
-      "Glen Affric. Loch Maree. Skye at dusk. Six locations that have earned their midge reputation honestly, and what to do before you visit any of them. The Hooligan's field guide.",
+      "Glen Affric. Loch Maree. Skye at dusk. Six locations that have earned their midge reputation honestly, and what to do before you visit any of them. From THE BAMPOT field intelligence.",
     publishedDate: "2026-06-16",
-    content: `The Hooligan has a map. It is not an official map. No government agency has published it, no tourism board has endorsed it, and the Highlands and Islands Enterprise would prefer it didn't exist.
+    content: `THE BAMPOT has a map. It is not an official map. No government agency has published it, no tourism board has endorsed it, and the Highlands and Islands Enterprise would prefer it didn't exist.
 
 It is a map of places in Scotland where, on the wrong day, at the wrong time, with the wrong breeze (none), you will be reminded that this country evolved certain systems that do not particularly care about your hiking plans.
 
@@ -114,7 +114,7 @@ The eastern shore of Loch Maree on a still August evening is an experience that 
 
 ## 3. The Ardnamurchan Peninsula
 
-The westernmost point on the British mainland has two things: extraordinary views across to Mull, Coll, and Tiree, and midges that seem to have taken the remoteness as permission to operate without restraint. The lighthouse car park on a grey July afternoon is not the Hooligan's recommended entry point. A windy ridge, however, is brilliant.
+The westernmost point on the British mainland has two things: extraordinary views across to Mull, Coll, and Tiree, and midges that seem to have taken the remoteness as permission to operate without restraint. The lighthouse car park on a grey July afternoon is not THE BAMPOT's recommended entry point. A windy ridge, however, is brilliant.
 
 ## 4. Fort William / Glen Nevis
 
@@ -136,7 +136,7 @@ The practical answer involves three things, deployed in order of usefulness:
 2. Cover up — long sleeves, a midge net for serious conditions, and no gaps at the wrist or collar.
 3. Use repellent — [Smidge](https://www.amazon.co.uk/dp/B00GK4BPCK?tag=biteforecast2-21) for most purposes. DEET-based alternatives for extended exposure in serious conditions. Affiliate link, opens in new tab.
 
-The worst spots are still worth visiting. The Hooligan would not suggest otherwise. They simply require a small amount of intelligence brought to bear on the timing.
+The worst spots are still worth visiting. THE BAMPOT would not suggest otherwise. They simply require a small amount of intelligence brought to bear on the timing.
 
 *Check today's Midge Activity Index before you head out → BiteForecast.scot*`,
   },
@@ -147,7 +147,7 @@ The worst spots are still worth visiting. The Hooligan would not suggest otherwi
     metaDescription:
       "The west coast is magnificent and committed to its midges. The Cairngorms are higher, windier, and genuinely calmer. An honest comparison for anyone planning a Scottish walking trip in summer.",
     publishedDate: "2026-06-16",
-    content: `This is the question the Hooligan gets asked more than any other. It usually arrives in the form of a walking holiday dilemma: Torridon or the Cairngorms? Glencoe or the Monadh Liath? The Cuillin or the Grey Corries?
+    content: `This is the question THE BAMPOT gets asked more than any other. It usually arrives in the form of a walking holiday dilemma: Torridon or the Cairngorms? Glencoe or the Monadh Liath? The Cuillin or the Grey Corries?
 
 The midge forecast is not the only consideration. But it is a legitimate one, and nobody should pretend otherwise.
 
@@ -222,7 +222,7 @@ In practical terms, this produces two danger windows:
 
 ## The midday window
 
-Between roughly 10am and 5pm on a typical summer day, midge activity drops significantly. Direct sunlight suppresses activity. Any breeze that has established keeps numbers down. This is the Hooligan's recommended operating window for anyone not equipped for full midge-season conditions.
+Between roughly 10am and 5pm on a typical summer day, midge activity drops significantly. Direct sunlight suppresses activity. Any breeze that has established keeps numbers down. This is THE BAMPOT's recommended operating window for anyone not equipped for full midge-season conditions.
 
 The caveat: on heavily overcast days with no wind, the midday suppression weakens. Cloud cover removes the sunlight inhibition, and if the air is still, midge activity can persist through the middle of the day. This is relatively unusual but not rare — it is, after all, Scotland.
 
@@ -239,7 +239,7 @@ This is why the BiteForecast Midge Activity Index weights wind data heavily in i
 - **Prepare properly:** Any evening in June or July, anywhere sheltered, at low altitude
 - **Survive by luck:** Sunset at a west coast sea loch in still conditions — bring [Smidge](https://www.amazon.co.uk/dp/B00GK4BPCK?tag=biteforecast2-21), a midge net, or very fast legs. Affiliate link, opens in new tab.
 
-The golden hour in Scotland is worth experiencing. The Hooligan simply recommends experiencing it with adequate repellent to hand.
+The golden hour in Scotland is worth experiencing. THE BAMPOT simply recommends experiencing it with adequate repellent to hand.
 
 *Check today's forecast conditions — wind, humidity, cloud cover — at BiteForecast before you plan your day.*`,
   },
@@ -280,7 +280,7 @@ The forecast index combines these factors to produce a single daily score for ea
 
 ## Why this matters in practice
 
-The scenario the Hooligan sees repeatedly: a walker checks the weather, sees light rain clearing to cloud with a temperature of 14°C and 5mph winds. Sounds manageable. Packs accordingly.
+The scenario THE BAMPOT sees repeatedly: a walker checks the weather, sees light rain clearing to cloud with a temperature of 14°C and 5mph winds. Sounds manageable. Packs accordingly.
 
 5mph is below the midge flight threshold. 14°C and cloudy is ideal midge weather. Light rain has recently topped up standing water. The midges are delighted.
 
