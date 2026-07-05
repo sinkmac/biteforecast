@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Hooligan the Highland midgie — five BiteForecast risk states</title>
+  <desc id="desc">A British comic-panel character sheet showing Hooligan, a tiny vain Highland midgie, across five emotional states from asleep to full victory pose.</desc>
+  <defs>
+    <pattern id="halftone" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="2.2" fill="#111" opacity="0.16" />
+    </pattern>
+    <pattern id="smallHalftone" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.4" fill="#111" opacity="0.18" />
+    </pattern>
+    <filter id="roughen" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="7" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" />
+    </filter>
+    <style>
+      .page { fill: #f5eedf; }
+      .panel { fill: #fff8e9; stroke: #0d0d0d; stroke-width: 7; filter: url(#roughen); }
+      .panelShade { fill: url(#halftone); opacity: 0.7; }
+      .ink { stroke: #0d0d0d; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .inkThin { stroke: #0d0d0d; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .body { fill: #2f4732; stroke: #0d0d0d; stroke-width: 7; stroke-linejoin: round; }
+      .belly { fill: #f6d36f; stroke: #0d0d0d; stroke-width: 5; }
+      .wing { fill: #dbeee7; stroke: #0d0d0d; stroke-width: 4; opacity: 0.82; }
+      .eye { fill: #fffef6; stroke: #0d0d0d; stroke-width: 4; }
+      .pupil { fill: #0d0d0d; }
+      .blush { fill: #d94a3a; opacity: 0.75; }
+      .accent { fill: #d94a3a; stroke: #0d0d0d; stroke-width: 4; }
+      .gold { fill: #f6d36f; stroke: #0d0d0d; stroke-width: 4; }
+      .caption { font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif; font-size: 28px; letter-spacing: 1px; fill: #0d0d0d; }
+      .state { font-family: Arial, sans-serif; font-size: 16px; font-weight: 800; fill: #2f4732; letter-spacing: 0.5px; }
+      .sfx { font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif; font-size: 38px; fill: #d94a3a; stroke: #0d0d0d; stroke-width: 2; paint-order: stroke; transform-box: fill-box; transform-origin: center; }
+      .tiny { font-family: Arial, sans-serif; font-size: 13px; font-weight: 800; fill: #0d0d0d; }
+      .tourist { fill: #f0c6a4; stroke: #0d0d0d; stroke-width: 5; }
+      .jacket { fill: #d94a3a; stroke: #0d0d0d; stroke-width: 5; }
+      .swarm { fill: #0d0d0d; opacity: 0.85; }
+    </style>
+  </defs>
+
+  <rect class="page" width="1600" height="900" />
+  <rect x="0" y="0" width="1600" height="900" fill="url(#smallHalftone)" opacity="0.22" />
+  <text x="48" y="58" class="caption" font-size="38">HOOLIGAN — HIGHLAND MIDGIE CHARACTER SHEET</text>
+  <text x="50" y="86" class="state">Tiny. Vain. Absolutely convinced the glen belongs to him.</text>
+
+  <!-- Panel frames -->
+  <g id="panels">
+    <g transform="translate(40 120)">
+      <rect class="panel" width="288" height="700" rx="18" />
+      <rect class="panelShade" x="0" y="0" width="288" height="700" rx="18" />
+      <text x="22" y="42" class="caption">ASLEEP</text>
+      <text x="22" y="70" class="state">Scotland Is Being Kind Today</text>
+    </g>
+    <g transform="translate(352 120)">
+      <rect class="panel" width="288" height="700" rx="18" />
+      <rect class="panelShade" x="0" y="0" width="288" height="700" rx="18" />
+      <text x="22" y="42" class="caption">ONE EYE OPEN</text>
+      <text x="22" y="70" class="state">One Or Two About</text>
+    </g>
+    <g transform="translate(664 120)">
+      <rect class="panel" width="288" height="700" rx="18" />
+      <rect class="panelShade" x="0" y="0" width="288" height="700" rx="18" />
+      <text x="22" y="42" class="caption">SMIDGE UP</text>
+      <text x="22" y="70" class="state">Rubbing hands together, alert</text>
+    </g>
+    <g transform="translate(976 120)">
+      <rect class="panel" width="288" height="700" rx="18" />
+      <rect class="panelShade" x="0" y="0" width="288" height="700" rx="18" />
+      <text x="22" y="42" class="caption">THEY'VE ORGANISED</text>
+      <text x="22" y="70" class="state">Swarm command. Tourist acquired.</text>
+    </g>
+    <g transform="translate(1288 120)">
+      <rect class="panel" width="272" height="700" rx="18" />
+      <rect class="panelShade" x="0" y="0" width="272" height="700" rx="18" />
+      <text x="22" y="42" class="caption">VICTORY</text>
+      <text x="22" y="70" class="state">Stay In The Car</text>
+    </g>
+  </g>
+
+  <!-- Shared midge components drawn panel by panel for expressive poses -->
+
+  <!-- 1 Asleep -->
+  <g transform="translate(40 120)">
+    <path class="inkThin" d="M38 610 C84 638 195 638 248 608" />
+    <ellipse class="wing" cx="126" cy="305" rx="52" ry="96" transform="rotate(-22 126 305)" />
+    <ellipse class="wing" cx="176" cy="306" rx="52" ry="96" transform="rotate(22 176 306)" />
+    <ellipse class="body" cx="150" cy="390" rx="63" ry="116" />
+    <ellipse class="belly" cx="150" cy="420" rx="34" ry="70" />
+    <circle class="eye" cx="126" cy="282" r="22" />
+    <circle class="eye" cx="174" cy="282" r="22" />
+    <path class="inkThin" d="M108 278 Q126 292 144 278" />
+    <path class="inkThin" d="M156 278 Q174 292 192 278" />
+    <path class="ink" d="M114 356 C78 376 70 414 48 443" />
+    <path class="ink" d="M187 356 C224 377 232 414 254 442" />
+    <path class="ink" d="M114 464 C83 494 64 525 42 558" />
+    <path class="ink" d="M185 464 C219 494 236 526 258 558" />
+    <path class="inkThin" d="M134 328 Q150 338 166 328" />
+    <path class="inkThin" d="M126 184 L108 128" />
+    <path class="inkThin" d="M174 184 L194 128" />
+    <text x="36" y="154" class="sfx" transform="rotate(-10 36 154)">Zzz</text>
+    <text x="88" y="560" class="tiny">wings folded, ego resting</text>
+  </g>
+
+  <!-- 2 One eye open -->
+  <g transform="translate(352 120)">
+    <ellipse class="wing" cx="124" cy="310" rx="48" ry="92" transform="rotate(-26 124 310)" />
+    <ellipse class="wing" cx="178" cy="310" rx="48" ry="92" transform="rotate(22 178 310)" />
+    <ellipse class="body" cx="150" cy="392" rx="62" ry="116" />
+    <ellipse class="belly" cx="150" cy="422" rx="34" ry="70" />
+    <circle class="eye" cx="126" cy="282" r="22" />
+    <circle class="eye" cx="174" cy="282" r="22" />
+    <path class="inkThin" d="M109 278 Q126 292 143 278" />
+    <circle class="pupil" cx="170" cy="282" r="9" />
+    <path class="inkThin" d="M158 268 Q176 260 194 270" />
+    <path class="inkThin" d="M130 330 Q150 321 170 330" />
+    <path class="ink" d="M112 360 C74 382 62 410 42 448" />
+    <path class="ink" d="M188 360 C226 380 241 410 262 448" />
+    <path class="ink" d="M116 465 C76 496 60 526 44 570" />
+    <path class="ink" d="M184 465 C221 500 238 530 258 570" />
+    <path class="inkThin" d="M125 184 L99 126" />
+    <path class="inkThin" d="M174 184 L207 130" />
+    <path class="inkThin" d="M204 210 C235 202 252 214 270 232" />
+    <text x="28" y="154" class="sfx" transform="rotate(-6 28 154)">...?</text>
+    <text x="72" y="604" class="tiny">one eye open, counting ankles</text>
+  </g>
+
+  <!-- 3 Rubbing hands together -->
+  <g transform="translate(664 120)">
+    <ellipse class="wing" cx="120" cy="286" rx="50" ry="94" transform="rotate(-31 120 286)" />
+    <ellipse class="wing" cx="181" cy="286" rx="50" ry="94" transform="rotate(31 181 286)" />
+    <ellipse class="body" cx="150" cy="386" rx="64" ry="118" />
+    <ellipse class="belly" cx="150" cy="420" rx="35" ry="70" />
+    <circle class="eye" cx="124" cy="276" r="23" />
+    <circle class="eye" cx="176" cy="276" r="23" />
+    <circle class="pupil" cx="130" cy="277" r="9" />
+    <circle class="pupil" cx="170" cy="277" r="9" />
+    <path class="inkThin" d="M105 258 Q125 246 145 258" />
+    <path class="inkThin" d="M157 258 Q177 246 197 258" />
+    <path class="inkThin" d="M128 330 Q150 346 172 330" />
+    <path class="ink" d="M112 356 C87 377 102 397 134 395" />
+    <path class="ink" d="M188 356 C213 377 198 397 166 395" />
+    <path class="inkThin" d="M129 393 C142 386 156 386 169 393" />
+    <path class="inkThin" d="M130 412 C144 405 157 405 170 412" />
+    <path class="ink" d="M116 465 C83 494 68 530 49 574" />
+    <path class="ink" d="M184 465 C220 494 236 530 256 574" />
+    <path class="inkThin" d="M124 181 L91 120" />
+    <path class="inkThin" d="M177 181 L211 120" />
+    <text x="66" y="604" class="tiny">rubbing hands: operation ankle begins</text>
+  </g>
+
+  <!-- 4 Commanding swarm / tourist in crosshair -->
+  <g transform="translate(976 120)">
+    <circle class="inkThin" cx="144" cy="382" r="104" />
+    <path class="inkThin" d="M144 248 L144 516" />
+    <path class="inkThin" d="M12 382 L276 382" />
+    <circle class="tourist" cx="144" cy="386" r="30" />
+    <path class="jacket" d="M96 488 C104 430 185 430 194 488 Z" />
+    <path class="inkThin" d="M126 376 Q144 392 162 376" />
+    <path class="inkThin" d="M128 402 Q144 416 162 402" />
+    <path class="ink" d="M96 488 L68 548" />
+    <path class="ink" d="M194 488 L224 548" />
+    <path class="inkThin" d="M110 332 C130 312 162 312 180 334" />
+    <text x="94" y="318" class="tiny">PANICKED TOURIST</text>
+
+    <g transform="translate(140 132) scale(.62)">
+      <ellipse class="wing" cx="120" cy="250" rx="44" ry="82" transform="rotate(-30 120 250)" />
+      <ellipse class="wing" cx="178" cy="250" rx="44" ry="82" transform="rotate(30 178 250)" />
+      <ellipse class="body" cx="150" cy="340" rx="60" ry="108" />
+      <ellipse class="belly" cx="150" cy="365" rx="32" ry="62" />
+      <circle class="eye" cx="126" cy="246" r="21" />
+      <circle class="eye" cx="174" cy="246" r="21" />
+      <circle class="pupil" cx="132" cy="247" r="8" />
+      <circle class="pupil" cx="168" cy="247" r="8" />
+      <path class="inkThin" d="M105 231 Q126 218 145 231" />
+      <path class="inkThin" d="M155 231 Q176 218 195 231" />
+      <path class="inkThin" d="M128 296 Q150 284 172 296" />
+      <path class="ink" d="M104 328 C48 298 24 282 -12 244" />
+      <path class="ink" d="M196 328 C248 298 272 282 308 244" />
+      <path class="ink" d="M118 430 C90 460 72 490 54 532" />
+      <path class="ink" d="M182 430 C215 460 234 490 252 532" />
+    </g>
+
+    <circle class="swarm" cx="38" cy="176" r="5" /><circle class="swarm" cx="62" cy="206" r="4" /><circle class="swarm" cx="238" cy="176" r="5" /><circle class="swarm" cx="250" cy="230" r="4" />
+    <circle class="swarm" cx="34" cy="316" r="4" /><circle class="swarm" cx="260" cy="320" r="5" /><circle class="swarm" cx="44" cy="520" r="5" /><circle class="swarm" cx="244" cy="520" r="4" />
+    <text x="18" y="98" class="sfx" transform="rotate(-5 18 98)">TARGET!</text>
+    <text x="66" y="622" class="tiny">command pose: crosshair is not metaphorical</text>
+  </g>
+
+  <!-- 5 Victory crown -->
+  <g transform="translate(1288 120)">
+    <path class="gold" d="M102 206 L122 164 L142 206 L166 164 L186 206 Z" />
+    <ellipse class="wing" cx="108" cy="302" rx="46" ry="92" transform="rotate(-30 108 302)" />
+    <ellipse class="wing" cx="168" cy="302" rx="46" ry="92" transform="rotate(30 168 302)" />
+    <ellipse class="body" cx="138" cy="388" rx="62" ry="118" />
+    <ellipse class="belly" cx="138" cy="422" rx="34" ry="70" />
+    <circle class="eye" cx="114" cy="282" r="22" />
+    <circle class="eye" cx="164" cy="282" r="22" />
+    <circle class="pupil" cx="119" cy="280" r="8" />
+    <circle class="pupil" cx="159" cy="280" r="8" />
+    <path class="inkThin" d="M96 264 Q115 252 134 264" />
+    <path class="inkThin" d="M146 264 Q165 252 184 264" />
+    <path class="inkThin" d="M112 332 Q138 352 164 332" />
+    <path class="ink" d="M96 354 C54 312 32 266 22 218" />
+    <path class="ink" d="M180 354 C224 312 246 266 256 218" />
+    <path class="ink" d="M104 466 C68 500 50 530 34 578" />
+    <path class="ink" d="M172 466 C210 500 226 530 246 578" />
+    <path class="inkThin" d="M112 185 L86 128" />
+    <path class="inkThin" d="M164 185 L196 128" />
+    <path class="accent" d="M82 492 C96 520 178 520 194 492 C172 548 104 548 82 492 Z" />
+    <text x="20" y="130" class="sfx" transform="rotate(-8 20 130)">MINE!</text>
+    <text x="46" y="620" class="tiny">victory pose: monarch of ankles</text>
+  </g>
+
+  <text x="48" y="862" class="state">Usage note: five panels map to the five BiteForecast named states. Minimal palette, thick ink, halftone texture, comic-sheet layout.</text>
+</svg>

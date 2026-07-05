@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import { HooliganState } from "../components/hooligan-state";
 import { FooterNav, SiteHeader } from "../components/site-nav";
 
 import {
@@ -71,9 +70,11 @@ export default function RootLayout({
                   Weather data: <a className="underline-offset-4 hover:text-stone-300 hover:underline" href="https://open-meteo.com" rel="noopener noreferrer" target="_blank">Open-Meteo</a>
                 </p>
               </div>
-              <a className="inline-flex items-center gap-3 text-stone-500 transition hover:text-stone-300" href="/about#hooligan">
-                <HooliganState indexLevel={0} size="sm" />
-                <span className="text-xs leading-4">Hooligan · Scotland&apos;s most dedicated midge</span>
+              <a className="inline-flex items-center gap-3 text-stone-500 transition hover:text-stone-300" href="/about">
+                <span className="rounded border border-stone-700/60 bg-stone-900/80 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-amber-300/80">
+                  <span className="text-stone-500">FILE:</span> THE BAMPOT
+                </span>
+                <span className="text-xs leading-4">Grieve — internal intelligence</span>
               </a>
             </div>
             <FooterNav />

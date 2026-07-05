@@ -4,10 +4,12 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import {
-  HooliganState,
-  getHooliganAdversaryLine,
-  getHooliganIndexFromRiskLevel,
-} from "./hooligan-state";
+  GrieveOverlay,
+  getGrieveLevel,
+  getGrieveLevelFromRiskNumber,
+  getGrieveStateName,
+  getGrieveOperatorLabel,
+} from "./grieve-overlay";
 import { MorishSnackPromo } from "./morish-snack-promo";
 import type { PublicBand } from "../lib/scoring/bands";
 
@@ -67,41 +69,41 @@ const RISK_LEVELS: Record<PublicBand, RiskLevel> = {
   Low: {
     number: 1,
     band: "Low",
-    name: "Scotland Is Being Kind Today",
-    copy: "All units stand down. The Hooligans are not in the field. You are clear to proceed. For now.",
-    shortCopy: "All units stand down. You are clear to proceed. For now.",
+    name: "Low",
+    copy: "No special precautions needed. Moving air or poor conditions are keeping activity low.",
+    shortCopy: "No special precautions needed.",
     tone: "from-emerald-300 to-lime-200 text-stone-950",
   },
   Guarded: {
     number: 2,
     band: "Guarded",
-    name: "One Or Two About",
-    copy: "Low-level hostile activity detected. Hooligan scouts in the area. Threat assessment: manageable. They are watching.",
-    shortCopy: "Low-level hostile activity detected. They are watching.",
+    name: "Moderate",
+    copy: "Some midges are likely around sheltered or damp spots. Keep repellent handy.",
+    shortCopy: "Midges likely near water or forestry.",
     tone: "from-lime-200 to-yellow-100 text-stone-950",
   },
   Moderate: {
     number: 3,
     band: "Moderate",
-    name: "Smidge Up",
-    copy: "THREAT LEVEL ELEVATED. Hooligans mobilising across the glen. Exit the vehicle with Command-issue Smidge. Command does not negotiate.",
-    shortCopy: "THREAT LEVEL ELEVATED. Command does not negotiate.",
+    name: "High",
+    copy: "Warm, humid or sheltered conditions mean midges are active. Repellent is recommended.",
+    shortCopy: "Repellent recommended.",
     tone: "from-yellow-200 to-amber-300 text-stone-950",
   },
   High: {
     number: 4,
     band: "High",
-    name: "They've Organised",
-    copy: "HILL KILL PROTOCOL INITIATED. You have been designated a target. Hooligan is in the field. The Hooligans have their orders. Keep moving. Do not stand in a bog.",
-    shortCopy: "HILL KILL PROTOCOL INITIATED. Keep moving. Do not stand in a bog.",
+    name: "Severe",
+    copy: "Long sleeves and repellent essential. Avoid exposed areas between 7pm and 10pm.",
+    shortCopy: "Long sleeves and repellent essential.",
     tone: "from-orange-300 to-red-300 text-stone-950",
   },
   "Very High": {
     number: 5,
     band: "Very High",
-    name: "Stay In The Car",
-    copy: "TOTAL INCURSION. The glen has fallen. Hooligan has the high ground, the low ground, and your neck. Nowhere is safe. Stay in the car. We recommend Smidge. We don't work for them. We just know.",
-    shortCopy: "TOTAL INCURSION. Nowhere is safe. Stay in the car.",
+    name: "Extreme",
+    copy: "Consider changing plans. If you must go out, full cover and repellent. Get back inside before dusk.",
+    shortCopy: "Consider changing plans.",
     tone: "from-red-400 to-rose-500 text-white",
   },
 };
@@ -278,7 +280,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
   }
 
   const showProductsAbove = result ? result.level.number >= 3 : false;
-  const midgeIndex = result ? getHooliganIndexFromRiskLevel(result.level.number) : 0;
+  const grieveLevel = result ? getGrieveLevelFromRiskNumber(result.level.number) : undefined;
 
   return (
     <main className="biteforecast-home overflow-x-hidden bg-stone-950 text-stone-50">
@@ -331,15 +333,23 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
                 {result ? (
                   <div className="rounded-[1.5rem] border border-emerald-300/20 bg-stone-950 p-4 text-center sm:p-6">
                     <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-center sm:text-left">
-                      <HooliganState indexLevel={getHooliganIndexFromRiskLevel(result.level.number)} size="lg" />
-                      <div>
-                        <h1 className="text-3xl font-black leading-none tracking-tight text-white sm:text-5xl">{result.level.name}</h1>
-                        <p className="mt-3 text-sm font-medium italic leading-6 text-stone-400 sm:text-base">
-                          {getHooliganAdversaryLine(getHooliganIndexFromRiskLevel(result.level.number))}
+                      <div className="text-center sm:text-left">
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-stone-500">
+                          BiteForecast
+                        </p>
+                        <h1 className="text-3xl font-black leading-none tracking-tight text-white sm:text-5xl">
+                          Level {result.level.number} — {result.level.name}
+                        </h1>
+                        <p className="mt-2 text-sm leading-6 text-stone-200 sm:text-base">
+                          {result.level.copy}
                         </p>
                       </div>
                     </div>
-                    <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-stone-200 sm:text-base">{result.level.copy}</p>
+                    {grieveLevel !== undefined ? (
+                      <div className="mt-4 border-t border-stone-800 pt-4">
+                        <GrieveOverlay grieveLevel={grieveLevel} />
+                      </div>
+                    ) : null}
                     <p className="mt-3 text-xs text-stone-500">Based on live weather data. Updated every 3 hours.</p>
                     {result.mode === "fallback" ? <p className="mt-2 text-xs text-amber-200">Live feed unavailable — showing a seasonal estimate.</p> : null}
                     <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:justify-center">
@@ -368,7 +378,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
                         Download share card
                       </a>
                     ) : null}
-                    <MorishSnackPromo show={midgeIndex >= 6} />
+                    <MorishSnackPromo show={result.level.number >= 3} />
                   </div>
                 ) : (
                   <button
@@ -392,12 +402,18 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
       </section>
 
       <section className="mx-auto -mt-24 max-w-3xl px-4 pb-20 sm:-mt-20 sm:px-6">
-        <div className="rounded-3xl border border-emerald-300/20 bg-stone-900/90 p-5 shadow-2xl shadow-black/20 backdrop-blur sm:p-6">
-          <h2 className="text-xl font-black tracking-tight text-stone-50">Who are the Hooligans?</h2>
-          <p className="mt-3 text-sm leading-6 text-stone-300 sm:text-base">
-            Some say the word hooligan comes from meanbh-chuileag — the Gaelic for midgie — mangled beyond recognition by a baffled Redcoat in 1745. Etymologists disagree. Etymologists are wrong about this, but they disagree. Hooligan doesn&apos;t care. Neither do his troops.
-          </p>
-        </div>
+        <div className="rounded-3xl border border-amber-300/20 bg-stone-900/90 p-5 shadow-2xl shadow-black/20 backdrop-blur sm:p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="rounded border border-stone-700/60 bg-stone-900/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-amber-300/80">
+                      <span className="text-stone-500">FILE:</span> THE BAMPOT
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-600">CLASSIFIED</span>
+                  </div>
+                  <h2 className="mt-3 text-xl font-black tracking-tight text-stone-50">Intelligence summary</h2>
+                  <p className="mt-3 text-sm leading-6 text-stone-300 sm:text-base">
+                    The data you see on this page is derived from Air Vice-Marshal Grieve&apos;s own tactical intelligence — intercepted communiqués from the airborne divisions known as The Cloud. We reframe his operational reports as a practical midge forecast. He is not consulted on the editorial direction. He writes letters. We ignore them.
+                  </p>
+                </div>
       </section>
 
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 pb-16 sm:px-6">
@@ -406,7 +422,7 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
         <SevenDayForecast days={forecastDays} locationName={result?.place.name ?? selectedPlace?.name ?? "your location"} />
 
         <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">Other locations</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-stone-300">Other locations</p>
           <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {locations.map((location) => (
               <Link
@@ -419,27 +435,6 @@ export function BiteForecastHomeTool({ locations }: { locations: HomeLocation[] 
                 <p className="mt-3 text-sm text-stone-400">{location.planningTakeaway}</p>
               </Link>
             ))}
-          </div>
-        </section>
-
-        <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-          <h2 className="text-2xl font-black tracking-tight">How it works</h2>
-          <p className="mt-3 max-w-3xl text-stone-300">
-            BiteForecast checks weather conditions that change midge activity fast: wind, humidity, temperature, time of day, and season. Wind usually helps. Warm, damp, still air usually does not.
-          </p>
-          <Link className="mt-5 inline-flex text-sm font-bold text-emerald-200 underline underline-offset-4" href="/how-the-index-works">
-            How the index works →
-          </Link>
-        </section>
-
-        <section className="grid gap-4 md:grid-cols-2">
-          <Link className="rounded-3xl border border-emerald-400/20 bg-emerald-500/10 p-6 transition hover:border-emerald-300/50" href="/about">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">Why BiteForecast</p>
-            <h2 className="mt-3 text-2xl font-black">Built for the one question that matters before you go.</h2>
-          </Link>
-          <div className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-stone-500">Season note</p>
-            <p className="mt-3 text-2xl font-black">Peak midge season: late May to September</p>
           </div>
         </section>
 

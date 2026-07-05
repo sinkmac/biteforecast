@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -79,28 +78,35 @@ export default function AboutPage() {
           </ol>
         </section>
 
-        <section id="hooligan" className="rounded-2xl border border-amber-200/20 bg-amber-100/10 p-6">
-          <h2 className="text-2xl font-semibold">Who is Hooligan?</h2>
+        <section id="grieve" className="rounded-2xl border border-amber-200/20 bg-amber-100/10 p-6">
+          <h2 className="text-2xl font-semibold">Intelligence source</h2>
           <div className="mt-4 space-y-4 text-stone-300">
             <p>
-              Some say the word hooligan comes from meanbh-chuileag — the Gaelic for midge — mangled beyond recognition by a baffled Redcoat in 1745.
+              The midge activity reported on BiteForecast is derived from intercepted communiqués of Air Vice-Marshal Grieve, General Officer Commanding 
+              the airborne divisions known as The Cloud (intelligence codename: THE BAMPOT). His operational reports — pompous, aggrieved, and deeply personal — 
+              are reframed as a practical public forecast.
             </p>
-            <p>Etymologists disagree. Etymologists are wrong about this, but they disagree.</p>
-            <p>Hooligan doesn&apos;t care.</p>
+            <p>He is not aware that we do this. He would write a strongly worded letter if he found out. We would read it. We would not change anything.</p>
             <p>
-              He and his troops have been making themselves known across the Scottish Highlands since long before anyone was forecasting them. BiteForecast is his official record of operations.
+              No midges were consulted in the production of this forecast. Staff officers were. They were not helpful.
             </p>
           </div>
           <figure className="mt-6 overflow-hidden rounded-2xl border border-amber-100/30 bg-[#f5eedf] p-2">
-            <Image
-              alt="Hooligan character sheet showing five midge operational states"
-              className="h-auto w-full rounded-xl"
-              height={900}
-              src="/hooligan-character-sheet.svg"
-              width={1600}
-            />
+            <div className="rounded-xl border border-stone-700/60 bg-stone-900/80 p-6 text-center">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-300/80">
+                <span className="text-stone-500">FILE:</span> THE BAMPOT
+                <span className="mx-2 text-stone-600">|</span>
+                CLASSIFIED — FOR INTERNAL DISTRIBUTION ONLY
+              </p>
+              <p className="mt-4 text-2xl font-black uppercase tracking-[0.15em] text-white">
+                WITHDRAWN TO THE POOLS
+              </p>
+              <p className="mt-3 text-sm italic text-stone-400">
+                Intelligence confirms the airborne divisions have been stood down. Personnel have withdrawn to the pools. They are regrouping. They are not defeated. The public will interpret this as a victory. It is not.
+              </p>
+            </div>
             <figcaption className="px-2 py-3 text-center text-sm font-medium text-stone-700">
-              Hooligan — operational states
+              Grieve — operational communiqué sample, level 1
             </figcaption>
           </figure>
         </section>

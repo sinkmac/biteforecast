@@ -19,9 +19,11 @@ import {
 import { ForecastWhatToBring } from "../../../components/affiliate-kit";
 import { CopyShareTextButton } from "../../../components/copy-share-text-button";
 import {
-  HooliganState,
-  getHooliganAdversaryLine,
-} from "../../../components/hooligan-state";
+  GrieveOverlay,
+  getGrieveLevel,
+  getGrieveStateName,
+  getGrieveCommuniqué,
+} from "../../../components/grieve-overlay";
 import { OPERATIONAL_FACTS, SITE_URL, buildForecastPageTitle, buildMetadataAlternates, buildOpenGraph } from "../../../lib/seo/site-metadata";
 
 export const revalidate = 10800;
@@ -63,8 +65,9 @@ export default async function ForecastPage({ params }: PageProps) {
     notFound();
   }
 
-  const hooliganLine = getHooliganAdversaryLine(forecast.current.index);
-  const shareText = `🦟 ${forecast.location.name} midge forecast: ${forecast.current.label.toUpperCase()} (${forecast.current.index}/10)\n${hooliganLine}\nbiteforecast.scot/forecast/${forecast.location.slug}`;
+  const grieveLevel = getGrieveLevel(forecast.current.index);
+    const grieveStateName = getGrieveStateName(grieveLevel);
+    const shareText = ` 🏴󠁧󠁢󠁳󠁣󠁴󠁿 ${forecast.location.name} midge forecast: ${forecast.current.label.toUpperCase()} (${forecast.current.index}/10)\n${grieveStateName}\nbiteforecast.scot/forecast/${forecast.location.slug}`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -110,11 +113,13 @@ export default async function ForecastPage({ params }: PageProps) {
             </p>
           </div>
           <div className="rounded-3xl border border-emerald-400/25 bg-emerald-500/10 p-6">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-              <HooliganState indexLevel={forecast.current.index} size="md" />
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-start">
+              <div className="shrink-0">
+                <GrieveOverlay grieveLevel={grieveLevel} showCommuniqué={false} className="!mt-0" />
+              </div>
               <div>
                 <h2 className="text-2xl font-black">Recommendation</h2>
-                <p className="mt-3 text-sm font-medium italic leading-6 text-stone-400">{hooliganLine}</p>
+                <p className="mt-3 text-sm font-medium italic leading-6 text-stone-400">{getGrieveStateName(grieveLevel)}</p>
                 <p className="mt-3 text-lg leading-7 text-stone-100">{forecast.current.recommendation}</p>
               </div>
             </div>
