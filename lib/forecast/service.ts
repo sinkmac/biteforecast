@@ -20,6 +20,7 @@ export type MidgeForecast = {
   location: ForecastLocation;
   generated: Date;
   nextUpdate: Date;
+  mode: "live" | "fallback";
   current: {
     index: number;
     label: MidgeLabel;
@@ -30,6 +31,8 @@ export type MidgeForecast = {
     peakTime: string;
     sentence: string;
     recommendation: string;
+    overnightPeak: number;
+    overnightEstimated: boolean;
   };
   hourly: ForecastPoint[];
   daily: Array<{
@@ -77,8 +80,12 @@ export async function getMidgeForecastForLocation(location: ForecastLocation): P
     return cached.data;
   }
 
-  const payload = await fetchOpenMeteoForecast(location).catch(() => buildFallbackOpenMeteoForecast(location));
-  const forecast = buildForecastFromOpenMeteo(location, payload, new Date());
+  let mode: "live" | "fallback" = "live";
+  const payload = await fetchOpenMeteoForecast(location).catch(() => {
+    mode = "fallback";
+    return buildFallbackOpenMeteoForecast(location);
+  });
+  const forecast = buildForecastFromOpenMeteo(location, payload, new Date(), mode);
   forecastCache.set(cacheKey, { expires: now + THREE_HOURS_MS, data: forecast });
   return forecast;
 }
@@ -119,6 +126,7 @@ function buildForecastFromOpenMeteo(
   location: ForecastLocation,
   payload: OpenMeteoForecast,
   generated: Date,
+  mode: "live" | "fallback",
 ): MidgeForecast {
   const points: ForecastPoint[] = payload.hourly.time
     .slice(0, OPERATIONAL_FACTS.forecastHorizonDays * 24)
@@ -173,6 +181,45 @@ function buildForecastFromOpenMeteo(
     tonightPoints[0] ?? currentPoint,
   );
 
+// Overnight Watch: dusk-to-dawn peak using actual sunset/sunrise
+  // Falls back to a fixed 22:00–03:00 window per the solar edge case spec
+  // (northern latitudes / midsummer where true night may not occur, or data gaps)
+  const todayDayIndex = resolveDayIndex(payload.daily.time, tonightIso);
+  const duskIso = payload.daily.sunset[todayDayIndex];
+  const dawnTomorrowIso = payload.daily.sunrise[todayDayIndex + 1];
+
+  let overnightPeak = 0;
+  let overnightEstimated = false;
+
+  if (duskIso && dawnTomorrowIso) {
+    // Live data path — use actual sunset-to-sunrise window
+    const duskTime = new Date(duskIso);
+    const dawnTime = new Date(dawnTomorrowIso);
+    const overnightPoints = points.filter((point) => {
+      const t = point.time.getTime();
+      return t >= duskTime.getTime() && t <= dawnTime.getTime();
+    });
+    overnightPeak = overnightPoints.length
+      ? Math.max(...overnightPoints.map((p) => p.index))
+      : 0;
+  } else {
+    // Fallback path — sunrise/sunset data missing (solar edge case or data gap)
+    // Use a fixed 22:00–03:00 window with an honesty line
+    overnightEstimated = true;
+    const todayIso = toDateIso(currentPoint.time);
+    const fixedDusk = new Date(`${todayIso}T22:00`);
+    const fixedDawn = new Date(`${todayIso}T03:00`);
+    // Adjust dawn to next day
+    fixedDawn.setDate(fixedDawn.getDate() + 1);
+    const overnightPoints = points.filter((point) => {
+      const t = point.time.getTime();
+      return t >= fixedDusk.getTime() && t <= fixedDawn.getTime();
+    });
+    overnightPeak = overnightPoints.length
+      ? Math.max(...overnightPoints.map((p) => p.index))
+      : 0;
+  }
+
   const daily = payload.daily.time.slice(0, OPERATIONAL_FACTS.forecastHorizonDays).map((dateIso) => {
     const dayPoints = points.filter((point) => toDateIso(point.time) === dateIso);
     const peakIndex = dayPoints.length ? Math.max(...dayPoints.map((point) => point.index)) : 0;
@@ -190,6 +237,7 @@ function buildForecastFromOpenMeteo(
     location,
     generated,
     nextUpdate: new Date(generated.getTime() + THREE_HOURS_MS),
+    mode,
     current: {
       index: currentPoint.index,
       label,
@@ -197,6 +245,8 @@ function buildForecastFromOpenMeteo(
       windMph: currentPoint.windMph,
       humidity: currentPoint.humidity,
       peakTonight: peakTonightPoint.index,
+      overnightPeak,
+      overnightEstimated,
       peakTime: formatTime(peakTonightPoint.time),
       sentence: getMidgePlainEnglish({
         index: currentPoint.index,

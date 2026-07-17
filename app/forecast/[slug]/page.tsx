@@ -22,9 +22,11 @@ import {
   GrieveOverlay,
   getGrieveLevel,
   getGrieveStateName,
-  getGrieveCommuniqué,
 } from "../../../components/grieve-overlay";
 import { OPERATIONAL_FACTS, SITE_URL, buildForecastPageTitle, buildMetadataAlternates, buildOpenGraph } from "../../../lib/seo/site-metadata";
+import {
+  OvernightWatchCard,
+} from "../../../components/overnight-watch-card";
 
 export const revalidate = 10800;
 
@@ -67,7 +69,7 @@ export default async function ForecastPage({ params }: PageProps) {
 
   const grieveLevel = getGrieveLevel(forecast.current.index);
     const grieveStateName = getGrieveStateName(grieveLevel);
-    const shareText = ` 🏴󠁧󠁢󠁳󠁣󠁴󠁿 ${forecast.location.name} midge forecast: ${forecast.current.label.toUpperCase()} (${forecast.current.index}/10)\n${grieveStateName}\nbiteforecast.scot/forecast/${forecast.location.slug}`;
+    const shareText = ` 🏴󠁧󠁢󠁳󠁣󠁴󠁿 ${forecast.location.name} midge forecast: ${forecast.current.label.toUpperCase()} (${forecast.current.index}/10)\\n${grieveStateName}\\nbiteforecast.scot/forecast/${forecast.location.slug}`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -125,6 +127,8 @@ export default async function ForecastPage({ params }: PageProps) {
             </div>
           </div>
         </section>
+
+        <OvernightWatchCard forecast={forecast} />
 
         <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
           <h2 className="text-2xl font-black">48-hour activity chart</h2>
