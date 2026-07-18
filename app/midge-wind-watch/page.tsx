@@ -175,9 +175,14 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
             ) : null}
 
             {result.peakTimeMessage ? (
-              <p className="mt-4 rounded-2xl border border-rose-300/25 bg-rose-500/10 px-4 py-3 text-sm text-rose-100">
-                {result.peakTimeMessage}
-              </p>
+              <div className="mt-4 rounded-2xl border border-rose-300/25 bg-rose-500/10 px-4 py-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-200">
+                  Overnight Watch
+                </p>
+                <p className="mt-1 text-sm text-rose-100">
+                  {result.peakTimeMessage}
+                </p>
+              </div>
             ) : null}
 
             {result.liveSnapshot ? (
@@ -201,7 +206,7 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
           {affiliateRecommendations ? (
             <aside className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-stone-400">
-                Protection tier
+                Loadout
               </p>
               <h2 className="mt-2 text-2xl font-semibold">{affiliateRecommendations.title}</h2>
               <p className="mt-3 text-stone-300">{affiliateRecommendations.description}</p>
@@ -310,7 +315,7 @@ function getAffiliateRecommendations(
     return {
       title: "Very high protection",
       description:
-        "Strong nuisance is likely in sheltered spots. If you still need to stop there, use the strongest repellent and bring a head net.",
+        "Strong nuisance is likely in sheltered spots. If you\u2019re camping, fishing, or spending extended time in one place, bring the strongest repellent and a head net \u2014 still air at dusk will test any defence.",
       items: [
         {
           label: "Lifesystems Expedition 100",
@@ -330,7 +335,7 @@ function getAffiliateRecommendations(
     return {
       title: "High protection",
       description:
-        "Sheltered stops are likely to be uncomfortable without proper kit. Prioritise a strong repellent and keep heavier coverage ready.",
+        "Sheltered stops are likely to be uncomfortable without proper kit. If you\u2019re camping or fishing through dusk, prioritise a strong repellent and keep heavier coverage ready for when the air drops still.",
       items: [
         {
           label: "Smidge 75ml",
@@ -349,7 +354,7 @@ function getAffiliateRecommendations(
   return {
     title: "Moderate protection",
     description:
-      "This is the practical default when nuisance is possible but not extreme: keep a lighter spray option and a stronger backup close by.",
+      "This is the practical default when nuisance is possible but not extreme. Keep a lighter spray option and a stronger backup close by \u2014 especially if you\u2019re camping or planning a long, still stop by the water.",
     items: [
       {
         label: "Avon SSS Citronella spray",

@@ -92,7 +92,7 @@ export function buildLiveCalculatorState({
     band,
     advice: getBandAdvice(band),
     peakTimeMessage:
-      duskWindow && band !== "Low" ? "Peak midge time: Dusk approaching" : undefined,
+      duskWindow && band !== "Low" ? "Overnight Watch — Dusk approaching. If you\u2019re camping or staying out past sunset, midge activity is likely to rise as the air stills. Check your tent mesh and repellent before dark." : undefined,
     affiliateTier: getAffiliateTierForBand(band),
     showNumericScore: false,
     liveSnapshot: snapshot,

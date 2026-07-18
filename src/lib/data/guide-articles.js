@@ -296,7 +296,73 @@ Check BiteForecast for: when to go, where to stop for lunch, whether the evening
 
 Used together, they give you the full picture. Used separately, one of them has a significant gap in it.
 
-*Check the BiteForecast Midge Activity Index — 20 Highland locations, updated daily → BiteForecast.scot*`,
+*Check the BiteForecast Midge Activity Index — 20 Highland locations, updated daily → BiteForecast.scot*\`,
+  },
+  {
+    slug: "midge-forecast-for-wild-camping-scotland",
+    title: "Midge Forecast for Wild Camping in Scotland | BiteForecast",
+    ogTitle: "Midge Forecast for Wild Camping in Scotland: What to Know Before You Pitch",
+    metaDescription:
+      "Wild camping in Scotland means sitting still in midge territory for hours. The wind, time of day, and your tent position matter more than the season. A practical forecast guide for campers.",
+    publishedDate: "2026-07-18",
+    content: `Wild camping in Scotland is a different contract with the outdoors than a day hike. You are not passing through. You are sitting still — often at dawn, dusk, and through the night — which is exactly when and where midges operate best. The good news: the same forecast engine has the data you need. You just have to read it differently.
+
+## The overnight window is the real test
+
+A 3mph breeze that feels fine during a midday walk becomes a problem by 9pm. The air drops, the humidity rises, and if you pitched in a sheltered glen or lochside spot, you are now in prime midge territory.
+
+The BiteForecast diurnal model tracks this: dusk scores a 1.2x multiplier on the base midge activity score, dawn is neutral at 1x, and the deep-night window between sunset+90min and sunrise-60min drops to 0.25x — not because midges sleep, but because the temperature usually falls enough to suppress activity. The Overnight Watch badge on the live calculator page surfaces this directly: if it flags dusk approaching with elevated risk, check your tent mesh and repellent before dark.
+
+## Where you pitch changes your exposure
+
+Wind is the strongest midge suppressor. A pitch on open, exposed ground with consistent airflow is dramatically safer than a sheltered hollow, loch shore, or forest edge.
+
+The location guides on BiteForecast cover this per-region. Glencoe's deep glen corridor funnels and stills air. Loch Lomond's shoreline canopy traps humidity. Skye's exposed coastal sections are breezier than its inland corries. Use the location guides for terrain pattern, then use the live calculator on the day for the real-time wind read.
+
+## What to pack
+
+The Loadout section on the live calculator page shows the current protection tier based on your location's midge risk. At Moderate or higher, carry a reliable repellent (Smidge or Lifesystems Expedition 100) and a head net for still, sheltered evenings. The tier description adapts to camping-specific concerns: extended still stops, dusk windows, and waterside exposure.
+
+## Timing matters more than calendar
+
+Wild camping in September is easier than July — the numbers are lower, the evenings are cooler, and the midges that remain lack midsummer drive. If July is unavoidable, plan exposed pitches and check the Overnight Watch before committing to a glen.
+
+The live calculator at biteforecast.scot/midge-wind-watch gives you the current conditions for 20 locations across the Highlands. The Overnight Watch badge tells you when dusk risk is elevated. The Loadout section tells you what to carry. Combined with the location guides for terrain pattern, they give a camper everything the engine already calculates — now surfaced where you can see it.\`,
+  },
+  {
+    slug: "anglers-guide-to-midge-conditions-scotland",
+    title: "Anglers\u2019 Guide to Midge Conditions in Scotland | BiteForecast",
+    ogTitle: "Anglers\u2019 Guide to Midge Conditions in Scotland: When the Water Is Right and the Air Is Not",
+    metaDescription:
+      "Fishing in Scotland means standing still at the water\u2019s edge for hours. Midge conditions vary by loch, river, and time of day. A one-article field guide for anglers, testing whether this audience arrives.",
+    publishedDate: "2026-07-18",
+    content: `Fishing in Scotland has a midge problem that the tourism brochures omit. You stand still at the water's edge for hours, often at dawn and dusk, in exactly the sheltered, humid conditions midges prefer. A 4mph breeze that feels fine on the drive to the loch becomes a still-air ambush by the time you're knee-deep in the burn.
+
+This guide is a test. BiteForecast has the data for a good angler-facing product. What we don't yet know is whether anglers actually arrive here looking for it. If you're reading this, you're helping answer that question.
+
+## The wind at water level is the thing
+
+Midges cannot fly in wind above roughly 6mph. But wind at the roadside or the car park is not the same as wind at water level in a sheltered bay, river bend, or tree-lined bank. A moderate forecast on paper can feel much worse on a still loch edge than it does on open ground fifty metres away.
+
+The live calculator at biteforecast.scot/midge-wind-watch gives current wind speed for your chosen location. Check it before you commit to a bank, and check it again when the evening rise begins — that's when the air tends to still and the midges start their shift.
+
+## Time of day matters more for anglers than for walkers
+
+Walkers pass through. Anglers occupy. A dawn start on a breezy open loch is a different experience from a dusk session on a sheltered river pool.
+
+The Overnight Watch badge on the calculator page flags when dusk is approaching and midge risk is elevated. If you're planning an evening session, that badge is worth paying attention to. Dawn is generally safer — the diurnal model scores it neutral — but the humidity that built overnight can linger at water level well past sunrise.
+
+## What to carry
+
+The Loadout section on the calculator page shows the current protection tier for your location. For anglers spending extended time at the water's edge, even a Moderate tier warrants a reliable repellent. Still air at dusk near water is where midges concentrate.
+
+A head net is worth having in the bag even on Low-risk days, because a change in wind direction or a shift into a sheltered bay can change the conditions faster than the forecast updates. Smidge or Lifesystems Expedition 100 are the standard recommendations — the Loadout section picks the tier-appropriate option.
+
+## Where to check
+
+The location guides at biteforecast.scot/scotland/[location]-midges cover terrain patterns per region: which lochs and rivers tend to be sheltered, which banks catch the breeze, and where the midge hotspots are by season. Use them for planning. Use the live calculator for the day-of decision.
+
+This is a one-article test. If it's useful to you, the data will help BiteForecast decide whether to build more for this audience.`,
   },
 ];
 
