@@ -296,7 +296,7 @@ Check BiteForecast for: when to go, where to stop for lunch, whether the evening
 
 Used together, they give you the full picture. Used separately, one of them has a significant gap in it.
 
-*Check the BiteForecast Midge Activity Index — 20 Highland locations, updated daily → BiteForecast.scot*\`,
+*Check the BiteForecast Midge Activity Index — 20 Highland locations, updated daily → BiteForecast.scot*`,
   },
   {
     slug: "midge-forecast-for-wild-camping-scotland",
@@ -327,7 +327,7 @@ The Loadout section on the live calculator page shows the current protection tie
 
 Wild camping in September is easier than July — the numbers are lower, the evenings are cooler, and the midges that remain lack midsummer drive. If July is unavoidable, plan exposed pitches and check the Overnight Watch before committing to a glen.
 
-The live calculator at biteforecast.scot/midge-wind-watch gives you the current conditions for 20 locations across the Highlands. The Overnight Watch badge tells you when dusk risk is elevated. The Loadout section tells you what to carry. Combined with the location guides for terrain pattern, they give a camper everything the engine already calculates — now surfaced where you can see it.\`,
+The live calculator at biteforecast.scot/midge-wind-watch gives you the current conditions for 20 locations across the Highlands. The Overnight Watch badge tells you when dusk risk is elevated. The Loadout section tells you what to carry. Combined with the location guides for terrain pattern, they give a camper everything the engine already calculates — now surfaced where you can see it.`,
   },
   {
     slug: "anglers-guide-to-midge-conditions-scotland",
