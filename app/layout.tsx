@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 
 import { FooterNav, SiteHeader } from "../components/site-nav";
+import { fontSerif, fontBody, fontMono } from "../lib/theme/fonts";
 
 import {
   HOMEPAGE_DESCRIPTION,
@@ -11,16 +11,6 @@ import {
 } from "../lib/seo/site-metadata";
 
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -37,13 +27,25 @@ export const metadata: Metadata = {
   }),
 };
 
+function formatTimestamp(date: Date): string {
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const day = date.getDate();
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const month = months[date.getMonth()];
+  return `${hours}:${minutes} · ${day} ${month}`;
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const now = new Date();
+  const timestamp = formatTimestamp(now);
+
   return (
-    <html lang="en-GB">
+    <html lang="en-GB" className={`${fontSerif.variable} ${fontBody.variable} ${fontMono.variable}`}>
       <head>
         <meta
           name="google-site-verification"
@@ -56,30 +58,10 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col bg-stone-950 text-stone-50 antialiased`}>
-        <SiteHeader />
+      <body className="flex min-h-screen flex-col antialiased">
+        <SiteHeader timestamp={timestamp} />
         <div className="flex-1">{children}</div>
-        <footer className="border-t border-stone-800 bg-stone-950/95 px-6 py-6 text-sm text-stone-400">
-          <div className="mx-auto flex max-w-5xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <div className="space-y-1">
-                <p>
-                  BiteForecast is an information and planning tool, not a guarantee of real-world conditions.
-                </p>
-                <p className="text-xs text-stone-500">
-                  Weather data: <a className="underline-offset-4 hover:text-stone-300 hover:underline" href="https://open-meteo.com" rel="noopener noreferrer" target="_blank">Open-Meteo</a>
-                </p>
-              </div>
-              <a className="inline-flex items-center gap-3 text-stone-500 transition hover:text-stone-300" href="/about">
-                <span className="rounded border border-stone-700/60 bg-stone-900/80 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-amber-300/80">
-                  <span className="text-stone-500">FILE:</span> THE BAMPOT
-                </span>
-                <span className="text-xs leading-4">Grieve — internal intelligence</span>
-              </a>
-            </div>
-            <FooterNav />
-          </div>
-        </footer>
+        <FooterNav />
       </body>
     </html>
   );

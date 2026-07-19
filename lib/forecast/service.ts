@@ -14,6 +14,7 @@ export type ForecastPoint = {
   temp: number;
   windMph: number;
   humidity: number;
+  cloudCover: number;
 };
 
 export type MidgeForecast = {
@@ -27,6 +28,7 @@ export type MidgeForecast = {
     temp: number;
     windMph: number;
     humidity: number;
+    cloudCover: number;
     peakTonight: number;
     peakTime: string;
     sentence: string;
@@ -48,6 +50,7 @@ type OpenMeteoForecast = {
     time: string[];
     temperature_2m: number[];
     relative_humidity_2m: number[];
+    cloud_cover?: number[];
     wind_speed_10m: number[];
     uv_index?: number[];
   };
@@ -107,7 +110,7 @@ async function fetchOpenMeteoForecast(location: ForecastLocation): Promise<OpenM
   const url = new URL("https://api.open-meteo.com/v1/forecast");
   url.searchParams.set("latitude", String(location.lat));
   url.searchParams.set("longitude", String(location.lng));
-  url.searchParams.set("hourly", "temperature_2m,relative_humidity_2m,wind_speed_10m,uv_index");
+  url.searchParams.set("hourly", "temperature_2m,relative_humidity_2m,cloud_cover,wind_speed_10m,uv_index");
   url.searchParams.set("daily", "sunrise,sunset");
   url.searchParams.set("forecast_days", String(OPERATIONAL_FACTS.forecastHorizonDays));
   url.searchParams.set("wind_speed_unit", "mph");
@@ -159,6 +162,7 @@ function buildForecastFromOpenMeteo(
         temp,
         windMph,
         humidity,
+        cloudCover: payload.hourly.cloud_cover?.[index] ?? 0,
       };
     });
 
@@ -168,6 +172,7 @@ function buildForecastFromOpenMeteo(
     temp: 0,
     windMph: 0,
     humidity: 0,
+    cloudCover: 0,
   };
   const tonightIso = toDateIso(currentPoint.time);
   const eveningTonightPoints = points.filter((point) => {
@@ -244,6 +249,7 @@ function buildForecastFromOpenMeteo(
       temp: currentPoint.temp,
       windMph: currentPoint.windMph,
       humidity: currentPoint.humidity,
+      cloudCover: currentPoint.cloudCover,
       peakTonight: peakTonightPoint.index,
       overnightPeak,
       overnightEstimated,

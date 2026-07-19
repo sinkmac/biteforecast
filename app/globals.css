@@ -1,45 +1,198 @@
+/* ===========================================================
+   BiteForecast — "Field Almanac" theme
+   Warm paper, flat surfaces, square corners, shared-border grid
+   =========================================================== */
+
 @import "tailwindcss";
 
+/* ── CSS Custom Properties ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Paper surfaces */
+  --color-page-bg: #f7f4ec;
+  --color-card-bg: #fcfaf4;
+  --color-card-hover: #f2eee2;
+
+  /* Ink */
+  --color-ink: #22281f;
+  --color-secondary: #4c5347;
+  --color-muted-mid: #7a7f70;
+  --color-muted-light: #9aa08e;
+
+  /* Borders */
+  --color-border-ink: #22281f;
+  --color-border-empty: #cfc9b8;
+  --color-border-light: #d9d3c2;
+  --color-border-dashed: #b8b29c;
+
+  /* Risk severity */
+  --color-risk-low: #3d7a4e;
+  --color-risk-moderate: #b07d1e;
+  --color-risk-high: #b3452e;
+
+  /* On-dark accents */
+  --color-on-dark-green: #9db58a;
+  --color-on-dark-muted: #b9bfae;
+  --color-on-dark-meta: #7a8272;
+  --color-on-dark-amber: #d4b36a;
+
+  /* CTA */
+  --color-cta-bg: #3d7a4e;
+  --color-cta-hover: #2f6540;
+
+  /* Font families set via next/font variables */
+  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-public-sans), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), "Courier New", monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Base reset ── */
+* {
+  border-radius: 0 !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-page-bg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-page-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
 }
 
-.bf-tool-shell {
-  width: min(15rem, calc(100vw - 3rem));
+/* ⚠ no dark mode override — the almanac is deliberately light/paper */
+
+/* ── Typography utilities ── */
+
+.font-serif {
+  font-family: var(--font-serif);
 }
 
-.bf-tool-card {
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ── Shared-border grid: cells share 1px ink borders like a printed table ── */
+
+.grid-almanac {
+  display: grid;
+  border-top: 1px solid var(--color-border-ink);
+  border-left: 1px solid var(--color-border-ink);
+}
+
+.grid-almanac > * {
+  border-right: 1px solid var(--color-border-ink);
+  border-bottom: 1px solid var(--color-border-ink);
+}
+
+/* ── Double rule under header ── */
+
+.double-rule {
+  height: 3px;
+  border-bottom: 1px solid var(--color-border-ink);
+}
+
+/* ── Rotated stamp ── */
+
+.stamp {
+  display: inline-block;
+  border: 2px solid var(--color-risk-high);
+  color: var(--color-risk-high);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  padding: 4px 9px;
+}
+
+.stamp-rot {
+  transform: rotate(-3deg);
+}
+
+/* ── Threat bar block ── */
+
+.threat-block {
+  display: inline-block;
+  width: 15px;
+  height: 7px;
+  border: 1px solid var(--color-border-empty);
+}
+
+.threat-block.filled {
+  border-color: currentColor;
+  background: currentColor;
+}
+
+.threat-block-large {
+  width: 24px;
+  height: 9px;
+}
+
+/* ── Legend dot ── */
+
+.legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* ── CTA button ── */
+
+.btn-cta {
+  display: block;
   width: 100%;
-  max-width: 15rem;
+  background: var(--color-cta-bg);
+  color: var(--color-card-bg);
+  text-align: center;
+  padding: 14px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-border-ink);
+  cursor: pointer;
 }
 
-@media (min-width: 640px) {
-  .bf-tool-shell {
-    width: min(36rem, calc(100vw - 3rem));
-  }
+.btn-cta:hover {
+  background: var(--color-cta-hover);
+}
 
-  .bf-tool-card {
-    max-width: 36rem;
-  }
+/* ── Select / date input fields ── */
+
+.field-input {
+  border: 1px solid var(--color-border-ink);
+  padding: 12px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  background: var(--color-card-bg);
+  color: var(--color-ink);
+}
+
+/* ── Section divider dashed ── */
+
+.divider-dashed {
+  border: none;
+  border-top: 1px dashed var(--color-border-dashed);
+}
+
+/* ── Hover card (almanac grid cells) ── */
+
+.hover-card:hover {
+  background: var(--color-card-hover);
+}
+
+/* ── Current-slot highlight (timeline) ── */
+
+.bg-current-slot {
+  background: var(--color-card-hover);
+}
+
+/* ── Responsive: no radius anywhere (safety net) ── */
+
+.rounded-none-important {
+  border-radius: 0 !important;
 }

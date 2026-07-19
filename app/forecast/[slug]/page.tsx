@@ -4,16 +4,14 @@ import { notFound } from "next/navigation";
 
 import {
   getForecastLocationBySlug,
+  FORECAST_LOCATIONS,
 } from "../../../lib/forecast/locations";
 import {
-  formatDateTime,
+  getHomepageForecastSummaries,
   getMidgeForecast,
   formatTime,
-  type MidgeForecast,
 } from "../../../lib/forecast/service";
 import {
-  getMidgeLabel,
-  getMidgeLevelClasses,
   getMidgeRecommendation,
 } from "../../../lib/forecast/midge-index";
 import { ForecastWhatToBring } from "../../../components/affiliate-kit";
@@ -27,6 +25,12 @@ import { OPERATIONAL_FACTS, SITE_URL, buildForecastPageTitle, buildMetadataAlter
 import {
   OvernightWatchCard,
 } from "../../../components/overnight-watch-card";
+
+import RiskScore from "../../../components/risk-score";
+import ThreatBar from "../../../components/threat-bar";
+import Stamp from "../../../components/stamp";
+import { getRiskColor, getRiskLabel } from "../../../lib/theme/risk";
+import { getPlainEnglishAdvice, getNearbyPoints } from "../../../lib/forecast/almanac-utils";
 
 export const revalidate = 10800;
 
@@ -59,6 +63,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+function cloudDescription(cover: number): string {
+  if (cover >= 80) return "Overcast";
+  if (cover >= 50) return "Mostly cloudy";
+  if (cover >= 20) return "Partly cloudy";
+  return "Clear";
+}
+
 export default async function ForecastPage({ params }: PageProps) {
   const { slug } = await params;
   const forecast = await getMidgeForecast(slug);
@@ -68,8 +79,8 @@ export default async function ForecastPage({ params }: PageProps) {
   }
 
   const grieveLevel = getGrieveLevel(forecast.current.index);
-    const grieveStateName = getGrieveStateName(grieveLevel);
-    const shareText = ` 🏴󠁧󠁢󠁳󠁣󠁴󠁿 ${forecast.location.name} midge forecast: ${forecast.current.label.toUpperCase()} (${forecast.current.index}/10)\\n${grieveStateName}\\nbiteforecast.scot/forecast/${forecast.location.slug}`;
+  const grieveStateName = getGrieveStateName(grieveLevel);
+  const shareText = ` 🏴󠁧󠁢󠁳󠁣󠁴󠁿 ${forecast.location.name} midge forecast: ${forecast.current.label.toUpperCase()} (${forecast.current.index}/10)\\\\n${grieveStateName}\\\\nbiteforecast.scot/forecast/${forecast.location.slug}`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -79,142 +90,412 @@ export default async function ForecastPage({ params }: PageProps) {
     dateModified: forecast.generated.toISOString(),
   };
 
+  const locationIndex = FORECAST_LOCATIONS.findIndex((l) => l.slug === slug);
+  const paddedIndex = String(locationIndex + 1).padStart(2, "0");
+
+  /* Timeline: 8 × 3-hour slots starting from current slot */
+  const timelineSlots = forecast.hourly.slice(0, 8).map((point) => {
+    const isNow = point.time.getTime() === forecast.generated.getTime();
+    const c = getRiskColor(point.index);
+    const h = 10 + point.index * 9;
+    return {
+      t: formatTime(point.time),
+      score: point.index,
+      color: c,
+      height: h,
+      nowBg: isNow ? "var(--color-card-hover)" : "var(--color-card-bg)",
+    };
+  });
+
+  /* Nearby points */
+  const allSummaries = await getHomepageForecastSummaries();
+  const scoreMap = new Map(allSummaries.map((s) => [s.location.slug, s.index]));
+
+  const nearbyPoints = getNearbyPoints(
+    slug,
+    forecast.location.lat,
+    forecast.location.lng,
+    FORECAST_LOCATIONS,
+    (s) => scoreMap.get(s) ?? 0,
+    getRiskColor,
+  );
+
   return (
-    <main className="min-h-screen bg-stone-950 px-6 py-12 text-stone-50">
+    <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <article className="mx-auto flex max-w-5xl flex-col gap-8">
-        <header className="space-y-3">
-          <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
-            ← Back to BiteForecast
+
+      {/* ================================================================ */}
+      {/* DESKTOP LAYOUT (≥768px)                                          */}
+      {/* ================================================================ */}
+      <div className="hidden md:block">
+        {/* ── Breadcrumb ── */}
+        <div className="font-mono" style={{ padding: "22px 56px 0", fontSize: 11, color: "var(--color-muted-mid)" }}>
+          <Link href="/" style={{ color: "inherit", textDecoration: "none" }}>
+            ← ALL LOCATIONS
           </Link>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">Live Midge Forecast</p>
-          <h1 className="text-4xl font-black tracking-tight sm:text-6xl">{forecast.location.name} Midge Forecast</h1>
-          <p className="text-sm text-stone-400">
-            Updated {formatDateTime(forecast.generated)} · Next update {formatDateTime(forecast.nextUpdate)}
-          </p>
-        </header>
+          &nbsp;/&nbsp;
+          <span style={{ color: "var(--color-risk-low)" }}>FORECAST POINT №{paddedIndex}</span>
+        </div>
 
-        <section className={`rounded-[2rem] border p-7 shadow-2xl shadow-black/30 ${getMidgeLevelClasses(forecast.current.index)}`}>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] opacity-80">The Index</p>
-          <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <Link className="text-8xl font-black leading-none tracking-tight underline decoration-transparent underline-offset-8 transition hover:decoration-current" href="/how-the-index-works">{forecast.current.index}</Link>
-              <p className="mt-3 text-3xl font-black uppercase tracking-[0.12em]">{forecast.current.label}</p>
+        {/* ── Hero: 2-col ── */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 380px", gap: 56, padding: "26px 56px 40px", alignItems: "start" }}>
+          <div>
+            <h1 className="font-serif" style={{ fontWeight: 500, fontSize: 58, lineHeight: 1.02, letterSpacing: "-0.02em", margin: "0 0 14px" }}>
+              {forecast.location.name}
+            </h1>
+            <p style={{ fontFamily: "var(--font-body)", fontSize: 15.5, lineHeight: 1.6, color: "var(--color-secondary)", margin: "0 0 26px", maxWidth: 56 } as React.CSSProperties}>
+              {forecast.location.description} Season: {forecast.location.midgeSeason}.
+            </p>
+            <div style={{ borderLeft: "2px solid var(--color-risk-moderate)", paddingLeft: 20, marginBottom: 8 }}>
+              <div className="font-mono" style={{ fontSize: 11, letterSpacing: "0.16em", color: "var(--color-risk-moderate)", marginBottom: 8 }}>
+                IN PLAIN ENGLISH
+              </div>
+              <p className="font-serif" style={{ fontSize: 21, lineHeight: 1.45, margin: 0, color: "#333a2f" }}>
+                {getPlainEnglishAdvice(forecast.current.index, forecast.generated, forecast.location.name)}
+              </p>
             </div>
-            <p className="max-w-xl text-lg leading-7">{forecast.current.sentence}</p>
           </div>
-        </section>
 
+          {/* RIGHT NOW card */}
+          <div style={{ border: "1px solid var(--color-border-ink)", background: "var(--color-card-bg)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 22px", borderBottom: "1px solid var(--color-border-ink)", background: "var(--color-ink)", color: "var(--color-card-bg)" }}>
+              <span className="font-mono" style={{ fontSize: 10.5, letterSpacing: "0.18em" }}>
+                RIGHT NOW · {formatTime(forecast.generated)}
+              </span>
+              <span className="font-mono" style={{ fontSize: 10.5, letterSpacing: "0.18em", color: "var(--color-on-dark-amber)" }}>
+                {getRiskLabel(forecast.current.index)}
+              </span>
+            </div>
+            <div style={{ padding: "26px 22px 8px" }}>
+              <RiskScore score={forecast.current.index} size="detail" />
+            </div>
+            <div style={{ padding: "0 22px 22px" }}>
+              <ThreatBar score={forecast.current.index} size="detail" />
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderTop: "1px solid var(--color-border-ink)" }}>
+              <div style={{ padding: "14px 22px", borderRight: "1px solid var(--color-border-light)", borderBottom: "1px solid var(--color-border-light)" }}>
+                <div className="font-mono" style={{ fontSize: 9.5, letterSpacing: "0.16em", color: "var(--color-muted-mid)" }}>WIND</div>
+                <div style={{ fontFamily: "var(--font-body)", fontSize: 15, fontWeight: 600, marginTop: 4 }}>{Math.round(forecast.current.windMph)} mph</div>
+              </div>
+              <div style={{ padding: "14px 22px", borderBottom: "1px solid var(--color-border-light)" }}>
+                <div className="font-mono" style={{ fontSize: 9.5, letterSpacing: "0.16em", color: "var(--color-muted-mid)" }}>TEMP</div>
+                <div style={{ fontFamily: "var(--font-body)", fontSize: 15, fontWeight: 600, marginTop: 4 }}>{Math.round(forecast.current.temp)}°C</div>
+              </div>
+              <div style={{ padding: "14px 22px", borderRight: "1px solid var(--color-border-light)" }}>
+                <div className="font-mono" style={{ fontSize: 9.5, letterSpacing: "0.16em", color: "var(--color-muted-mid)" }}>HUMIDITY</div>
+                <div style={{ fontFamily: "var(--font-body)", fontSize: 15, fontWeight: 600, marginTop: 4 }}>{Math.round(forecast.current.humidity)}%</div>
+              </div>
+              <div style={{ padding: "14px 22px" }}>
+                <div className="font-mono" style={{ fontSize: 9.5, letterSpacing: "0.16em", color: "var(--color-muted-mid)" }}>CLOUD</div>
+                <div style={{ fontFamily: "var(--font-body)", fontSize: 15, fontWeight: 600, marginTop: 4 }}>{cloudDescription(forecast.current.cloudCover)}</div>
+              </div>
+            </div>
+            <div style={{ padding: "12px 22px", borderTop: "1px solid var(--color-border-ink)", fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--color-muted-light)", letterSpacing: "0.08em" }}>
+              WIND ABOVE ~7 MPH GROUNDS THE CLOUD. WATCH FOR IT DROPPING.
+            </div>
+          </div>
+        </div>
+
+        {/* ── Next 24 hours ── */}
+        <div style={{ padding: "0 56px 14px", display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+          <div style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            Next 24 hours
+          </div>
+          <div className="font-mono" style={{ fontSize: 11, color: "var(--color-muted-mid)" }}>
+            3-HOUR INTERVALS · LOCAL TIME
+          </div>
+        </div>
+        <div style={{ margin: "0 56px 44px", border: "1px solid var(--color-border-ink)", display: "grid", gridTemplateColumns: "repeat(8, 1fr)", background: "var(--color-card-bg)" }}>
+          {timelineSlots.map((slot, i) => (
+            <div key={i} style={{ borderRight: i < 7 ? "1px solid var(--color-border-light)" : "none", padding: "18px 14px 16px", display: "flex", flexDirection: "column", gap: 10, background: slot.nowBg }}>
+              <div className="font-mono" style={{ fontSize: 10.5, color: "var(--color-muted-mid)", letterSpacing: "0.08em" }}>{slot.t}</div>
+              <div style={{ height: 100, display: "flex", alignItems: "flex-end" }}>
+                <div style={{ width: "100%", background: slot.color, height: slot.height }} />
+              </div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 3 }}>
+                <span className="font-serif" style={{ fontWeight: 600, fontSize: 22, lineHeight: 1, color: slot.color }}>{slot.score}</span>
+                <span className="font-mono" style={{ fontSize: 9.5, color: "var(--color-muted-light)" }}>/10</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Know this glen + Bampot ── */}
+        <div style={{ margin: "0 56px 48px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, borderTop: "1px dashed var(--color-border-dashed)", paddingTop: 32 }}>
+          <div>
+            <div className="font-serif" style={{ fontSize: 22, fontWeight: 500, marginBottom: 12 }}>
+              Know this {forecast.location.name.includes("Glen") ? "glen" : "place"}
+            </div>
+            {forecast.location.localNotes ? (
+              <>
+                <p style={{ fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.7, color: "var(--color-secondary)", margin: "0 0 12px" }}>{forecast.location.localNotes[0]}</p>
+                <p style={{ fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.7, color: "var(--color-secondary)", margin: 0 }}>{forecast.location.localNotes[1]}</p>
+              </>
+            ) : (
+              <p style={{ fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.7, color: "var(--color-secondary)", margin: 0 }}>{forecast.location.description}</p>
+            )}
+          </div>
+          <div style={{ border: "1px solid var(--color-border-ink)", background: "var(--color-card-bg)", padding: "24px 26px", alignSelf: "start" }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 12 }}>
+              <Stamp text="INTERCEPTED" variant="intercepted" />
+              <div className="font-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "var(--color-muted-light)" }}>FILE: THE BAMPOT</div>
+            </div>
+            <p className="font-serif" style={{ fontStyle: "italic", fontSize: 17.5, lineHeight: 1.5, margin: "0 0 8px", color: "#333a2f" }}>
+              &ldquo;The {forecast.location.name.includes("Glen") ? "glen" : "sector"} reports excellent feeding conditions at dusk. Morale among the squadrons is regrettably high.&rdquo;
+            </p>
+            <p className="font-mono" style={{ fontSize: 10.5, color: "var(--color-muted-mid)", margin: 0 }}>
+              — AIR VICE-MARSHAL GRIEVE, EVENING DISPATCH
+            </p>
+          </div>
+        </div>
+
+        {/* ── Nearby forecast points ── */}
+        <div style={{ margin: "0 56px", padding: "0 0 14px", fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          Nearby forecast points
+        </div>
+        <div className="grid-almanac" style={{ margin: "0 56px 48px", gridTemplateColumns: "repeat(4, 1fr)" }}>
+          {nearbyPoints.length > 0 ? nearbyPoints.map((pt) => (
+            <Link key={pt.slug} href={`/forecast/${pt.slug}`} className="hover-card" style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", padding: "16px 20px", background: "var(--color-card-bg)", textDecoration: "none", color: "inherit" }}>
+              <span className="font-serif" style={{ fontSize: 16, fontWeight: 500 }}>{pt.name}</span>
+              <span className="font-serif" style={{ fontWeight: 600, fontSize: 24, color: pt.color }}>{pt.score > 0 ? pt.score : "—"}</span>
+            </Link>
+          )) : (
+            <div style={{ padding: "16px 20px", background: "var(--color-card-bg)", gridColumn: "1 / -1" }}>
+              <span className="font-mono" style={{ fontSize: 11, color: "var(--color-muted-mid)" }}>No nearby forecast points available.</span>
+            </div>
+          )}
+        </div>
+
+        {/* ── Slim desktop footer strip ── */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 56px", borderTop: "1px solid var(--color-border-ink)", background: "var(--color-ink)", color: "var(--color-card-bg)" }}>
+          <div className="font-serif" style={{ fontStyle: "italic", fontSize: 17 }}>Skip the midges. Not the scenery.</div>
+          <div className="font-mono" style={{ fontSize: 11, letterSpacing: "0.1em", color: "var(--color-on-dark-muted)" }}>© 2026 BITEFORECAST.SCOT</div>
+        </div>
+      </div>
+
+      {/* ================================================================ */}
+      {/* MOBILE LAYOUT (<768px)                                           */}
+      {/* ================================================================ */}
+      <div className="block md:hidden">
+        {/* ── Breadcrumb ── */}
+        <div className="font-mono" style={{ padding: "18px 20px 0", fontSize: 10, color: "var(--color-muted-mid)" }}>
+          <Link href="/" style={{ color: "inherit", textDecoration: "none" }}>
+            ← ALL LOCATIONS
+          </Link>
+          &nbsp;/&nbsp;
+          <span style={{ color: "var(--color-risk-low)" }}>FORECAST POINT №{paddedIndex}</span>
+        </div>
+
+        {/* ── Hero location info ── */}
+        <div style={{ padding: "20px 20px 16px" }}>
+          <h1 className="font-serif" style={{ fontWeight: 500, fontSize: 36, lineHeight: 1.05, letterSpacing: "-0.015em", margin: "0 0 12px" }}>
+            {forecast.location.name}
+          </h1>
+          <p style={{ fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.6, color: "var(--color-secondary)", margin: "0 0 20px" }}>
+            {forecast.location.description} Season: {forecast.location.midgeSeason}.
+          </p>
+          <div style={{ borderLeft: "2px solid var(--color-risk-moderate)", paddingLeft: 16 }}>
+            <div className="font-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "var(--color-risk-moderate)", marginBottom: 6 }}>
+              IN PLAIN ENGLISH
+            </div>
+            <p className="font-serif" style={{ fontSize: 18, lineHeight: 1.4, margin: 0, color: "#333a2f" }}>
+              {getPlainEnglishAdvice(forecast.current.index, forecast.generated, forecast.location.name)}
+            </p>
+          </div>
+        </div>
+
+        {/* ── RIGHT NOW card ── */}
+        <div style={{ margin: "0 20px 24px", border: "1px solid var(--color-border-ink)", background: "var(--color-card-bg)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 16px", borderBottom: "1px solid var(--color-border-ink)", background: "var(--color-ink)", color: "var(--color-card-bg)" }}>
+            <span className="font-mono" style={{ fontSize: 10, letterSpacing: "0.16em" }}>
+              RIGHT NOW · {formatTime(forecast.generated)}
+            </span>
+            <span className="font-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "var(--color-on-dark-amber)" }}>
+              {getRiskLabel(forecast.current.index)}
+            </span>
+          </div>
+          <div style={{ padding: "20px 16px 6px" }}>
+            <RiskScore score={forecast.current.index} size="detail" />
+          </div>
+          <div style={{ padding: "0 16px 18px" }}>
+            <ThreatBar score={forecast.current.index} size="detail" />
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderTop: "1px solid var(--color-border-ink)" }}>
+            <div style={{ padding: "12px 16px", borderRight: "1px solid var(--color-border-light)", borderBottom: "1px solid var(--color-border-light)" }}>
+              <div className="font-mono" style={{ fontSize: 9, letterSpacing: "0.16em", color: "var(--color-muted-mid)" }}>WIND</div>
+              <div style={{ fontFamily: "var(--font-body)", fontSize: 14, fontWeight: 600, marginTop: 4 }}>{Math.round(forecast.current.windMph)} mph</div>
+            </div>
+            <div style={{ padding: "12px 16px", borderBottom: "1px solid var(--color-border-light)" }}>
+              <div className="font-mono" style={{ fontSize: 9, letterSpacing: "0.16em", color: "var(--color-muted-mid)" }}>TEMP</div>
+              <div style={{ fontFamily: "var(--font-body)", fontSize: 14, fontWeight: 600, marginTop: 4 }}>{Math.round(forecast.current.temp)}°C</div>
+            </div>
+            <div style={{ padding: "12px 16px", borderRight: "1px solid var(--color-border-light)" }}>
+              <div className="font-mono" style={{ fontSize: 9, letterSpacing: "0.16em", color: "var(--color-muted-mid)" }}>HUMIDITY</div>
+              <div style={{ fontFamily: "var(--font-body)", fontSize: 14, fontWeight: 600, marginTop: 4 }}>{Math.round(forecast.current.humidity)}%</div>
+            </div>
+            <div style={{ padding: "12px 16px" }}>
+              <div className="font-mono" style={{ fontSize: 9, letterSpacing: "0.16em", color: "var(--color-muted-mid)" }}>CLOUD</div>
+              <div style={{ fontFamily: "var(--font-body)", fontSize: 14, fontWeight: 600, marginTop: 4 }}>{cloudDescription(forecast.current.cloudCover)}</div>
+            </div>
+          </div>
+          <div style={{ padding: "10px 16px", borderTop: "1px solid var(--color-border-ink)", fontFamily: "var(--font-mono)", fontSize: 9.5, color: "var(--color-muted-light)", letterSpacing: "0.06em" }}>
+            WIND ABOVE ~7 MPH GROUNDS THE CLOUD. WATCH FOR IT DROPPING.
+          </div>
+        </div>
+
+        {/* ── Next 24 hours ── */}
+        <div style={{ padding: "0 20px 10px", display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+          <div style={{ fontFamily: "var(--font-body)", fontSize: 11.5, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+            Next 24 hours
+          </div>
+          <div className="font-mono" style={{ fontSize: 10, color: "var(--color-muted-mid)" }}>
+            3-HOUR INTERVALS
+          </div>
+        </div>
+        <div style={{ margin: "0 20px 28px", border: "1px solid var(--color-border-ink)", overflowX: "auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(8, 100px)", background: "var(--color-card-bg)", minWidth: 800 }}>
+            {timelineSlots.map((slot, i) => (
+              <div key={i} style={{ borderRight: i < 7 ? "1px solid var(--color-border-light)" : "none", padding: "14px 10px 12px", display: "flex", flexDirection: "column", gap: 8, background: slot.nowBg }}>
+                <div className="font-mono" style={{ fontSize: 9.5, color: "var(--color-muted-mid)", letterSpacing: "0.08em" }}>{slot.t}</div>
+                <div style={{ height: 80, display: "flex", alignItems: "flex-end" }}>
+                  <div style={{ width: "100%", background: slot.color, height: slot.height }} />
+                </div>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 2 }}>
+                  <span className="font-serif" style={{ fontWeight: 600, fontSize: 20, lineHeight: 1, color: slot.color }}>{slot.score}</span>
+                  <span className="font-mono" style={{ fontSize: 9, color: "var(--color-muted-light)" }}>/10</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Know this glen + Bampot (stacked) ── */}
+        <div style={{ margin: "0 20px 28px", borderTop: "1px dashed var(--color-border-dashed)", paddingTop: 24 }}>
+          <div className="font-serif" style={{ fontSize: 19, fontWeight: 500, marginBottom: 10 }}>
+            Know this {forecast.location.name.includes("Glen") ? "glen" : "place"}
+          </div>
+          {forecast.location.localNotes ? (
+            <>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: 13.5, lineHeight: 1.65, color: "var(--color-secondary)", margin: "0 0 10px" }}>{forecast.location.localNotes[0]}</p>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: 13.5, lineHeight: 1.65, color: "var(--color-secondary)", margin: "0 0 24px" }}>{forecast.location.localNotes[1]}</p>
+            </>
+          ) : (
+            <p style={{ fontFamily: "var(--font-body)", fontSize: 13.5, lineHeight: 1.65, color: "var(--color-secondary)", margin: "0 0 24px" }}>{forecast.location.description}</p>
+          )}
+          <div style={{ border: "1px solid var(--color-border-ink)", background: "var(--color-card-bg)", padding: "20px 22px" }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 10 }}>
+              <Stamp text="INTERCEPTED" variant="intercepted" />
+              <div className="font-mono" style={{ fontSize: 9.5, letterSpacing: "0.16em", color: "var(--color-muted-light)" }}>FILE: THE BAMPOT</div>
+            </div>
+            <p className="font-serif" style={{ fontStyle: "italic", fontSize: 16, lineHeight: 1.45, margin: "0 0 6px", color: "#333a2f" }}>
+              &ldquo;The {forecast.location.name.includes("Glen") ? "glen" : "sector"} reports excellent feeding conditions at dusk. Morale among the squadrons is regrettably high.&rdquo;
+            </p>
+            <p className="font-mono" style={{ fontSize: 10, color: "var(--color-muted-mid)", margin: 0 }}>
+              — AIR VICE-MARSHAL GRIEVE, EVENING DISPATCH
+            </p>
+          </div>
+        </div>
+
+        {/* ── Nearby forecast points ── */}
+        <div style={{ margin: "0 20px", padding: "0 0 10px", fontFamily: "var(--font-body)", fontSize: 11.5, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+          Nearby forecast points
+        </div>
+        <div className="grid-almanac" style={{ margin: "0 20px 28px", gridTemplateColumns: "repeat(2, 1fr)" }}>
+          {nearbyPoints.length > 0 ? nearbyPoints.slice(0, 4).map((pt) => (
+            <Link key={pt.slug} href={`/forecast/${pt.slug}`} className="hover-card" style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", padding: "14px 16px", background: "var(--color-card-bg)", textDecoration: "none", color: "inherit" }}>
+              <span className="font-serif" style={{ fontSize: 14, fontWeight: 500 }}>{pt.name}</span>
+              <span className="font-serif" style={{ fontWeight: 600, fontSize: 20, color: pt.color }}>{pt.score > 0 ? pt.score : "—"}</span>
+            </Link>
+          )) : (
+            <div style={{ padding: "14px 16px", background: "var(--color-card-bg)", gridColumn: "1 / -1" }}>
+              <span className="font-mono" style={{ fontSize: 10, color: "var(--color-muted-mid)" }}>No nearby forecast points available.</span>
+            </div>
+          )}
+        </div>
+
+        {/* ── Slim mobile footer strip ── */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 20px", borderTop: "1px solid var(--color-border-ink)", background: "var(--color-ink)", color: "var(--color-card-bg)" }}>
+          <div className="font-serif" style={{ fontStyle: "italic", fontSize: 14 }}>Skip the midges. Not the scenery.</div>
+          <div className="font-mono" style={{ fontSize: 9.5, letterSpacing: "0.1em", color: "var(--color-on-dark-muted)" }}>© 2026 BITEFORECAST.SCOT</div>
+        </div>
+      </div>
+
+      {/* ════════════════════════════════════════════ */}
+      {/* Existing content below almanac sections     */}
+      {/* ════════════════════════════════════════════ */}
+      <div style={{ padding: "48px 56px", background: "var(--color-page-bg)" }}>
         <ForecastWhatToBring index={forecast.current.index} />
 
-        <section className="grid gap-4 md:grid-cols-2">
-          <div className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-            <h2 className="text-2xl font-black">Tonight&apos;s peak</h2>
-            <p className="mt-3 text-lg text-stone-200">
+        <section style={{ display: "grid", gap: 16, gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", marginTop: 40 }}>
+          <div style={{ border: "1px solid var(--color-border-ink)", background: "var(--color-card-bg)", padding: 24 }}>
+            <h2 className="font-serif" style={{ fontSize: 22, fontWeight: 500, margin: "0 0 10px" }}>Tonight&apos;s peak</h2>
+            <p style={{ fontFamily: "var(--font-body)", fontSize: 16, color: "var(--color-secondary)" }}>
               Peak activity tonight: {forecast.current.peakTime} — {forecast.current.peakTonight}/10
             </p>
           </div>
-          <div className="rounded-3xl border border-emerald-400/25 bg-emerald-500/10 p-6">
-            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-start">
-              <div className="shrink-0">
-                <GrieveOverlay grieveLevel={grieveLevel} showCommuniqué={false} className="!mt-0" />
-              </div>
+          <div style={{ border: "1px solid var(--color-border-ink)", background: "var(--color-card-bg)", padding: 24 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <GrieveOverlay grieveLevel={grieveLevel} showCommuniqué={false} />
               <div>
-                <h2 className="text-2xl font-black">Recommendation</h2>
-                <p className="mt-3 text-sm font-medium italic leading-6 text-stone-400">{getGrieveStateName(grieveLevel)}</p>
-                <p className="mt-3 text-lg leading-7 text-stone-100">{forecast.current.recommendation}</p>
+                <h2 className="font-serif" style={{ fontSize: 22, fontWeight: 500, margin: "0 0 10px" }}>Recommendation</h2>
+                <p className="font-serif" style={{ fontStyle: "italic", fontSize: 15, lineHeight: 1.5, color: "var(--color-muted-mid)" }}>
+                  {getGrieveStateName(grieveLevel)}
+                </p>
+                <p style={{ fontFamily: "var(--font-body)", fontSize: 15, lineHeight: 1.6, color: "var(--color-secondary)", marginTop: 8 }}>
+                  {forecast.current.recommendation}
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <OvernightWatchCard forecast={forecast} />
+        <div style={{ marginTop: 40 }}>
+          <OvernightWatchCard forecast={forecast} />
+        </div>
 
-        <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-          <h2 className="text-2xl font-black">48-hour activity chart</h2>
-          <MidgeBarChart forecast={forecast} />
-          <p className="mt-4 text-xs text-stone-500">
-            Weather data: <a className="underline-offset-4 hover:text-stone-300 hover:underline" href="https://open-meteo.com" rel="noopener noreferrer" target="_blank">Open-Meteo</a>
-          </p>
-        </section>
-
-        <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-          <h2 className="text-2xl font-black">{OPERATIONAL_FACTS.forecastHorizonLabel} outlook</h2>
-          <div className="mt-5 grid gap-4 md:grid-cols-5">
+        <section style={{ marginTop: 40, border: "1px solid var(--color-border-ink)", background: "var(--color-card-bg)", padding: 24 }}>
+          <h2 className="font-serif" style={{ fontSize: 22, fontWeight: 500, margin: "0 0 10px" }}>{OPERATIONAL_FACTS.forecastHorizonLabel} outlook</h2>
+          <div style={{ display: "grid", gap: 16, gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", marginTop: 20 }}>
             {forecast.daily.map((day) => (
-              <article className="rounded-2xl border border-stone-800 bg-stone-950/80 p-4" key={day.date.toISOString()}>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">{formatDay(day.date)}</p>
-                <p className="mt-3 text-3xl font-black text-stone-50">{day.peakIndex}/10</p>
-                <p className="mt-1 font-bold text-emerald-200">{day.label}</p>
-                <p className="mt-3 text-sm leading-5 text-stone-400">{day.recommendation}</p>
-              </article>
+              <div key={day.date.toISOString()} style={{ border: "1px solid var(--color-border-light)", background: "var(--color-card-bg)", padding: 16 }}>
+                <p className="font-mono" style={{ fontSize: 10, color: "var(--color-muted-mid)" }}>
+                  {new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "Europe/London" }).format(day.date)}
+                </p>
+                <p className="font-serif" style={{ fontSize: 32, fontWeight: 600, lineHeight: 1.1, color: getRiskColor(day.peakIndex), marginTop: 8 }}>
+                  {day.peakIndex}/10
+                </p>
+                <p style={{ fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 600, letterSpacing: "0.14em", color: getRiskColor(day.peakIndex) }}>
+                  {day.label}
+                </p>
+                <p style={{ fontFamily: "var(--font-body)", fontSize: 13, lineHeight: 1.5, color: "var(--color-secondary)", marginTop: 8 }}>
+                  {day.recommendation}
+                </p>
+              </div>
             ))}
           </div>
         </section>
 
-        <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-stone-500">Advertisement</p>
-          <ins className="adsbygoogle mt-6 block min-h-24 rounded-2xl border border-stone-800 bg-stone-950/60" data-ad-client="ca-pub-2335335210412692" data-ad-format="auto" data-full-width-responsive="true" />
+        <section style={{ marginTop: 40, border: "1px solid var(--color-border-ink)", padding: 24, background: "var(--color-card-bg)" }}>
+          <p className="font-mono" style={{ fontSize: 10, color: "var(--color-muted-mid)" }}>Advertisement</p>
+          <ins className="adsbygoogle mt-6 block min-h-24" style={{ border: "1px solid var(--color-border-light)", background: "var(--color-card-bg)" }} data-ad-client="ca-pub-2335335210412692" data-ad-format="auto" data-full-width-responsive="true" />
         </section>
 
-        <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-          <h2 className="text-2xl font-black">Share forecast</h2>
-          <pre className="mt-4 overflow-x-auto whitespace-pre-wrap rounded-2xl bg-stone-950 p-4 text-sm leading-6 text-stone-100">{shareText}</pre>
-          <CopyShareTextButton text={shareText} />
+        <section style={{ marginTop: 40, border: "1px solid var(--color-border-ink)", background: "var(--color-card-bg)", padding: 24 }}>
+          <h2 className="font-serif" style={{ fontSize: 22, fontWeight: 500, margin: "0 0 10px" }}>Share forecast</h2>
+          <pre style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 1.6, color: "var(--color-secondary)", background: "var(--color-page-bg)", padding: 16, border: "1px solid var(--color-border-light)", marginTop: 12, overflow: "auto", whiteSpace: "pre-wrap" }}>{shareText}</pre>
+          <div style={{ marginTop: 12 }}>
+            <CopyShareTextButton text={shareText} />
+          </div>
         </section>
 
         {forecast.location.existingPageSlug ? (
-          <section className="rounded-3xl border border-emerald-400/30 bg-emerald-500/10 p-6">
-            <Link className="text-lg font-bold text-emerald-200 underline decoration-emerald-400/60 underline-offset-4" href={`/scotland/${forecast.location.existingPageSlug}`}>
+          <section style={{ marginTop: 40, border: "1px solid var(--color-risk-low)", background: "var(--color-card-bg)", padding: 24 }}>
+            <Link href={`/scotland/${forecast.location.existingPageSlug}`} style={{ fontFamily: "var(--font-body)", fontSize: 16, fontWeight: 600, color: "var(--color-risk-low)", textDecoration: "underline" }}>
               Planning a trip? See our full {forecast.location.name} midge guide →
             </Link>
           </section>
         ) : null}
-      </article>
+      </div>
     </main>
   );
-}
-
-function MidgeBarChart({ forecast }: { forecast: MidgeForecast }) {
-  const bars = forecast.hourly.slice(0, 16);
-  const width = Math.max(640, bars.length * 42);
-  const height = 220;
-  const baseline = 180;
-
-  return (
-    <div className="mt-5 overflow-x-auto">
-      <svg aria-label="48-hour midge activity bar chart" className="min-w-full" role="img" viewBox={`0 0 ${width} ${height}`}>
-        <line stroke="rgba(255,255,255,0.2)" x1="0" x2={width} y1={baseline} y2={baseline} />
-        {bars.map((point, index) => {
-          const barHeight = Math.max(4, point.index * 16);
-          const x = index * 42 + 12;
-          const y = baseline - barHeight;
-          return (
-            <g key={point.time.toISOString()}>
-              <rect fill={barColour(point.index)} height={barHeight} rx="6" width="24" x={x} y={y} />
-              <text fill="#d6d3d1" fontSize="10" textAnchor="middle" x={x + 12} y="202">{formatTime(point.time)}</text>
-            </g>
-          );
-        })}
-      </svg>
-    </div>
-  );
-}
-
-function barColour(index: number) {
-  const label = getMidgeLabel(index);
-  if (label === "Low") return "#34d399";
-  if (label === "Moderate") return "#facc15";
-  if (label === "High") return "#f59e0b";
-  if (label === "Severe") return "#ef4444";
-  return "#450a0a";
-}
-
-function formatDay(date: Date) {
-  return new Intl.DateTimeFormat("en-GB", {
-    weekday: "short",
-    day: "numeric",
-    month: "short",
-    timeZone: "Europe/London",
-  }).format(date);
 }
