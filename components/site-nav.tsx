@@ -65,6 +65,9 @@ export function SiteHeader({ timestamp }: { timestamp: string }) {
         <div
           className="hidden md:flex"
           style={{
+            maxWidth: 1280,
+            margin: "0 auto",
+            width: "100%",
             alignItems: "baseline",
             justifyContent: "space-between",
             padding: "22px 56px 18px",
@@ -102,6 +105,9 @@ export function SiteHeader({ timestamp }: { timestamp: string }) {
         <div
           className="flex md:hidden"
           style={{
+            maxWidth: 1280,
+            margin: "0 auto",
+            width: "100%",
             alignItems: "center",
             justifyContent: "space-between",
             padding: "16px 20px 14px",
@@ -166,7 +172,8 @@ export function SiteHeader({ timestamp }: { timestamp: string }) {
 
 export function FooterNav() {
   return (
-    <footer style={{ background: "var(--color-ink)", color: "var(--color-card-bg)", padding: "36px 56px 28px" }}>
+    <footer style={{ background: "var(--color-ink)", color: "var(--color-card-bg)" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", width: "100%", padding: "36px 56px 28px" }}>
       <div
         style={{
           display: "grid",
@@ -214,6 +221,7 @@ export function FooterNav() {
       >
         <span>SKIP THE MIDGES. NOT THE SCENERY.</span>
         <span>© 2026 BITEFORECAST.SCOT</span>
+      </div>
       </div>
     </footer>
   );

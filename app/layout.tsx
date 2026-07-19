@@ -60,7 +60,9 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-screen flex-col antialiased">
         <SiteHeader timestamp={timestamp} />
-        <div className="flex-1">{children}</div>
+        <div className="flex-1" style={{ maxWidth: 1280, margin: "0 auto", width: "100%" }}>
+          {children}
+        </div>
         <FooterNav />
       </body>
     </html>
