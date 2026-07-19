@@ -93,6 +93,7 @@ export default async function Home() {
             <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">Live Midge Forecast</h1>
             <p className="mt-3 max-w-3xl text-stone-300">
               {`Updated ${OPERATIONAL_FACTS.updateCadenceLabel}. Click any location to see current conditions.`}
+              {' '}<a href="https://cool.biteforecast.scot" className="text-emerald-300 underline hover:text-emerald-200">Readings from the instrument room →</a>
             </p>
             <blockquote className="mt-4 border-l-2 border-emerald-400/50 pl-4 text-lg italic text-stone-400">
               {`"The best defence against insects short of a rolled up newspaper."`}
