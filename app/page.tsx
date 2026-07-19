@@ -165,10 +165,6 @@ export default async function Home() {
           })}
         </div>
 
-        <div className="font-mono" style={{ padding: "0 56px 8px", fontSize: 11, color: "var(--color-muted-light)" }}>
-          Forecast scores shown are illustrative for this design mock.
-        </div>
-
         {/* ── Planner band ── */}
         <div style={{ margin: "40px 56px", display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid var(--color-border-ink)" }}>
           <div style={{ padding: "38px 40px", background: "var(--color-ink)", color: "var(--color-card-bg)" }}>
