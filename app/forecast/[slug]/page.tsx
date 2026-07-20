@@ -265,12 +265,6 @@ export default async function ForecastPage({ params }: PageProps) {
             </div>
           )}
         </div>
-
-        {/* ── Slim desktop footer strip ── */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 56px", borderTop: "1px solid var(--color-border-ink)", background: "var(--color-ink)", color: "var(--color-card-bg)" }}>
-          <div className="font-serif" style={{ fontStyle: "italic", fontSize: 17 }}>Skip the midges. Not the scenery.</div>
-          <div className="font-mono" style={{ fontSize: 11, letterSpacing: "0.1em", color: "var(--color-on-dark-muted)" }}>© 2026 BITEFORECAST.SCOT</div>
-        </div>
       </div>
 
       {/* ================================================================ */}
@@ -411,12 +405,6 @@ export default async function ForecastPage({ params }: PageProps) {
               <span className="font-mono" style={{ fontSize: 10, color: "var(--color-muted-mid)" }}>No nearby forecast points available.</span>
             </div>
           )}
-        </div>
-
-        {/* ── Slim mobile footer strip ── */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 20px", borderTop: "1px solid var(--color-border-ink)", background: "var(--color-ink)", color: "var(--color-card-bg)" }}>
-          <div className="font-serif" style={{ fontStyle: "italic", fontSize: 14 }}>Skip the midges. Not the scenery.</div>
-          <div className="font-mono" style={{ fontSize: 9.5, letterSpacing: "0.1em", color: "var(--color-on-dark-muted)" }}>© 2026 BITEFORECAST.SCOT</div>
         </div>
       </div>
 

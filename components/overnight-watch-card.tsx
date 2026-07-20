@@ -31,7 +31,7 @@ export function OvernightWatchCard({ forecast }: { forecast: MidgeForecast }) {
           {label}
         </span>
       </p>
-      <p style={{ fontFamily: "var(--font-body)", fontSize: 15, lineHeight: 1.6, color: "var(--color-secondary)", marginTop: 12, maxWidth: 64 } as React.CSSProperties}>
+      <p style={{ fontFamily: "var(--font-body)", fontSize: 15, lineHeight: 1.6, color: "var(--color-secondary)", marginTop: 12, maxWidth: "64ch" } as React.CSSProperties}>
         {bandLine}
       </p>
 

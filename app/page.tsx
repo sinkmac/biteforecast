@@ -97,6 +97,13 @@ export default async function Home() {
           </div>
         </div>
 
+        {/* ── Instrument-room cross-link ── */}
+        <div style={{ padding: "0 56px 6px" }}>
+          <Link href="https://cool.biteforecast.scot" style={{ fontFamily: "var(--font-body)", fontSize: 12, color: "var(--color-muted-light)", textDecoration: "underline", textUnderlineOffset: 3 }}>
+            Readings from the instrument room &rarr;
+          </Link>
+        </div>
+
         {/* ── Section head ── */}
         <div style={{ padding: "0 56px 12px", display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
           <div style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
@@ -173,6 +180,13 @@ export default async function Home() {
           <p style={{ fontFamily: "var(--font-body)", fontSize: 14.5, lineHeight: 1.6, color: "var(--color-secondary)", margin: 0 }}>
             Plain-English midge risk for twenty Highland destinations. Free, no registration. Tap a location for conditions on the ground.
           </p>
+        </div>
+
+        {/* ── Instrument-room cross-link ── */}
+        <div style={{ padding: "0 20px 6px" }}>
+          <Link href="https://cool.biteforecast.scot" style={{ fontFamily: "var(--font-body)", fontSize: 11, color: "var(--color-muted-light)", textDecoration: "underline", textUnderlineOffset: 3 }}>
+            Readings from the instrument room &rarr;
+          </Link>
         </div>
 
         {/* ── Section head ── */}
