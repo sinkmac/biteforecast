@@ -166,7 +166,7 @@ export default async function Home() {
         </div>
 
         {/* ── Planner band ── */}
-        <div style={{ margin: "40px 56px", display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid var(--color-border-ink)" }}>
+        <div style={{ margin: "40px 56px", display: "grid", gridTemplateColumns: "2fr 3fr", border: "1px solid var(--color-border-ink)" }}>
           <div style={{ padding: "38px 40px", background: "var(--color-ink)", color: "var(--color-card-bg)" }}>
             <div className="font-mono" style={{ fontSize: 11, letterSpacing: "0.18em", color: "var(--color-on-dark-green)", marginBottom: 14 }}>
               PLAN AHEAD
