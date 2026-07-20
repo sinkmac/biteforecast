@@ -70,7 +70,7 @@ export default function AboutPage() {
 
         <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">How to use BiteForecast well</h2>
-          <ol className="mt-4 list-decimal space-y-2 pl-5 text-stone-100/90">
+          <ol className="mt-4 list-decimal space-y-2 pl-5 text-almanac-secondary">
             <li>Start with a destination guide to understand the usual seasonal pattern.</li>
             <li>Use the live calculator close to departure time or before a stop.</li>
             <li>Favour exposed, breezier ground when conditions look marginal.</li>
@@ -94,11 +94,11 @@ export default function AboutPage() {
           <figure className="mt-6 overflow-hidden rounded-2xl border border-amber-100/30 bg-[#f5eedf] p-2">
             <div className="border border-almanac-border bg-almanac-card p-6 text-center">
               <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-300/80">
-                <span className="text-almanac-ink0">FILE:</span> THE BAMPOT
+                <span className="text-almanac-ink">FILE:</span> THE BAMPOT
                 <span className="mx-2 text-stone-600">|</span>
                 CLASSIFIED — FOR INTERNAL DISTRIBUTION ONLY
               </p>
-              <p className="mt-4 text-2xl font-black uppercase tracking-[0.15em] text-white">
+              <p className="mt-4 text-2xl font-black uppercase tracking-[0.15em] text-almanac-ink">
                 WITHDRAWN TO THE POOLS
               </p>
               <p className="mt-3 text-sm italic text-almanac-muted">

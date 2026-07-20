@@ -142,7 +142,7 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
             </form>
 
             <div className="border border-almanac-border bg-almanac-card p-5 text-sm text-almanac-secondary">
-              <p className="font-medium text-stone-100">How to use this page</p>
+              <p className="font-medium text-almanac-ink">How to use this page</p>
               <p className="mt-2">
                 Use the location guides for planning ahead. Use this route for day-of decisions, especially if you are choosing between exposed and sheltered stops.
               </p>
@@ -163,7 +163,7 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
                 <div className="inline-flex rounded-full border border-almanac-green px-4 py-2 text-sm text-almanac-green">
                   {location.name}
                 </div>
-                <p className="max-w-2xl text-lg text-stone-100">{result.advice}</p>
+                <p className="max-w-2xl text-lg text-almanac-ink">{result.advice}</p>
               </div>
               <ScoreRing band={result.band} />
             </div>
@@ -176,7 +176,7 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
 
             {result.peakTimeMessage ? (
               <div className="mt-4 rounded-2xl border border-rose-300/25 bg-rose-500/10 px-4 py-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-200">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-almanac-red">
                   Overnight Watch
                 </p>
                 <p className="mt-1 text-sm text-rose-100">
@@ -213,7 +213,7 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
               <div className="mt-5 space-y-4">
                 {affiliateRecommendations.items.map((item) => (
                   <div key={item.label} className="border border-almanac-border bg-almanac-card p-4">
-                    <p className="font-medium text-stone-100">{item.label}</p>
+                    <p className="font-medium text-almanac-ink">{item.label}</p>
                     <p className="mt-2 text-sm text-almanac-muted">{item.note}</p>
                     <a
                       className="mt-4 inline-flex rounded-full bg-almanac-green px-4 py-2 text-sm font-medium text-almanac-card transition hover:bg-almanac-green"
@@ -226,7 +226,7 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
                   </div>
                 ))}
               </div>
-              <p className="mt-5 text-sm text-almanac-ink0">
+              <p className="mt-5 text-sm text-almanac-ink">
                 Product prompts stay secondary to utility. When in doubt, choose a breezier stop before buying more kit.
               </p>
             </aside>

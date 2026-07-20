@@ -84,7 +84,7 @@ export default function HowTheIndexWorksPage() {
 
         <section className="rounded-3xl border border-amber-300/25 bg-amber-500/10 p-6">
           <h2 className="text-2xl font-black">Current constants awaiting formal sign-off</h2>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-stone-100/90">
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-almanac-secondary">
             <li>Temperature below 7°C returns zero activity in the model.</li>
             <li>Dusk window: one hour before to ninety minutes after sunset.</li>
             <li>Dawn window: one hour either side of sunrise.</li>
