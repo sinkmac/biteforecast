@@ -187,7 +187,7 @@ export function FooterNav() {
           <div className="font-serif" style={{ fontSize: 19, fontWeight: 600, marginBottom: 8 }}>
             BiteForecast<span style={{ color: "var(--color-on-dark-green)" }}>.</span>
           </div>
-          <p style={{ fontFamily: "var(--font-body)", fontSize: 12.5, lineHeight: 1.6, color: "var(--color-on-dark-muted)", margin: 0, maxWidth: 44 } as React.CSSProperties}>
+          <p style={{ fontFamily: "var(--font-body)", fontSize: 12.5, lineHeight: 1.6, color: "var(--color-on-dark-muted)", margin: 0, maxWidth: "44ch" } as React.CSSProperties}>
             An information and planning tool, not a guarantee of real-world conditions. Weather data: Open-Meteo.
           </p>
         </div>
