@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function MidgeRepellentsPage() {
   return (
-    <main className="bg-stone-950 px-6 py-16 text-stone-50">
+    <main className="px-6 py-16">
       <article className="mx-auto flex max-w-4xl flex-col gap-8">
         <header className="space-y-4">
           <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">

@@ -60,7 +60,7 @@ export default async function GuideArticlePage({ params }: GuideArticlePageProps
   });
 
   return (
-    <main className="min-h-screen bg-stone-950 px-6 py-16 text-stone-50">
+    <main className="min-h-screen px-6 py-16">
       <article className="mx-auto flex max-w-3xl flex-col gap-8">
         <header className="space-y-5">
           <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/guide">

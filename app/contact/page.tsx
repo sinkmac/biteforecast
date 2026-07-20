@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="bg-stone-950 px-6 py-16 text-stone-50">
+    <main className="px-6 py-16">
       <article className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <section className="space-y-6">
           <div className="space-y-4">

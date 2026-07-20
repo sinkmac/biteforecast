@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function AffiliateDisclosurePage() {
   return (
-    <main className="min-h-screen bg-stone-950 px-6 py-12 text-stone-50">
+    <main className="min-h-screen px-6 py-12">
       <article className="mx-auto max-w-3xl rounded-3xl border border-stone-800 bg-stone-900 p-6 shadow-2xl shadow-black/20">
         <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
           ← Back to BiteForecast
