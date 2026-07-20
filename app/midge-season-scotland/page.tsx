@@ -8,11 +8,11 @@ import {
   buildOpenGraph,
 } from "../../lib/seo/site-metadata";
 
-const paragraphClass = "text-stone-300";
+const paragraphClass = "text-almanac-secondary";
 const sectionClass = "space-y-4";
-const headingClass = "text-2xl font-semibold text-stone-50";
-const subheadingClass = "text-xl font-semibold text-stone-50";
-const linkClass = "text-emerald-300 underline decoration-emerald-500/60 underline-offset-4";
+const headingClass = "text-2xl font-semibold text-almanac-ink";
+const subheadingClass = "text-xl font-semibold text-almanac-ink";
+const linkClass = "text-almanac-green underline decoration-emerald-500/60 underline-offset-4";
 
 export const metadata: Metadata = {
   title: "Midge Season in Scotland — A Month by Month Guide",
@@ -33,16 +33,16 @@ export default function MidgeSeasonScotlandPage() {
     <main className="min-h-screen px-6 py-16">
       <article className="mx-auto flex max-w-4xl flex-col gap-8">
         <header className="space-y-4">
-          <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
+          <Link className="text-sm text-almanac-green underline-offset-4 hover:underline" href="/">
             ← Back to BiteForecast
           </Link>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-green">
             Seasonal guide
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             Midge Season in Scotland — A Month by Month Guide
           </h1>
-          <p className="max-w-3xl text-lg text-stone-300">
+          <p className="max-w-3xl text-lg text-almanac-secondary">
             Timing is everything with Scottish midges. The difference between a miserable experience and a perfectly pleasant one can come down to a few weeks — or even a few hours. Here&apos;s what to expect across the season.
           </p>
         </header>
@@ -171,11 +171,11 @@ export default function MidgeSeasonScotlandPage() {
           </p>
         </section>
 
-        <p className="border-t border-stone-800 pt-6 text-sm italic text-stone-400">
+        <p className="border-t border-stone-800 pt-6 text-sm italic text-almanac-muted">
           Check your BiteForecast before heading out — local conditions can vary significantly from general forecasts and the difference between a low-risk and high-risk day can be dramatic.
         </p>
 
-        <section className="rounded-2xl border border-emerald-400/30 bg-emerald-500/10 p-6">
+        <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Check your forecast</h2>
           <p className="mt-3 text-stone-100/90">
             Use the <Link className={linkClass} href="/">homepage forecast tool</Link> before you go, or check a local page such as <Link className={linkClass} href="/scotland/glencoe-midges">Glencoe midges</Link> if you are heading west.

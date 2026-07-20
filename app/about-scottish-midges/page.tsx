@@ -8,10 +8,10 @@ import {
   buildOpenGraph,
 } from "../../lib/seo/site-metadata";
 
-const paragraphClass = "text-stone-300";
+const paragraphClass = "text-almanac-secondary";
 const sectionClass = "space-y-4";
-const headingClass = "text-2xl font-semibold text-stone-50";
-const linkClass = "text-emerald-300 underline decoration-emerald-500/60 underline-offset-4";
+const headingClass = "text-2xl font-semibold text-almanac-ink";
+const linkClass = "text-almanac-green underline decoration-emerald-500/60 underline-offset-4";
 
 export const metadata: Metadata = {
   title: "About Scottish Midges — What They Are and Why They're So Bad",
@@ -32,19 +32,19 @@ export default function AboutScottishMidgesPage() {
     <main className="min-h-screen px-6 py-16">
       <article className="mx-auto flex max-w-4xl flex-col gap-8">
         <header className="space-y-4">
-          <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
+          <Link className="text-sm text-almanac-green underline-offset-4 hover:underline" href="/">
             ← Back to BiteForecast
           </Link>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-green">
             Scottish midge guide
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             About Scottish Midges — What They Are and Why They&apos;re So Bad
           </h1>
-          <p className="max-w-3xl text-lg text-stone-300">
+          <p className="max-w-3xl text-lg text-almanac-secondary">
             Scottish midges. If you&apos;ve ever tried to enjoy a summer evening in the Highlands and found yourself retreating indoors within minutes, swatting at an invisible cloud of something that bites, you&apos;ve met them. They are small, they are persistent, and they have defeated better people than you.
           </p>
-          <p className="max-w-3xl text-lg text-stone-300">
+          <p className="max-w-3xl text-lg text-almanac-secondary">
             Here&apos;s what you&apos;re actually dealing with.
           </p>
         </header>
@@ -144,11 +144,11 @@ export default function AboutScottishMidgesPage() {
           </p>
         </section>
 
-        <p className="border-t border-stone-800 pt-6 text-sm italic text-stone-400">
+        <p className="border-t border-stone-800 pt-6 text-sm italic text-almanac-muted">
           BiteForecast uses local weather data to estimate midge risk across Scottish locations. Check your forecast before you go.
         </p>
 
-        <section className="rounded-2xl border border-emerald-400/30 bg-emerald-500/10 p-6">
+        <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Check your forecast</h2>
           <p className="mt-3 text-stone-100/90">
             Use the <Link className={linkClass} href="/">homepage forecast tool</Link> before you go, or check a local page such as <Link className={linkClass} href="/scotland/glencoe-midges">Glencoe midges</Link> if you are heading west.

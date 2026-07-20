@@ -76,23 +76,23 @@ export default function HowWeCalculatePage() {
     <main className="px-6 py-16">
       <article className="mx-auto flex max-w-4xl flex-col gap-8">
         <header className="space-y-4">
-          <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
+          <Link className="text-sm text-almanac-green underline-offset-4 hover:underline" href="/">
             ← Back to BiteForecast
           </Link>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-green">
             Method
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             How BiteForecast calculates midge risk
           </h1>
-          <p className="max-w-3xl text-lg text-stone-300">
+          <p className="max-w-3xl text-lg text-almanac-secondary">
             BiteForecast uses a small set of weather and seasonal signals to create a practical nuisance estimate for Scottish midges. The goal is to help with real trip planning, not to pretend every loch edge or campsite can be modelled perfectly.
           </p>
         </header>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">The short version</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               The calculator gives the most weight to the conditions that tend to matter most in practice: wind, temperature, humidity, cloud cover, and time of day or season.
             </p>
@@ -104,19 +104,19 @@ export default function HowWeCalculatePage() {
 
         <section className="grid gap-6 md:grid-cols-2">
           {inputs.map((input) => (
-            <div key={input.title} className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+            <div key={input.title} className="border border-almanac-border bg-almanac-card p-6">
               <h2 className="text-2xl font-semibold">{input.title}</h2>
-              <p className="mt-4 text-stone-300">{input.body}</p>
+              <p className="mt-4 text-almanac-secondary">{input.body}</p>
             </div>
           ))}
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">The five-point scale</h2>
           <div className="mt-6 overflow-x-auto">
             <table className="min-w-full text-left text-sm">
               <thead>
-                <tr className="border-b border-stone-700 text-stone-400">
+                <tr className="border-b border-stone-700 text-almanac-muted">
                   <th className="pb-3 pr-4">Score</th>
                   <th className="pb-3 pr-4">Band</th>
                   <th className="pb-3">What it usually means</th>
@@ -127,7 +127,7 @@ export default function HowWeCalculatePage() {
                   <tr key={row.score} className="border-b border-stone-800 align-top">
                     <td className="py-4 pr-4 font-semibold text-stone-100">{row.score}</td>
                     <td className="py-4 pr-4 text-stone-200">{row.label}</td>
-                    <td className="py-4 text-stone-300">{row.meaning}</td>
+                    <td className="py-4 text-almanac-secondary">{row.meaning}</td>
                   </tr>
                 ))}
               </tbody>
@@ -135,9 +135,9 @@ export default function HowWeCalculatePage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Planning pages versus live pages</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               Destination guides on BiteForecast are planning pages. They summarise recurring seasonal patterns, terrain effects, and typical better or worse windows for a place.
             </p>
@@ -159,9 +159,9 @@ export default function HowWeCalculatePage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">What happens when live weather data is missing</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               If a live feed is unavailable, BiteForecast falls back to a seasonal estimate for that place and time of year. It does not pretend missing live data is real-time certainty.
             </p>

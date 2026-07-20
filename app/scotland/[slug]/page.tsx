@@ -24,7 +24,7 @@ type PageProps = {
   }>;
 };
 
-const amazonLinkClass = "text-emerald-300 underline decoration-emerald-500/60 underline-offset-4";
+const amazonLinkClass = "text-almanac-green underline decoration-emerald-500/60 underline-offset-4";
 
 export const revalidate = 1800;
 
@@ -89,15 +89,15 @@ export default async function LocationPage({ params }: PageProps) {
       <main className="min-h-screen px-6 py-16">
         <article className="mx-auto flex max-w-4xl flex-col gap-10">
           <header className="space-y-4">
-            <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
+            <Link className="text-sm text-almanac-green underline-offset-4 hover:underline" href="/">
               ← Back to BiteForecast
             </Link>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-green">
               Scotland / {page.name}
             </p>
             <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">{page.h1 ?? `Midges in ${page.name}: seasonal patterns, best times, and what to expect`}</h1>
-            <p className="max-w-3xl text-lg text-stone-300">{page.intro}</p>
-            <p className="max-w-3xl text-sm italic text-stone-400">
+            <p className="max-w-3xl text-lg text-almanac-secondary">{page.intro}</p>
+            <p className="max-w-3xl text-sm italic text-almanac-muted">
               As an Amazon Associate, BiteForecast may earn from qualifying purchases. This does not affect what you pay.
             </p>
           </header>
@@ -114,17 +114,17 @@ export default async function LocationPage({ params }: PageProps) {
           </section>
 
           <section className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+            <div className="border border-almanac-border bg-almanac-card p-6">
               <h2 className="text-2xl font-semibold">When are midges worst in {page.name}?</h2>
-              <div className="mt-4 space-y-3 text-stone-300">
+              <div className="mt-4 space-y-3 text-almanac-secondary">
                 {page.seasonalSummary.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
             </div>
-            <div className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+            <div className="border border-almanac-border bg-almanac-card p-6">
               <h2 className="text-2xl font-semibold">Terrain and microclimate note</h2>
-              <div className="mt-4 space-y-3 text-stone-300">
+              <div className="mt-4 space-y-3 text-almanac-secondary">
                 {page.terrainNote.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -132,8 +132,8 @@ export default async function LocationPage({ params }: PageProps) {
             </div>
           </section>
 
-          <section className="rounded-2xl border border-emerald-400/30 bg-emerald-500/10 p-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-200">
+          <section className="rounded-2xl border border border-almanac-border bg-almanac-card p-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-green">
               Live forecast
             </p>
             <h2 className="mt-3 text-2xl font-semibold">Check current {page.name} midge risk</h2>
@@ -141,19 +141,19 @@ export default async function LocationPage({ params }: PageProps) {
               This page covers typical local patterns only. Use the live Midge Wind-Watch calculator for current conditions, short-term planning, and day-of decisions.
             </p>
             <Link
-              className="mt-5 inline-flex rounded-full bg-emerald-300 px-5 py-3 font-medium text-stone-950 transition hover:bg-emerald-200"
+              className="mt-5 inline-flex rounded-full bg-almanac-green px-5 py-3 font-medium text-almanac-card transition hover:bg-almanac-green"
               href={page.liveCalculatorHref}
             >
               Check current {page.name} midge risk →
             </Link>
           </section>
 
-          <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+          <section className="border border-almanac-border bg-almanac-card p-6">
             <h2 className="text-2xl font-semibold">Best times to visit {page.name} to avoid midges</h2>
             <div className="mt-6 overflow-x-auto">
               <table className="min-w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-stone-700 text-stone-400">
+                  <tr className="border-b border-stone-700 text-almanac-muted">
                     <th className="pb-3 pr-4">Month / period</th>
                     <th className="pb-3 pr-4">Often better</th>
                     <th className="pb-3 pr-4">Often worse</th>
@@ -164,37 +164,37 @@ export default async function LocationPage({ params }: PageProps) {
                   {page.timePatterns.map((pattern) => (
                     <tr key={pattern.label} className="border-b border-stone-800 align-top">
                       <td className="py-4 pr-4 font-medium text-stone-100">{pattern.label}</td>
-                      <td className="py-4 pr-4 text-stone-300">{pattern.typicallyBetter}</td>
-                      <td className="py-4 pr-4 text-stone-300">{pattern.typicallyWorse}</td>
-                      <td className="py-4 text-stone-300">{pattern.terrainNote}</td>
+                      <td className="py-4 pr-4 text-almanac-secondary">{pattern.typicallyBetter}</td>
+                      <td className="py-4 pr-4 text-almanac-secondary">{pattern.typicallyWorse}</td>
+                      <td className="py-4 text-almanac-secondary">{pattern.terrainNote}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
-              <div className="rounded-xl bg-stone-950/70 p-4">
+              <div className="border border-almanac-border bg-almanac-card p-4">
                 <p className="font-medium text-stone-100">Best overall windows</p>
-                <p className="mt-2 text-stone-300">{page.bestWindowsSummary}</p>
+                <p className="mt-2 text-almanac-secondary">{page.bestWindowsSummary}</p>
               </div>
-              <div className="rounded-xl bg-stone-950/70 p-4">
+              <div className="border border-almanac-border bg-almanac-card p-4">
                 <p className="font-medium text-stone-100">Worst overall windows</p>
-                <p className="mt-2 text-stone-300">{page.worstWindowsSummary}</p>
+                <p className="mt-2 text-almanac-secondary">{page.worstWindowsSummary}</p>
               </div>
-              <div className="rounded-xl bg-stone-950/70 p-4">
+              <div className="border border-almanac-border bg-almanac-card p-4">
                 <p className="font-medium text-stone-100">Calmer experience tip</p>
-                <p className="mt-2 text-stone-300">{page.calmerExperienceTip}</p>
+                <p className="mt-2 text-almanac-secondary">{page.calmerExperienceTip}</p>
               </div>
-              <div className="rounded-xl bg-stone-950/70 p-4">
+              <div className="border border-almanac-border bg-almanac-card p-4">
                 <p className="font-medium text-stone-100">Camping note</p>
-                <p className="mt-2 text-stone-300">{page.campingTip}</p>
+                <p className="mt-2 text-almanac-secondary">{page.campingTip}</p>
               </div>
             </div>
           </section>
 
-          <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+          <section className="border border-almanac-border bg-almanac-card p-6">
             <h2 className="text-2xl font-semibold">What to bring</h2>
-            <div className="mt-4 space-y-4 text-stone-300">
+            <div className="mt-4 space-y-4 text-almanac-secondary">
               <p>
                 For {page.name}, do not rely on one trick. Repellent helps, but clothing, timing and wind exposure matter too.
               </p>
@@ -227,7 +227,7 @@ export default async function LocationPage({ params }: PageProps) {
               </p>
               <p>
                 If you are choosing between repellents, read {" "}
-                <Link className="text-emerald-300 underline decoration-emerald-500/60 underline-offset-4" href="/smidge-vs-avon-skin-so-soft">
+                <Link className="text-almanac-green underline decoration-emerald-500/60 underline-offset-4" href="/smidge-vs-avon-skin-so-soft">
                   which midge repellent works best
                 </Link>{" "}
                 before buying.
@@ -243,11 +243,11 @@ export default async function LocationPage({ params }: PageProps) {
 
           <FaqSection faqs={page.faqs} />
 
-          <section className="rounded-2xl border border-emerald-400/30 bg-emerald-500/10 p-6">
+          <section className="rounded-2xl border border border-almanac-border bg-almanac-card p-6">
             <h2 className="text-2xl font-semibold">Before you go</h2>
             <p className="mt-3 max-w-3xl text-stone-100/90">
               Forecast first, then decide what to carry. Before you go, {" "}
-              <Link className="text-emerald-200 underline decoration-emerald-400/60 underline-offset-4" href="/">
+              <Link className="text-almanac-green underline decoration-emerald-400/60 underline-offset-4" href="/">
                 check your local midge forecast
               </Link>
               .

@@ -88,27 +88,27 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
       <main className="min-h-screen px-6 py-16">
         <article className="mx-auto flex max-w-6xl flex-col gap-10">
         <header className="space-y-4">
-          <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
+          <Link className="text-sm text-almanac-green underline-offset-4 hover:underline" href="/">
             ← Back to BiteForecast
           </Link>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-green">
             Midge Wind-Watch
           </p>
           <h1 className="max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl">
             Live Scottish midge risk check
           </h1>
-          <p className="max-w-3xl text-lg text-stone-300">
+          <p className="max-w-3xl text-lg text-almanac-secondary">
             Check live midge conditions for your location right now. BiteForecast weighs wind speed, humidity, temperature, and time of day, then falls back to an honest seasonal estimate if live weather data is unavailable.
           </p>
         </header>
 
-        <section className="rounded-3xl border border-stone-800 bg-stone-900 p-6 shadow-2xl shadow-black/20">
+        <section className="border border-almanac-border bg-almanac-card p-6 ">
           <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <form className="grid gap-4 md:grid-cols-[1.3fr_0.9fr_auto] md:items-end">
-              <label className="flex flex-col gap-2 text-sm text-stone-300">
+              <label className="flex flex-col gap-2 text-sm text-almanac-secondary">
                 Location
                 <select
-                  className="rounded-2xl border border-stone-700 bg-stone-950 px-4 py-3 text-base text-stone-50 shadow-inner shadow-black/20"
+                  className="border border-almanac-border bg-almanac-card px-4 py-3 text-base text-almanac-ink"
                   defaultValue={location.slug}
                   name="location"
                 >
@@ -120,10 +120,10 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
                 </select>
               </label>
 
-              <label className="flex flex-col gap-2 text-sm text-stone-300">
+              <label className="flex flex-col gap-2 text-sm text-almanac-secondary">
                 Time window
                 <select
-                  className="rounded-2xl border border-stone-700 bg-stone-950 px-4 py-3 text-base text-stone-50 shadow-inner shadow-black/20"
+                  className="border border-almanac-border bg-almanac-card px-4 py-3 text-base text-almanac-ink"
                   defaultValue={timePreset}
                   name="time"
                 >
@@ -134,14 +134,14 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
               </label>
 
               <button
-                className="rounded-full bg-emerald-300 px-5 py-3 font-medium text-stone-950 transition hover:bg-emerald-200"
+                className="rounded-full bg-almanac-green px-5 py-3 font-medium text-almanac-card transition hover:bg-almanac-green"
                 type="submit"
               >
                 Check conditions
               </button>
             </form>
 
-            <div className="rounded-2xl border border-stone-800 bg-stone-950/70 p-5 text-sm text-stone-300">
+            <div className="border border-almanac-border bg-almanac-card p-5 text-sm text-almanac-secondary">
               <p className="font-medium text-stone-100">How to use this page</p>
               <p className="mt-2">
                 Use the location guides for planning ahead. Use this route for day-of decisions, especially if you are choosing between exposed and sheltered stops.
@@ -151,16 +151,16 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
         </section>
 
         <section className={`grid gap-6 ${affiliateRecommendations ? "lg:grid-cols-[1.15fr_0.85fr]" : "lg:grid-cols-1"}`}>
-          <div className="rounded-3xl border border-emerald-400/20 bg-emerald-500/10 p-6">
+          <div className="rounded-3xl border border-almanac-border bg-almanac-card p-6">
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
               <div className="space-y-4">
                 <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-200">
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-green">
                     {result.mode === "live" ? "Live result" : "Fallback result"}
                   </p>
                   <h2 className="mt-2 text-3xl font-semibold">{result.band}</h2>
                 </div>
-                <div className="inline-flex rounded-full border border-emerald-300/30 px-4 py-2 text-sm text-emerald-100/90">
+                <div className="inline-flex rounded-full border border-almanac-green px-4 py-2 text-sm text-almanac-green">
                   {location.name}
                 </div>
                 <p className="max-w-2xl text-lg text-stone-100">{result.advice}</p>
@@ -204,19 +204,19 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
           </div>
 
           {affiliateRecommendations ? (
-            <aside className="rounded-3xl border border-stone-800 bg-stone-900 p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-stone-400">
+            <aside className="border border-almanac-border bg-almanac-card p-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-muted">
                 Loadout
               </p>
               <h2 className="mt-2 text-2xl font-semibold">{affiliateRecommendations.title}</h2>
-              <p className="mt-3 text-stone-300">{affiliateRecommendations.description}</p>
+              <p className="mt-3 text-almanac-secondary">{affiliateRecommendations.description}</p>
               <div className="mt-5 space-y-4">
                 {affiliateRecommendations.items.map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-stone-800 bg-stone-950/80 p-4">
+                  <div key={item.label} className="border border-almanac-border bg-almanac-card p-4">
                     <p className="font-medium text-stone-100">{item.label}</p>
-                    <p className="mt-2 text-sm text-stone-400">{item.note}</p>
+                    <p className="mt-2 text-sm text-almanac-muted">{item.note}</p>
                     <a
-                      className="mt-4 inline-flex rounded-full bg-emerald-300 px-4 py-2 text-sm font-medium text-stone-950 transition hover:bg-emerald-200"
+                      className="mt-4 inline-flex rounded-full bg-almanac-green px-4 py-2 text-sm font-medium text-almanac-card transition hover:bg-almanac-green"
                       href={item.href}
                       rel="nofollow sponsored noreferrer"
                       target="_blank"
@@ -226,7 +226,7 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
                   </div>
                 ))}
               </div>
-              <p className="mt-5 text-sm text-stone-500">
+              <p className="mt-5 text-sm text-almanac-ink0">
                 Product prompts stay secondary to utility. When in doubt, choose a breezier stop before buying more kit.
               </p>
             </aside>
@@ -234,9 +234,9 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
         </section>
 
         <section className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+          <div className="border border-almanac-border bg-almanac-card p-6">
             <h2 className="text-2xl font-semibold">How the live check works</h2>
-            <div className="mt-4 space-y-3 text-stone-300">
+            <div className="mt-4 space-y-3 text-almanac-secondary">
               <p>
                 Wind is the strongest suppressor. Humid, mild, sheltered periods push nuisance up. Exposure and moving air pull it down.
               </p>
@@ -245,9 +245,9 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
               </p>
             </div>
           </div>
-          <div className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+          <div className="border border-almanac-border bg-almanac-card p-6">
             <h2 className="text-2xl font-semibold">Planning reminder</h2>
-            <div className="mt-4 space-y-3 text-stone-300">
+            <div className="mt-4 space-y-3 text-almanac-secondary">
               <p>
                 Even a low live result can feel worse in sheltered lay-bys, campsite edges, and lochside pauses than it does on exposed ground.
               </p>
@@ -276,7 +276,7 @@ function ScoreRing({ band }: { band: string }) {
 
   return (
     <div className={`flex h-28 w-28 shrink-0 items-center justify-center rounded-full border-4 ${tone.border} ${tone.bg}`}>
-      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-stone-950/90 text-center shadow-inner shadow-black/30">
+      <div className="flex h-20 w-20 items-center justify-center border border-almanac-border bg-almanac-card text-center">
         <span className={`px-2 text-sm font-semibold uppercase tracking-[0.14em] ${tone.text}`}>
           {band}
         </span>
@@ -287,9 +287,9 @@ function ScoreRing({ band }: { band: string }) {
 
 function MetricCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-stone-800 bg-stone-950/80 p-4">
-      <p className="text-sm text-stone-400">{label}</p>
-      <p className="mt-2 text-xl font-semibold text-stone-50">{value}</p>
+    <div className="border border-almanac-border bg-almanac-card p-4">
+      <p className="text-sm text-almanac-muted">{label}</p>
+      <p className="mt-2 text-xl font-semibold text-almanac-ink">{value}</p>
     </div>
   );
 }

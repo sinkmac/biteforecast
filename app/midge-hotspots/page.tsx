@@ -76,23 +76,23 @@ export default function MidgeHotspotsPage() {
     <main className="px-6 py-16">
       <article className="mx-auto flex max-w-5xl flex-col gap-8">
         <header className="space-y-4">
-          <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
+          <Link className="text-sm text-almanac-green underline-offset-4 hover:underline" href="/">
             ← Back to BiteForecast
           </Link>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-green">
             Hotspots
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             The worst midge hotspots in Scotland
           </h1>
-          <p className="max-w-3xl text-lg text-stone-300">
+          <p className="max-w-3xl text-lg text-almanac-secondary">
             Midges are rarely about a whole region being uniformly bad. The worst experiences usually come from sheltered, damp, still micro-locations inside otherwise manageable areas, especially in famous Highland destinations where people naturally stop, camp, or linger at the wrong time of day.
           </p>
         </header>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">What usually makes a hotspot</h2>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-stone-300">
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-almanac-secondary">
             <li>Little wind at ground level</li>
             <li>Damp grass, peat, loch edges, burns, or boggy ground</li>
             <li>Shelter from trees, glens, banks, tents, vans, or buildings</li>
@@ -103,7 +103,7 @@ export default function MidgeHotspotsPage() {
         <section className="space-y-4">
           <div>
             <h2 className="text-2xl font-semibold">Five hotspot locations to watch</h2>
-            <p className="mt-2 text-stone-300">
+            <p className="mt-2 text-almanac-secondary">
               These are the places visitors ask about most often. Each one can feel manageable in the right conditions, but each can also turn difficult quickly when the air settles and the ground stays damp.
             </p>
           </div>
@@ -114,13 +114,13 @@ export default function MidgeHotspotsPage() {
               return (
                 <div
                   key={item.slug}
-                  className="rounded-2xl border border-stone-800 bg-stone-900 p-6"
+                  className="border border-almanac-border bg-almanac-card p-6"
                 >
                   <h3 className="text-2xl font-semibold">{item.name}</h3>
-                  <p className="mt-3 text-stone-300">{item.note}</p>
+                  <p className="mt-3 text-almanac-secondary">{item.note}</p>
                   {linkedPage ? (
                     <Link
-                      className="mt-5 inline-flex text-emerald-300 underline-offset-4 hover:underline"
+                      className="mt-5 inline-flex text-almanac-green underline-offset-4 hover:underline"
                       href={`/scotland/${linkedPage.slug}`}
                     >
                       Read the {linkedPage.name} guide
@@ -132,11 +132,11 @@ export default function MidgeHotspotsPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Other patterns worth watching</h2>
-          <div className="mt-4 space-y-4 text-stone-300">
+          <div className="mt-4 space-y-4 text-almanac-secondary">
             {extraHotspots.map((item) => (
-              <div key={item.name} className="rounded-xl bg-stone-950/70 p-4">
+              <div key={item.name} className="border border-almanac-border bg-almanac-card p-4">
                 <p className="font-medium text-stone-100">{item.name}</p>
                 <p className="mt-2">{item.note}</p>
               </div>
@@ -144,10 +144,10 @@ export default function MidgeHotspotsPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-emerald-400/30 bg-emerald-500/10 p-6">
+        <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Quick rule of thumb</h2>
           <p className="mt-4 text-stone-100/90">
-            If a spot is sheltered, damp, and calm, assume it can feel worse than the regional headline. When you have a choice, stop on more exposed ground first and keep the <Link className="text-emerald-200 underline-offset-4 hover:underline" href="/midge-wind-watch">live calculator</Link> for the final decision.
+            If a spot is sheltered, damp, and calm, assume it can feel worse than the regional headline. When you have a choice, stop on more exposed ground first and keep the <Link className="text-almanac-green underline-offset-4 hover:underline" href="/midge-wind-watch">live calculator</Link> for the final decision.
           </p>
         </section>
       </article>

@@ -25,30 +25,30 @@ export default function PrivacyPolicyPage() {
     <main className="px-6 py-16">
       <article className="mx-auto flex max-w-4xl flex-col gap-8">
         <header className="space-y-4">
-          <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
+          <Link className="text-sm text-almanac-green underline-offset-4 hover:underline" href="/">
             ← Back to BiteForecast
           </Link>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-green">
             Privacy policy
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">How BiteForecast handles data</h1>
-          <p className="max-w-3xl text-lg text-stone-300">
+          <p className="max-w-3xl text-lg text-almanac-secondary">
             This policy explains what BiteForecast may collect directly, what service providers may process on our behalf, and how advertising, affiliate links, and contact submissions fit into that picture.
           </p>
-          <p className="text-sm text-stone-500">Last updated: 27 April 2026</p>
+          <p className="text-sm text-almanac-ink0">Last updated: 27 April 2026</p>
         </header>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Who this policy covers</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>This policy applies to the public BiteForecast website and its related pages, tools, and contact routes.</p>
             <p>BiteForecast is an information and planning site focused on Scottish midge conditions. It does not require user accounts to browse the main content.</p>
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Information we may receive automatically</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               Like most websites, BiteForecast and its hosting or infrastructure providers may process technical data such as IP address, approximate location derived from IP, browser type, device type, referring page, requested URL, timestamps, and basic diagnostic logs.
             </p>
@@ -61,9 +61,9 @@ export default function PrivacyPolicyPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Cookies and similar technologies</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               BiteForecast and third-party services used by the site may rely on cookies, local storage, pixels, or similar technologies to deliver pages, protect the service, remember basic preferences, measure performance, and support advertising or referral attribution.
             </p>
@@ -73,9 +73,9 @@ export default function PrivacyPolicyPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Google AdSense and advertising</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               BiteForecast uses or may use Google AdSense and related advertising services. Google and its partners may use cookies or similar technologies to serve ads, measure performance, prevent fraud, limit repetition, and understand general browsing context.
             </p>
@@ -88,9 +88,9 @@ export default function PrivacyPolicyPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Third-party services used by the site</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               BiteForecast relies on third-party services to operate parts of the site. These may include hosting and delivery providers, Open-Meteo for weather data, Formspree for contact form handling, and Google AdSense for advertising.
             </p>
@@ -103,9 +103,9 @@ export default function PrivacyPolicyPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Affiliate links and outbound retailers</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               Some BiteForecast pages may include affiliate links to outdoor or midge-related products. If you follow one of those links, the retailer or affiliate network may collect information needed to attribute the referral and measure resulting purchases.
             </p>
@@ -118,9 +118,9 @@ export default function PrivacyPolicyPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Contact form submissions</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               If you contact BiteForecast using the site form, the details you submit, such as your name, email address, topic, and message content, are processed so that your enquiry can be received and answered.
             </p>
@@ -133,9 +133,9 @@ export default function PrivacyPolicyPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">External links and third-party services</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               BiteForecast links to external services such as weather-data providers, mapping or reference sources, ad systems, and retailers. Once you leave BiteForecast, those third parties operate under their own terms and privacy policies.
             </p>
@@ -145,9 +145,9 @@ export default function PrivacyPolicyPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">How long information may be kept</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               Technical logs and service diagnostics may be retained for as long as reasonably necessary for security, abuse prevention, performance monitoring, legal compliance, or operational troubleshooting.
             </p>
@@ -157,20 +157,20 @@ export default function PrivacyPolicyPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Your choices and rights</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>You can choose not to submit the contact form, block or clear cookies in your browser, and use Google&apos;s own advertising controls where available.</p>
             <p>You can also contact BiteForecast to raise a privacy concern, request deletion of information you submitted through the contact form where appropriate, or ask how a site-level privacy issue is being handled.</p>
             <p>If you contact BiteForecast about a privacy issue, please provide enough detail for the request to be understood and handled.</p>
           </div>
         </section>
 
-        <section className="rounded-2xl border border-emerald-400/30 bg-emerald-500/10 p-6">
+        <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Contact</h2>
           <div className="mt-4 space-y-3 text-stone-100/90">
             <p>
-              For privacy questions, accuracy concerns, legal notices, or general site issues, please use the <Link className="text-emerald-200 underline-offset-4 hover:underline" href="/contact">contact page</Link>.
+              For privacy questions, accuracy concerns, legal notices, or general site issues, please use the <Link className="text-almanac-green underline-offset-4 hover:underline" href="/contact">contact page</Link>.
             </p>
             <p>
               This policy may be updated from time to time as the site changes, new services are added, or legal wording needs to be clarified.

@@ -8,11 +8,11 @@ import {
   buildOpenGraph,
 } from "../../lib/seo/site-metadata";
 
-const paragraphClass = "text-stone-300";
+const paragraphClass = "text-almanac-secondary";
 const sectionClass = "space-y-4";
-const headingClass = "text-2xl font-semibold text-stone-50";
-const linkClass = "text-emerald-300 underline decoration-emerald-500/60 underline-offset-4";
-const affiliateLinkClass = "text-emerald-300 underline decoration-emerald-500/60 underline-offset-4";
+const headingClass = "text-2xl font-semibold text-almanac-ink";
+const linkClass = "text-almanac-green underline decoration-emerald-500/60 underline-offset-4";
+const affiliateLinkClass = "text-almanac-green underline decoration-emerald-500/60 underline-offset-4";
 
 export const metadata: Metadata = {
   title: "How to Avoid Midges in Scotland — What Actually Works",
@@ -33,19 +33,19 @@ export default function HowToAvoidMidgesScotlandPage() {
     <main className="min-h-screen px-6 py-16">
       <article className="mx-auto flex max-w-4xl flex-col gap-8">
         <header className="space-y-4">
-          <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
+          <Link className="text-sm text-almanac-green underline-offset-4 hover:underline" href="/">
             ← Back to BiteForecast
           </Link>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-green">
             Practical midge advice
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             How to Avoid Midges in Scotland — What Actually Works
           </h1>
-          <p className="max-w-3xl text-lg text-stone-300">
+          <p className="max-w-3xl text-lg text-almanac-secondary">
             There is no way to completely eliminate midges from a Scottish summer. Anyone telling you otherwise is selling something. But there is a significant difference between an experience ruined by midges and one that&apos;s merely occasionally inconvenient — and that difference comes down to preparation, timing, and the right kit.
           </p>
-          <p className="max-w-3xl text-lg text-stone-300">Here&apos;s what actually works.</p>
+          <p className="max-w-3xl text-lg text-almanac-secondary">Here&apos;s what actually works.</p>
         </header>
 
         <section className={sectionClass}>
@@ -185,15 +185,15 @@ export default function HowToAvoidMidgesScotlandPage() {
           <p className={paragraphClass}>Check the forecast. Bring Smidge. Carry a head net. Pick a breezy spot. You&apos;ll be fine.</p>
         </section>
 
-        <p className="border-t border-stone-800 pt-6 text-sm italic text-stone-400">
+        <p className="border-t border-stone-800 pt-6 text-sm italic text-almanac-muted">
           BiteForecast provides location-specific midge risk estimates for eight Scottish locations based on live weather data. Check before you go.
         </p>
 
-        <p className="rounded-2xl border border-stone-800 bg-stone-900 p-4 text-sm text-stone-400">
+        <p className="border border-almanac-border bg-almanac-card p-4 text-sm text-almanac-muted">
           This page contains affiliate links. We may earn a small commission if you purchase through a link, at no cost to you.
         </p>
 
-        <section className="rounded-2xl border border-emerald-400/30 bg-emerald-500/10 p-6">
+        <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Check your forecast</h2>
           <p className="mt-3 text-stone-100/90">
             Use the <Link className={linkClass} href="/">homepage forecast tool</Link> before you go, or check a local page such as <Link className={linkClass} href="/scotland/glencoe-midges">Glencoe midges</Link> if you are heading west.

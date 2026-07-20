@@ -25,22 +25,22 @@ export default function TermsPage() {
     <main className="px-6 py-16">
       <article className="mx-auto flex max-w-4xl flex-col gap-8">
         <header className="space-y-4">
-          <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/">
+          <Link className="text-sm text-almanac-green underline-offset-4 hover:underline" href="/">
             ← Back to BiteForecast
           </Link>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-green">
             Terms of use
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Terms for using BiteForecast</h1>
-          <p className="max-w-3xl text-lg text-stone-300">
+          <p className="max-w-3xl text-lg text-almanac-secondary">
             These terms explain the basis on which BiteForecast is made available. By using the site, you agree to use it lawfully and to understand its limits as an information and planning tool.
           </p>
-          <p className="text-sm text-stone-500">Last updated: 27 April 2026</p>
+          <p className="text-sm text-almanac-ink0">Last updated: 27 April 2026</p>
         </header>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Purpose of the site</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               BiteForecast provides planning guides, forecast-driven tools, and practical content about Scottish midge conditions. The aim is to help users make better timing, route, stop, and kit decisions.
             </p>
@@ -65,9 +65,9 @@ export default function TermsPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Acceptable use</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               You may use BiteForecast for personal planning, general research, editorial reference, and other lawful purposes.
             </p>
@@ -80,9 +80,9 @@ export default function TermsPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">No scraping or abusive automation</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               You must not use bots, scripts, scrapers, or other automated methods to extract, copy, mirror, or monitor BiteForecast content in a way that is excessive, deceptive, commercially exploitative, or harmful to service availability.
             </p>
@@ -92,9 +92,9 @@ export default function TermsPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Content, methods, and changes</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               BiteForecast may update or remove pages, change calculation logic, revise wording, add or remove locations, alter affiliate links, or modify site features without notice.
             </p>
@@ -104,9 +104,9 @@ export default function TermsPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Advertising and affiliate disclosure</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               BiteForecast may display advertising, including Google AdSense placements, and may include affiliate links to third-party retailers.
             </p>
@@ -119,9 +119,9 @@ export default function TermsPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Third-party services and external links</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               BiteForecast relies on third-party services, including hosting, weather-data providers, advertising systems, contact-form processing, and external retailers.
             </p>
@@ -131,9 +131,9 @@ export default function TermsPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Intellectual property and reuse</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               Unless stated otherwise, the BiteForecast site design, copy, and original compiled content remain the property of the site operator.
             </p>
@@ -143,9 +143,9 @@ export default function TermsPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Limitation of liability</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               To the fullest extent permitted by law, BiteForecast is provided on an as-is and as-available basis without warranties of any kind.
             </p>
@@ -155,20 +155,20 @@ export default function TermsPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
+        <section className="border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Governing law</h2>
-          <div className="mt-4 space-y-3 text-stone-300">
+          <div className="mt-4 space-y-3 text-almanac-secondary">
             <p>
               These terms are governed by the law of Scotland. Any dispute or claim relating to BiteForecast or your use of the site should be interpreted in line with Scottish law, subject to any mandatory rights that apply in your place of residence.
             </p>
           </div>
         </section>
 
-        <section className="rounded-2xl border border-emerald-400/30 bg-emerald-500/10 p-6">
+        <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Contact</h2>
           <div className="mt-4 space-y-3 text-stone-100/90">
             <p>
-              For legal, privacy, policy, or site-use questions, please use the <Link className="text-emerald-200 underline-offset-4 hover:underline" href="/contact">contact page</Link>.
+              For legal, privacy, policy, or site-use questions, please use the <Link className="text-almanac-green underline-offset-4 hover:underline" href="/contact">contact page</Link>.
             </p>
             <p>Continued use of BiteForecast after changes are published means you accept the updated terms.</p>
           </div>

@@ -63,14 +63,14 @@ export default async function GuideArticlePage({ params }: GuideArticlePageProps
     <main className="min-h-screen px-6 py-16">
       <article className="mx-auto flex max-w-3xl flex-col gap-8">
         <header className="space-y-5">
-          <Link className="text-sm text-emerald-300 underline-offset-4 hover:underline" href="/guide">
+          <Link className="text-sm text-almanac-green underline-offset-4 hover:underline" href="/guide">
             ← Back to Field Guide
           </Link>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-almanac-green">
             THE BAMPOT Field Guide
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">{article.ogTitle}</h1>
-          <p className="text-sm text-stone-400">Published {publishedLabel}</p>
+          <p className="text-sm text-almanac-muted">Published {publishedLabel}</p>
         </header>
 
         <div
@@ -79,13 +79,13 @@ export default async function GuideArticlePage({ params }: GuideArticlePageProps
         />
 
         {article.slug === "midge-forecast-vs-weather-forecast-scotland" ? (
-          <section className="rounded-3xl border border-emerald-400/40 bg-emerald-500/10 p-6">
+          <section className="rounded-3xl border border-almanac-border bg-almanac-card p-6">
             <h2 className="text-2xl font-semibold">Weather tells you what to wear. BiteForecast tells you when to stop.</h2>
             <p className="mt-3 leading-7 text-stone-200">
               Check today&apos;s Midge Activity Index before choosing your glen, campsite, lunch stop, or evening descent.
             </p>
             <Link
-              className="mt-5 inline-flex rounded-full border border-emerald-300/60 bg-emerald-400 px-5 py-3 text-sm font-semibold text-stone-950 transition hover:bg-emerald-300"
+              className="mt-5 inline-flex rounded-full border border-almanac-green bg-almanac-green px-5 py-3 text-sm font-semibold text-almanac-card transition hover:bg-almanac-green"
               href="/"
             >
               Check today&apos;s forecast
@@ -94,11 +94,11 @@ export default async function GuideArticlePage({ params }: GuideArticlePageProps
         ) : null}
 
         <nav className="flex flex-col gap-3 border-t border-stone-800 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <Link className="text-emerald-300 underline-offset-4 hover:underline" href="/guide">
+          <Link className="text-almanac-green underline-offset-4 hover:underline" href="/guide">
             ← Back to Field Guide
           </Link>
           <Link
-            className="inline-flex rounded-full border border-emerald-300/60 px-5 py-3 text-sm font-semibold text-emerald-200 transition hover:bg-emerald-300 hover:text-stone-950"
+            className="inline-flex rounded-full border border-almanac-green px-5 py-3 text-sm font-semibold text-almanac-green transition hover:bg-almanac-green hover:text-almanac-ink"
             href="/"
           >
             Check today&apos;s forecast
