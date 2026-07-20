@@ -81,7 +81,7 @@ export default async function GuideArticlePage({ params }: GuideArticlePageProps
         {article.slug === "midge-forecast-vs-weather-forecast-scotland" ? (
           <section className="rounded-3xl border border-almanac-border bg-almanac-card p-6">
             <h2 className="text-2xl font-semibold">Weather tells you what to wear. BiteForecast tells you when to stop.</h2>
-            <p className="mt-3 leading-7 text-stone-200">
+            <p className="mt-3 leading-7 text-almanac-secondary">
               Check today&apos;s Midge Activity Index before choosing your glen, campsite, lunch stop, or evening descent.
             </p>
             <Link

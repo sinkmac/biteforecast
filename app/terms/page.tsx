@@ -52,7 +52,7 @@ export default function TermsPage() {
 
         <section className="rounded-2xl border border-amber-300/25 bg-amber-500/10 p-6">
           <h2 className="text-2xl font-semibold">No guarantee of conditions or outcomes</h2>
-          <div className="mt-4 space-y-3 text-stone-100/90">
+          <div className="mt-4 space-y-3 text-almanac-secondary/90">
             <p>
               Scottish midge activity varies with weather, shelter, dampness, terrain, season, and micro-location. Conditions can change quickly and can differ sharply over short distances.
             </p>
@@ -166,7 +166,7 @@ export default function TermsPage() {
 
         <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Contact</h2>
-          <div className="mt-4 space-y-3 text-stone-100/90">
+          <div className="mt-4 space-y-3 text-almanac-secondary/90">
             <p>
               For legal, privacy, policy, or site-use questions, please use the <Link className="text-almanac-green underline-offset-4 hover:underline" href="/contact">contact page</Link>.
             </p>

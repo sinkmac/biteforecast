@@ -137,7 +137,7 @@ export default function MidgeHotspotsPage() {
           <div className="mt-4 space-y-4 text-almanac-secondary">
             {extraHotspots.map((item) => (
               <div key={item.name} className="border border-almanac-border bg-almanac-card p-4">
-                <p className="font-medium text-stone-100">{item.name}</p>
+                <p className="font-medium text-almanac-secondary">{item.name}</p>
                 <p className="mt-2">{item.note}</p>
               </div>
             ))}
@@ -146,7 +146,7 @@ export default function MidgeHotspotsPage() {
 
         <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Quick rule of thumb</h2>
-          <p className="mt-4 text-stone-100/90">
+          <p className="mt-4 text-almanac-secondary/90">
             If a spot is sheltered, damp, and calm, assume it can feel worse than the regional headline. When you have a choice, stop on more exposed ground first and keep the <Link className="text-almanac-green underline-offset-4 hover:underline" href="/midge-wind-watch">live calculator</Link> for the final decision.
           </p>
         </section>

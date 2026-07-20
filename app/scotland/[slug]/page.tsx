@@ -110,7 +110,7 @@ export default async function LocationPage({ params }: PageProps) {
               <p className="text-2xl font-semibold">{page.planningRiskBand}</p>
               <p className="text-sm text-amber-100/80">Planning page only — not a live conditions report</p>
             </div>
-            <p className="mt-3 max-w-2xl text-stone-100">{bandAdvice}</p>
+            <p className="mt-3 max-w-2xl text-almanac-secondary">{bandAdvice}</p>
           </section>
 
           <section className="grid gap-6 md:grid-cols-2">
@@ -137,7 +137,7 @@ export default async function LocationPage({ params }: PageProps) {
               Live forecast
             </p>
             <h2 className="mt-3 text-2xl font-semibold">Check current {page.name} midge risk</h2>
-            <p className="mt-3 max-w-3xl text-stone-100/90">
+            <p className="mt-3 max-w-3xl text-almanac-secondary/90">
               This page covers typical local patterns only. Use the live Midge Wind-Watch calculator for current conditions, short-term planning, and day-of decisions.
             </p>
             <Link
@@ -163,7 +163,7 @@ export default async function LocationPage({ params }: PageProps) {
                 <tbody>
                   {page.timePatterns.map((pattern) => (
                     <tr key={pattern.label} className="border-b border-stone-800 align-top">
-                      <td className="py-4 pr-4 font-medium text-stone-100">{pattern.label}</td>
+                      <td className="py-4 pr-4 font-medium text-almanac-secondary">{pattern.label}</td>
                       <td className="py-4 pr-4 text-almanac-secondary">{pattern.typicallyBetter}</td>
                       <td className="py-4 pr-4 text-almanac-secondary">{pattern.typicallyWorse}</td>
                       <td className="py-4 text-almanac-secondary">{pattern.terrainNote}</td>
@@ -174,19 +174,19 @@ export default async function LocationPage({ params }: PageProps) {
             </div>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               <div className="border border-almanac-border bg-almanac-card p-4">
-                <p className="font-medium text-stone-100">Best overall windows</p>
+                <p className="font-medium text-almanac-secondary">Best overall windows</p>
                 <p className="mt-2 text-almanac-secondary">{page.bestWindowsSummary}</p>
               </div>
               <div className="border border-almanac-border bg-almanac-card p-4">
-                <p className="font-medium text-stone-100">Worst overall windows</p>
+                <p className="font-medium text-almanac-secondary">Worst overall windows</p>
                 <p className="mt-2 text-almanac-secondary">{page.worstWindowsSummary}</p>
               </div>
               <div className="border border-almanac-border bg-almanac-card p-4">
-                <p className="font-medium text-stone-100">Calmer experience tip</p>
+                <p className="font-medium text-almanac-secondary">Calmer experience tip</p>
                 <p className="mt-2 text-almanac-secondary">{page.calmerExperienceTip}</p>
               </div>
               <div className="border border-almanac-border bg-almanac-card p-4">
-                <p className="font-medium text-stone-100">Camping note</p>
+                <p className="font-medium text-almanac-secondary">Camping note</p>
                 <p className="mt-2 text-almanac-secondary">{page.campingTip}</p>
               </div>
             </div>
@@ -245,7 +245,7 @@ export default async function LocationPage({ params }: PageProps) {
 
           <section className="rounded-2xl border border border-almanac-border bg-almanac-card p-6">
             <h2 className="text-2xl font-semibold">Before you go</h2>
-            <p className="mt-3 max-w-3xl text-stone-100/90">
+            <p className="mt-3 max-w-3xl text-almanac-secondary/90">
               Forecast first, then decide what to carry. Before you go, {" "}
               <Link className="text-almanac-green underline decoration-emerald-400/60 underline-offset-4" href="/">
                 check your local midge forecast

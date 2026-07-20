@@ -114,7 +114,7 @@ export default function MidgeRepellentsPage() {
 
         <section className="rounded-2xl border border-amber-300/25 bg-amber-500/10 p-6">
           <h2 className="text-2xl font-semibold">No miracle product promise</h2>
-          <div className="mt-4 space-y-3 text-stone-100/90">
+          <div className="mt-4 space-y-3 text-almanac-secondary/90">
             <p>
               BiteForecast does not claim that any single repellent or item of kit will eliminate bites or make every location comfortable.
             </p>

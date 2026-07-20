@@ -61,13 +61,13 @@ export default function HowToAvoidMidgesScotlandPage() {
         <section className={sectionClass}>
           <h2 className={headingClass}>2. Choose Your Timing Carefully</h2>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Within the season:</strong> May and September are significantly better than June, July, and August. If you have flexibility on when to visit the Highlands, late May or early September offers much of the beauty with a fraction of the midge pressure.
+            <strong className="text-almanac-ink">Within the season:</strong> May and September are significantly better than June, July, and August. If you have flexibility on when to visit the Highlands, late May or early September offers much of the beauty with a fraction of the midge pressure.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Within the day:</strong> Midges are most active at dawn and dusk. The middle of the day — particularly in sunny or breezy conditions — is dramatically safer. Plan sunrise walks for later in summer when you&apos;re already into peak midge hours at 5am.
+            <strong className="text-almanac-ink">Within the day:</strong> Midges are most active at dawn and dusk. The middle of the day — particularly in sunny or breezy conditions — is dramatically safer. Plan sunrise walks for later in summer when you&apos;re already into peak midge hours at 5am.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Watch the weather:</strong> A breezy day is always better than a calm one. Rain during the day suppresses activity, though the calm period after rain can see a surge.
+            <strong className="text-almanac-ink">Watch the weather:</strong> A breezy day is always better than a calm one. Rain during the day suppresses activity, though the calm period after rain can see a surge.
           </p>
         </section>
 
@@ -77,7 +77,7 @@ export default function HowToAvoidMidgesScotlandPage() {
           <h2 className={headingClass}>3. Use an Effective Repellent</h2>
           <p className={paragraphClass}>Not all repellents are equal against Scottish midges. Here&apos;s what works:</p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">DEET</strong> remains the gold standard. Products containing 30-50% DEET provide reliable, long-lasting protection. Apply to exposed skin and reapply after swimming or heavy sweating. DEET is effective against midges, mosquitoes, and ticks — useful across Scottish outdoor activities.
+            <strong className="text-almanac-ink">DEET</strong> remains the gold standard. Products containing 30-50% DEET provide reliable, long-lasting protection. Apply to exposed skin and reapply after swimming or heavy sweating. DEET is effective against midges, mosquitoes, and ticks — useful across Scottish outdoor activities.
           </p>
           <p className={paragraphClass}>
             <a className={affiliateLinkClass} href="https://amzn.to/4mBlUbS" rel="sponsored nofollow noopener" target="_blank">
@@ -98,7 +98,7 @@ export default function HowToAvoidMidgesScotlandPage() {
             offer high-strength DEET formulations designed for severe conditions. The Expedition 100+ provides maximum-strength protection for the most challenging midge environments.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">What doesn&apos;t work:</strong> Electronic repellers, ultrasonic devices, vitamin B supplements, and most &quot;natural&quot; alternatives have little to no evidence of effectiveness against <em>Culicoides impunctatus</em>. Save your money.
+            <strong className="text-almanac-ink">What doesn&apos;t work:</strong> Electronic repellers, ultrasonic devices, vitamin B supplements, and most &quot;natural&quot; alternatives have little to no evidence of effectiveness against <em>Culicoides impunctatus</em>. Save your money.
           </p>
         </section>
 
@@ -108,10 +108,10 @@ export default function HowToAvoidMidgesScotlandPage() {
             Physical barriers are reliable where repellent alone isn&apos;t enough — particularly in severe conditions.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Cover up.</strong> Long sleeves, long trousers, and socks eliminate most bite opportunity. Midges target exposed skin. A full covering in calm conditions is often more practical than heavy repellent application.
+            <strong className="text-almanac-ink">Cover up.</strong> Long sleeves, long trousers, and socks eliminate most bite opportunity. Midges target exposed skin. A full covering in calm conditions is often more practical than heavy repellent application.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Light colours.</strong> Midges are attracted to dark colours. Light-coloured clothing won&apos;t eliminate the problem but marginally reduces attraction.
+            <strong className="text-almanac-ink">Light colours.</strong> Midges are attracted to dark colours. Light-coloured clothing won&apos;t eliminate the problem but marginally reduces attraction.
           </p>
           <p className={paragraphClass}>
             <a className={affiliateLinkClass} href="https://amzn.to/42i5LOY" rel="sponsored nofollow noopener" target="_blank">
@@ -120,7 +120,7 @@ export default function HowToAvoidMidgesScotlandPage() {
             is the most effective piece of kit for the face and neck — the areas where midge bites are most unpleasant and where repellent can be hardest to apply effectively. Fine mesh hoods that fit over a cap are widely available at Scottish outdoor shops. They look slightly eccentric but they work.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Tightly woven fabrics.</strong> Standard loosely woven fabrics can allow biting through the material. Tightly woven technical fabrics provide better protection.
+            <strong className="text-almanac-ink">Tightly woven fabrics.</strong> Standard loosely woven fabrics can allow biting through the material. Tightly woven technical fabrics provide better protection.
           </p>
         </section>
 
@@ -130,16 +130,16 @@ export default function HowToAvoidMidgesScotlandPage() {
             If you&apos;re wild camping or staying at a campsite in the Highlands, location matters enormously.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Wind exposure is the priority.</strong> A slightly exposed spot with consistent airflow will be dramatically more comfortable than a sheltered, boggy hollow — even if the hollow looks more picturesque. Midges cannot fly effectively in even moderate wind.
+            <strong className="text-almanac-ink">Wind exposure is the priority.</strong> A slightly exposed spot with consistent airflow will be dramatically more comfortable than a sheltered, boggy hollow — even if the hollow looks more picturesque. Midges cannot fly effectively in even moderate wind.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Avoid boggy ground.</strong> Wet, peaty areas are breeding habitat. Camping near a bog in July is asking for trouble.
+            <strong className="text-almanac-ink">Avoid boggy ground.</strong> Wet, peaty areas are breeding habitat. Camping near a bog in July is asking for trouble.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Elevation helps.</strong> Higher ground is generally windier and cooler — less comfortable for midges, more comfortable for you in calm conditions.
+            <strong className="text-almanac-ink">Elevation helps.</strong> Higher ground is generally windier and cooler — less comfortable for midges, more comfortable for you in calm conditions.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Water&apos;s edge can go either way.</strong> A lochside with a breeze off the water can be midge-free. A sheltered lochside in calm conditions can be one of the worst places to be.
+            <strong className="text-almanac-ink">Water&apos;s edge can go either way.</strong> A lochside with a breeze off the water can be midge-free. A sheltered lochside in calm conditions can be one of the worst places to be.
           </p>
         </section>
 
@@ -147,13 +147,13 @@ export default function HowToAvoidMidgesScotlandPage() {
           <h2 className={headingClass}>6. Inside Your Tent</h2>
           <p className={paragraphClass}>Standard tent mesh does not keep midges out. They are small enough to pass through most netting.</p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Purpose-made midge-proof mesh</strong> is available for some tents and is worth using if you&apos;re camping in peak season in the worst areas.
+            <strong className="text-almanac-ink">Purpose-made midge-proof mesh</strong> is available for some tents and is worth using if you&apos;re camping in peak season in the worst areas.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Keep the tent closed.</strong> A calm evening in the Western Isles means midges everywhere — don&apos;t leave doors or vents open longer than necessary.
+            <strong className="text-almanac-ink">Keep the tent closed.</strong> A calm evening in the Western Isles means midges everywhere — don&apos;t leave doors or vents open longer than necessary.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">A small battery-powered fan</strong> inside a tent creates enough airflow to deter midges and makes warm nights more comfortable.
+            <strong className="text-almanac-ink">A small battery-powered fan</strong> inside a tent creates enough airflow to deter midges and makes warm nights more comfortable.
           </p>
         </section>
 
@@ -161,19 +161,19 @@ export default function HowToAvoidMidgesScotlandPage() {
           <h2 className={headingClass}>7. After the Bite</h2>
           <p className={paragraphClass}>Despite your best efforts, bites happen. What helps:</p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Don&apos;t scratch.</strong> It makes the itching worse and the welt larger. Easier said than done.
+            <strong className="text-almanac-ink">Don&apos;t scratch.</strong> It makes the itching worse and the welt larger. Easier said than done.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Cold water</strong> applied immediately reduces the initial reaction.
+            <strong className="text-almanac-ink">Cold water</strong> applied immediately reduces the initial reaction.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Antihistamine cream</strong> (hydrocortisone or similar) reduces itching and inflammation. Worth carrying in your kit.
+            <strong className="text-almanac-ink">Antihistamine cream</strong> (hydrocortisone or similar) reduces itching and inflammation. Worth carrying in your kit.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Oral antihistamines</strong> help if you&apos;re particularly reactive or have been heavily bitten.
+            <strong className="text-almanac-ink">Oral antihistamines</strong> help if you&apos;re particularly reactive or have been heavily bitten.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">After-bite sticks</strong> containing ammonia or antihistamine provide quick relief.
+            <strong className="text-almanac-ink">After-bite sticks</strong> containing ammonia or antihistamine provide quick relief.
           </p>
         </section>
 
@@ -195,7 +195,7 @@ export default function HowToAvoidMidgesScotlandPage() {
 
         <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Check your forecast</h2>
-          <p className="mt-3 text-stone-100/90">
+          <p className="mt-3 text-almanac-secondary/90">
             Use the <Link className={linkClass} href="/">homepage forecast tool</Link> before you go, or check a local page such as <Link className={linkClass} href="/scotland/glencoe-midges">Glencoe midges</Link> if you are heading west.
           </p>
         </section>

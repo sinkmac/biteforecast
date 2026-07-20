@@ -93,7 +93,7 @@ export default function SmidgeVsAvonPage() {
                   ["Kid-safe", "Check label age guidance", "Check label age guidance"],
                 ].map(([factor, smidge, avon]) => (
                   <tr key={factor} className="border-b border-stone-800 align-top">
-                    <td className="py-4 pr-4 font-medium text-stone-100">{factor}</td>
+                    <td className="py-4 pr-4 font-medium text-almanac-secondary">{factor}</td>
                     <td className="py-4 pr-4 text-almanac-secondary">{smidge}</td>
                     <td className="py-4 text-almanac-secondary">{avon}</td>
                   </tr>
@@ -121,20 +121,20 @@ export default function SmidgeVsAvonPage() {
           <h2 className="text-2xl font-semibold">Verdict: which should you buy?</h2>
           <div className="mt-4 space-y-4 text-almanac-secondary">
             <p>No universal winner. Depends where you are going and how long you will be outside.</p>
-            <p><strong className="text-stone-100">Casual visitor, beer garden, short walk or low-risk evening:</strong> Smidge. Avon is fine if you already use it, but it is the less dependable bet.</p>
+            <p><strong className="text-almanac-ink">Casual visitor, beer garden, short walk or low-risk evening:</strong> Smidge. Avon is fine if you already use it, but it is the less dependable bet.</p>
             <p>
-              <strong className="text-stone-100">Hillwalker, camper, or anyone heading into Glencoe, Skye, Argyll or lochside woodland at dusk:</strong> Smidge or DEET, plus a {" "}
+              <strong className="text-almanac-ink">Hillwalker, camper, or anyone heading into Glencoe, Skye, Argyll or lochside woodland at dusk:</strong> Smidge or DEET, plus a {" "}
               <a className={amazonLinkClass} href="https://www.amazon.co.uk/s?k=midge+head+net&tag=biteforecast2-21" rel="sponsored nofollow noopener" target="_blank">
                 midge head net
               </a>
               . A head net looks ridiculous until it saves your walk.
             </p>
-            <p><strong className="text-stone-100">Parents with kids:</strong> do not guess. Check label age guidance, cover skin where practical, consider a head net if the forecast is ugly. Repellent helps, but clothing and timing matter too.</p>
+            <p><strong className="text-almanac-ink">Parents with kids:</strong> do not guess. Check label age guidance, cover skin where practical, consider a head net if the forecast is ugly. Repellent helps, but clothing and timing matter too.</p>
           </div>
         </section>
 
         <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
-          <p className="text-stone-100/90">
+          <p className="text-almanac-secondary/90">
             Before you buy, check the conditions. Heading west? {" "}
             <Link className="text-almanac-green underline decoration-emerald-400/60 underline-offset-4" href="/scotland/glencoe-midges">
               Check the Glencoe midge forecast

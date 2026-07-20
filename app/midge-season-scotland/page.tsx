@@ -124,32 +124,32 @@ export default function MidgeSeasonScotlandPage() {
         <section className={sectionClass}>
           <h2 className={headingClass}>The Worst Areas</h2>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Western Isles and west coast:</strong> The wettest, boggiest terrain and the most midge-prone climate in Scotland. Skye, Mull, the Kintyre peninsula, and the area around Fort William and Glen Coe have particularly severe populations.
+            <strong className="text-almanac-ink">Western Isles and west coast:</strong> The wettest, boggiest terrain and the most midge-prone climate in Scotland. Skye, Mull, the Kintyre peninsula, and the area around Fort William and Glen Coe have particularly severe populations.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Great Glen:</strong> The corridor from Fort William to Inverness, including Loch Ness, is notorious for midges in calm summer conditions.
+            <strong className="text-almanac-ink">Great Glen:</strong> The corridor from Fort William to Inverness, including Loch Ness, is notorious for midges in calm summer conditions.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Torridon and Wester Ross:</strong> Some of the most remote and beautiful landscape in Scotland, but also some of the most significant midge pressure in poor conditions.
+            <strong className="text-almanac-ink">Torridon and Wester Ross:</strong> Some of the most remote and beautiful landscape in Scotland, but also some of the most significant midge pressure in poor conditions.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Rannoch Moor:</strong> The vast expanse of boggy moorland can be genuinely unpleasant in calm, overcast summer weather.
+            <strong className="text-almanac-ink">Rannoch Moor:</strong> The vast expanse of boggy moorland can be genuinely unpleasant in calm, overcast summer weather.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Cairngorms:</strong> Less severe than the west coast but still significant, particularly in sheltered glens and around lochs.
+            <strong className="text-almanac-ink">Cairngorms:</strong> Less severe than the west coast but still significant, particularly in sheltered glens and around lochs.
           </p>
         </section>
 
         <section className={sectionClass}>
           <h2 className={headingClass}>The Best Areas for Lower Midge Pressure</h2>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">East coast:</strong> The drier climate and more exposed terrain of the east coast — Aberdeenshire, Angus, the East Neuk of Fife — tends to see far lower midge pressure than the west.
+            <strong className="text-almanac-ink">East coast:</strong> The drier climate and more exposed terrain of the east coast — Aberdeenshire, Angus, the East Neuk of Fife — tends to see far lower midge pressure than the west.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Exposed hilltops and ridges:</strong> Any location with consistent wind is dramatically better. A hilltop walk in July can be completely midge-free while the glen below is intolerable.
+            <strong className="text-almanac-ink">Exposed hilltops and ridges:</strong> Any location with consistent wind is dramatically better. A hilltop walk in July can be completely midge-free while the glen below is intolerable.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Urban areas:</strong> Midges are primarily a rural, outdoor problem. Edinburgh, Glasgow, and other Scottish cities are not significantly affected.
+            <strong className="text-almanac-ink">Urban areas:</strong> Midges are primarily a rural, outdoor problem. Edinburgh, Glasgow, and other Scottish cities are not significantly affected.
           </p>
         </section>
 
@@ -158,16 +158,16 @@ export default function MidgeSeasonScotlandPage() {
           <p className={paragraphClass}>The calendar tells you the season. The weather tells you the day.</p>
           <p className={paragraphClass}>The key variables:</p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Wind speed</strong> is the most important factor. At 5-7mph midge activity is noticeably reduced. At 10-12mph it is effectively suppressed. A forecast showing light to moderate winds dramatically changes the picture even in peak July.
+            <strong className="text-almanac-ink">Wind speed</strong> is the most important factor. At 5-7mph midge activity is noticeably reduced. At 10-12mph it is effectively suppressed. A forecast showing light to moderate winds dramatically changes the picture even in peak July.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Cloud cover</strong> affects activity levels. Overcast, humid conditions are ideal for midges. Bright sunshine suppresses them.
+            <strong className="text-almanac-ink">Cloud cover</strong> affects activity levels. Overcast, humid conditions are ideal for midges. Bright sunshine suppresses them.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Rain</strong> during the day suppresses activity — midges don&apos;t fly in rain. But the period immediately after rain, when conditions are calm and humid, can see a surge in activity.
+            <strong className="text-almanac-ink">Rain</strong> during the day suppresses activity — midges don&apos;t fly in rain. But the period immediately after rain, when conditions are calm and humid, can see a surge in activity.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Temperature</strong> matters but is less decisive than wind. Midges are most active in temperatures between 10-18°C — the cool, humid range that Scottish summers frequently deliver.
+            <strong className="text-almanac-ink">Temperature</strong> matters but is less decisive than wind. Midges are most active in temperatures between 10-18°C — the cool, humid range that Scottish summers frequently deliver.
           </p>
         </section>
 
@@ -177,7 +177,7 @@ export default function MidgeSeasonScotlandPage() {
 
         <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Check your forecast</h2>
-          <p className="mt-3 text-stone-100/90">
+          <p className="mt-3 text-almanac-secondary/90">
             Use the <Link className={linkClass} href="/">homepage forecast tool</Link> before you go, or check a local page such as <Link className={linkClass} href="/scotland/glencoe-midges">Glencoe midges</Link> if you are heading west.
           </p>
         </section>

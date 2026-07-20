@@ -125,8 +125,8 @@ export default function HowWeCalculatePage() {
               <tbody>
                 {scale.map((row) => (
                   <tr key={row.score} className="border-b border-stone-800 align-top">
-                    <td className="py-4 pr-4 font-semibold text-stone-100">{row.score}</td>
-                    <td className="py-4 pr-4 text-stone-200">{row.label}</td>
+                    <td className="py-4 pr-4 font-semibold text-almanac-secondary">{row.score}</td>
+                    <td className="py-4 pr-4 text-almanac-secondary">{row.label}</td>
                     <td className="py-4 text-almanac-secondary">{row.meaning}</td>
                   </tr>
                 ))}
@@ -149,7 +149,7 @@ export default function HowWeCalculatePage() {
 
         <section className="rounded-2xl border border-amber-300/25 bg-amber-500/10 p-6">
           <h2 className="text-2xl font-semibold">Important limits</h2>
-          <div className="mt-4 space-y-3 text-stone-100/90">
+          <div className="mt-4 space-y-3 text-almanac-secondary/90">
             <p>
               No public model can fully capture every sheltered verge, campsite edge, woodland pocket, or lochside hollow. Real conditions can change fast and can differ sharply over short distances.
             </p>

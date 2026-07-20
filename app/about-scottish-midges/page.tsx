@@ -89,16 +89,16 @@ export default function AboutScottishMidgesPage() {
           <h2 className={headingClass}>Why Are They So Bad in Scotland Specifically?</h2>
           <p className={paragraphClass}>Several factors combine to make Scotland a particularly challenging midge environment:</p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Terrain.</strong> The abundance of boggy, peaty ground across the Highlands provides near-perfect breeding habitat at scale.
+            <strong className="text-almanac-ink">Terrain.</strong> The abundance of boggy, peaty ground across the Highlands provides near-perfect breeding habitat at scale.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Climate.</strong> Scotland&apos;s cool, wet summers — particularly on the west coast — suit midges far better than the drier climates of England or continental Europe.
+            <strong className="text-almanac-ink">Climate.</strong> Scotland&apos;s cool, wet summers — particularly on the west coast — suit midges far better than the drier climates of England or continental Europe.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Latitude.</strong> The long Scottish summer days mean more hours of the low-light conditions that midges prefer. Midsummer dusk in the Highlands comes very late.
+            <strong className="text-almanac-ink">Latitude.</strong> The long Scottish summer days mean more hours of the low-light conditions that midges prefer. Midsummer dusk in the Highlands comes very late.
           </p>
           <p className={paragraphClass}>
-            <strong className="text-stone-100">Land use.</strong> Large areas of the Highlands remain as open moorland and woodland, with minimal drainage — exactly the conditions that allow midge populations to thrive.
+            <strong className="text-almanac-ink">Land use.</strong> Large areas of the Highlands remain as open moorland and woodland, with minimal drainage — exactly the conditions that allow midge populations to thrive.
           </p>
         </section>
 
@@ -150,7 +150,7 @@ export default function AboutScottishMidgesPage() {
 
         <section className="rounded-2xl border border-almanac-border bg-almanac-card p-6">
           <h2 className="text-2xl font-semibold">Check your forecast</h2>
-          <p className="mt-3 text-stone-100/90">
+          <p className="mt-3 text-almanac-secondary/90">
             Use the <Link className={linkClass} href="/">homepage forecast tool</Link> before you go, or check a local page such as <Link className={linkClass} href="/scotland/glencoe-midges">Glencoe midges</Link> if you are heading west.
           </p>
         </section>

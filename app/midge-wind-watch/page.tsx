@@ -179,7 +179,7 @@ export default async function MidgeWindWatchPage({ searchParams }: PageProps) {
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-almanac-red">
                   Overnight Watch
                 </p>
-                <p className="mt-1 text-sm text-rose-100">
+                <p className="mt-1 text-sm text-almanac-secondary">
                   {result.peakTimeMessage}
                 </p>
               </div>
