@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { BiteForecastHomeTool } from "../components/biteforecast-home-tool";
 import { FaqSchema } from "../components/faq-block";
 import RiskScore from "../components/risk-score";
 import ThreatBar from "../components/threat-bar";
 import Stamp from "../components/stamp";
 import RiskLegend from "../components/risk-legend";
 import { getRiskLabel } from "../lib/theme/risk";
-import { FORECAST_LOCATIONS } from "../lib/forecast/locations";
 import { getHomepageForecastSummaries } from "../lib/forecast/service";
 import {
   HOMEPAGE_DESCRIPTION,
@@ -42,32 +40,7 @@ const homepageApplicationSchema = {
       url: "https://aiscotlandproductions.com",
     },
   ],
-};
-
-const DEFAULT_SEASONAL_FALLBACK = {
-  1: "Low",
-  2: "Low",
-  3: "Low",
-  4: "Guarded",
-  5: "Moderate",
-  6: "High",
-  7: "High",
-  8: "High",
-  9: "Moderate",
-  10: "Guarded",
-  11: "Low",
-  12: "Low",
 } as const;
-
-const locationCards = FORECAST_LOCATIONS.map((location) => ({
-  ...location,
-  region: location.midgeSeason,
-  broaderArea: location.description,
-  coordinates: { latitude: location.lat, longitude: location.lng },
-  seasonalFallbackByMonth: DEFAULT_SEASONAL_FALLBACK,
-  planningRiskBand: "Moderate" as const,
-  planningTakeaway: location.description,
-}));
 
 export const metadata: Metadata = {
   title: "Will there be midges where I'm going?",
@@ -165,26 +138,6 @@ export default async function Home() {
           })}
         </div>
 
-        {/* ── Planner band (single dark strip) ── */}
-        <div style={{ margin: "40px 56px", border: "1px solid var(--color-border-ink)", background: "var(--color-ink)" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 40, padding: "20px 28px" }}>
-            <div style={{ flex: 1, color: "var(--color-card-bg)", minWidth: 0 }}>
-              <div className="font-mono" style={{ fontSize: 11, letterSpacing: "0.18em", color: "var(--color-on-dark-green)", marginBottom: 10 }}>
-                PLAN AHEAD
-              </div>
-              <div className="font-serif" style={{ fontSize: 24, fontWeight: 500, lineHeight: 1.15, marginBottom: 8 }}>
-                Skip the midges. <span style={{ fontStyle: "italic" }}>Not the scenery.</span>
-              </div>
-              <p style={{ fontFamily: "var(--font-body)", fontSize: 13, lineHeight: 1.6, color: "var(--color-on-dark-muted)", margin: 0 }}>
-                Choose a location and date — or allow GPS to pick the nearest.
-              </p>
-            </div>
-            <div style={{ background: "var(--color-card-bg)", padding: "16px 20px", minWidth: 300, maxWidth: 400, flexShrink: 0 }}>
-              <BiteForecastHomeTool locations={locationCards} />
-            </div>
-          </div>
-        </div>
-
         {/* ── Bampot block ── */}
         <div className="divider-dashed" style={{ margin: "0 56px 0" }} />
         <div style={{ margin: "0 56px 48px", paddingTop: 32, display: "grid", gridTemplateColumns: "200px 1fr", gap: 40 }}>
@@ -269,21 +222,6 @@ export default async function Home() {
               </Link>
             );
           })}
-        </div>
-
-        {/* ── Planner (full width, stacked) ── */}
-        <div style={{ margin: "0 20px 28px", border: "1px solid var(--color-border-ink)" }}>
-          <div style={{ padding: "24px 22px", background: "var(--color-ink)", color: "var(--color-card-bg)" }}>
-            <div className="font-mono" style={{ fontSize: 10, letterSpacing: "0.16em", color: "var(--color-on-dark-green)", marginBottom: 10 }}>
-              PLAN AHEAD
-            </div>
-            <div className="font-serif" style={{ fontSize: 24, fontWeight: 500, lineHeight: 1.15 }}>
-              Skip the midges. <span style={{ fontStyle: "italic" }}>Not the scenery.</span>
-            </div>
-          </div>
-          <div style={{ padding: 22, background: "var(--color-card-bg)" }}>
-            <BiteForecastHomeTool locations={locationCards} />
-          </div>
         </div>
 
         {/* ── Bampot block ── */}
