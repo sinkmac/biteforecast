@@ -143,7 +143,7 @@ export default async function ForecastPage({ params }: PageProps) {
             <h1 className="font-serif" style={{ fontWeight: 500, fontSize: 58, lineHeight: 1.02, letterSpacing: "-0.02em", margin: "0 0 14px" }}>
               {forecast.location.name}
             </h1>
-            <p style={{ fontFamily: "var(--font-body)", fontSize: 15.5, lineHeight: 1.6, color: "var(--color-secondary)", margin: "0 0 26px", maxWidth: 56 } as React.CSSProperties}>
+            <p style={{ fontFamily: "var(--font-body)", fontSize: 15.5, lineHeight: 1.6, color: "var(--color-secondary)", margin: "0 0 26px", maxWidth: "56ch" } as React.CSSProperties}>
               {forecast.location.description} Season: {forecast.location.midgeSeason}.
             </p>
             <div style={{ borderLeft: "2px solid var(--color-risk-moderate)", paddingLeft: 20, marginBottom: 8 }}>

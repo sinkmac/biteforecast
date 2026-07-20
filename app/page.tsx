@@ -110,7 +110,7 @@ export default async function Home() {
             <h1 className="font-serif" style={{ fontWeight: 500, fontSize: 60, lineHeight: 1.02, letterSpacing: "-0.02em", margin: "0 0 20px", textWrap: "balance" }}>
               Will there be midges where I&rsquo;m going?
             </h1>
-            <p style={{ fontFamily: "var(--font-body)", fontSize: 16, lineHeight: 1.6, color: "var(--color-secondary)", margin: 0, maxWidth: 54 } as React.CSSProperties}>
+            <p style={{ fontFamily: "var(--font-body)", fontSize: 16, lineHeight: 1.6, color: "var(--color-secondary)", margin: 0, maxWidth: "54ch" } as React.CSSProperties}>
               Plain-English midge risk for twenty Highland destinations, updated every three hours. Free, no registration. Click any location for current conditions on the ground.
             </p>
           </div>
@@ -196,7 +196,7 @@ export default async function Home() {
             <div className="font-serif" style={{ fontSize: 22, fontWeight: 500, marginBottom: 10 }}>
               Intelligence summary
             </div>
-            <p style={{ fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.7, color: "var(--color-secondary)", margin: 0, maxWidth: 72 } as React.CSSProperties}>
+            <p style={{ fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.7, color: "var(--color-secondary)", margin: 0, maxWidth: "72ch" } as React.CSSProperties}>
               The data on this page is derived from Air Vice-Marshal Grieve&rsquo;s own tactical intelligence — intercepted communiqués from the airborne divisions known as The Cloud. We reframe his operational reports as a practical midge forecast. He is not consulted on the editorial direction. He writes letters. We ignore them.
             </p>
           </div>
