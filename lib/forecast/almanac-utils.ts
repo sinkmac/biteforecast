@@ -1,3 +1,5 @@
+import { getRiskLabel } from "./risk-bands";
+
 /**
  * Generate plain-English advice for the location detail page
  * Based on current score, time of day, and location character.
@@ -9,7 +11,8 @@ export function getPlainEnglishAdvice(
   locationName: string,
 ): string {
   const hour = currentTime.getHours();
-  const band = score <= 3 ? "low" : score <= 6 ? "moderate" : "high";
+  const label = getRiskLabel(score);
+  const band = label === "Low" ? "low" : label === "Moderate" ? "moderate" : "high";
 
   // Dusk window: ~19:00–22:00 in Scottish summer
   const isDuskWindow = hour >= 18 && hour < 22;

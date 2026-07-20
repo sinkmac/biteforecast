@@ -1,3 +1,6 @@
+import { getRiskLabel } from "./risk-bands";
+import type { RiskLabel } from "./risk-bands";
+
 export type MidgeIndexInput = {
   temperatureC: number;
   windMph: number;
@@ -30,11 +33,7 @@ export function calculateMidgeIndex(input: MidgeIndexInput): number {
 }
 
 export function getMidgeLabel(index: number): MidgeLabel {
-  if (index <= 2) return "Low";
-  if (index <= 4) return "Moderate";
-  if (index <= 6) return "High";
-  if (index <= 8) return "Severe";
-  return "Extreme";
+  return getRiskLabel(index);
 }
 
 export function getMidgeRecommendation(index: number): string {
@@ -78,23 +77,19 @@ export function getMidgePlainEnglish(args: {
   windMph: number;
   humidity: number;
 }): string {
-  if (args.index <= 2) {
-    return `Moving air or poor midge conditions are keeping activity low at ${args.locationName}.`;
+  const label = getRiskLabel(args.index);
+  switch (label) {
+    case "Low":
+      return `Moving air or poor midge conditions are keeping activity low at ${args.locationName}.`;
+    case "Moderate":
+      return `Some midges are likely around sheltered or damp spots at ${args.locationName}; keep repellent handy.`;
+    case "High":
+      return `Warm, humid or sheltered conditions mean midges are active at ${args.locationName}; repellent is recommended.`;
+    case "Severe":
+      return `Still air, humid, and warm this evening — conditions are near-perfect for midges at ${args.locationName}.`;
+    case "Extreme":
+      return `Conditions are extremely favourable for midges at ${args.locationName}; avoid exposed dusk stops if you can.`;
   }
-
-  if (args.index <= 4) {
-    return `Some midges are likely around sheltered or damp spots at ${args.locationName}; keep repellent handy.`;
-  }
-
-  if (args.index <= 6) {
-    return `Warm, humid or sheltered conditions mean midges are active at ${args.locationName}; repellent is recommended.`;
-  }
-
-  if (args.index <= 8) {
-    return `Still air, humid, and warm this evening — conditions are near-perfect for midges at ${args.locationName}.`;
-  }
-
-  return `Conditions are extremely favourable for midges at ${args.locationName}; avoid exposed dusk stops if you can.`;
 }
 
 function getTemperatureScore(temperatureC: number): number {

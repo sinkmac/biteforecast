@@ -6,6 +6,8 @@
  * Two-register rule: data layer must be readable without this overlay.
  */
 
+import { getRiskLabel } from "../lib/forecast/risk-bands";
+
 type GrieveLevel = 1 | 2 | 3 | 4 | 5;
 
 const OVERLAY_STATES: Record<GrieveLevel, string> = {
@@ -28,11 +30,11 @@ const DATA_LABELS: Record<GrieveLevel, string> = {
  * Map a raw midge index (0-10) to a Grieve overlay level (1-5).
  */
 export function getGrieveLevel(index: number): GrieveLevel {
-  if (index <= 2) return 1;
-  if (index <= 4) return 2;
-  if (index <= 6) return 3;
-  if (index <= 8) return 4;
-  return 5;
+  const label = getRiskLabel(index);
+  const map: Record<string, GrieveLevel> = {
+    Low: 1, Moderate: 2, High: 3, Severe: 4, Extreme: 5,
+  };
+  return map[label] ?? 3;
 }
 
 /**

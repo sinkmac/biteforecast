@@ -6,7 +6,7 @@ type ThreatBarProps = {
 };
 
 export default function ThreatBar({ score, size = "card" }: ThreatBarProps) {
-  const blocks = getThreatBlocks(score, size);
+  const blocks = getThreatBlocks(score);
   const blockSize = size === "detail" ? { width: 24, height: 9 } : { width: 15, height: 7 };
 
   return (
