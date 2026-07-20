@@ -165,21 +165,23 @@ export default async function Home() {
           })}
         </div>
 
-        {/* ── Planner band ── */}
-        <div style={{ margin: "40px 56px", display: "grid", gridTemplateColumns: "2fr 3fr", border: "1px solid var(--color-border-ink)" }}>
-          <div style={{ padding: "24px 28px", background: "var(--color-ink)", color: "var(--color-card-bg)" }}>
-            <div className="font-mono" style={{ fontSize: 11, letterSpacing: "0.18em", color: "var(--color-on-dark-green)", marginBottom: 14 }}>
-              PLAN AHEAD
+        {/* ── Planner band (single dark strip) ── */}
+        <div style={{ margin: "40px 56px", border: "1px solid var(--color-border-ink)", background: "var(--color-ink)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 40, padding: "20px 28px" }}>
+            <div style={{ flex: 1, color: "var(--color-card-bg)", minWidth: 0 }}>
+              <div className="font-mono" style={{ fontSize: 11, letterSpacing: "0.18em", color: "var(--color-on-dark-green)", marginBottom: 10 }}>
+                PLAN AHEAD
+              </div>
+              <div className="font-serif" style={{ fontSize: 24, fontWeight: 500, lineHeight: 1.15, marginBottom: 8 }}>
+                Skip the midges. <span style={{ fontStyle: "italic" }}>Not the scenery.</span>
+              </div>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: 13, lineHeight: 1.6, color: "var(--color-on-dark-muted)", margin: 0 }}>
+                Choose a location and date — or allow GPS to pick the nearest.
+              </p>
             </div>
-            <div className="font-serif" style={{ fontSize: 32, fontWeight: 500, lineHeight: 1.1, marginBottom: 12 }}>
-              Skip the midges.<br /><span style={{ fontStyle: "italic" }}>Not the scenery.</span>
+            <div style={{ background: "var(--color-card-bg)", padding: "16px 20px", minWidth: 300, maxWidth: 400, flexShrink: 0 }}>
+              <BiteForecastHomeTool locations={locationCards} />
             </div>
-            <p style={{ fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.6, color: "var(--color-on-dark-muted)", margin: 0 }}>
-              Choose a location and date — or allow GPS to pick the nearest forecast point — and we&rsquo;ll tell you your risk in plain English.
-            </p>
-          </div>
-          <div style={{ padding: "24px 28px", background: "var(--color-card-bg)", display: "flex", flexDirection: "column", gap: 16, justifyContent: "center" }}>
-            <BiteForecastHomeTool locations={locationCards} />
           </div>
         </div>
 
