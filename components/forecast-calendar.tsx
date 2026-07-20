@@ -12,22 +12,22 @@ export function ForecastCalendar({ title, intro, days }: ForecastCalendarProps) 
   }
 
   return (
-    <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
-      <h2 className="text-2xl font-semibold">{title}</h2>
-      <p className="mt-3 max-w-3xl text-stone-300">{intro}</p>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-7">
+    <section style={{ border: "1px solid var(--color-border-ink)", background: "var(--color-card-bg)", padding: 24 }}>
+      <h2 className="font-serif" style={{ fontSize: 22, fontWeight: 500, margin: "0 0 10px" }}>{title}</h2>
+      <p style={{ fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.6, color: "var(--color-secondary)", margin: "0 0 20px", maxWidth: "64ch" } as React.CSSProperties}>{intro}</p>
+      <div style={{ display: "grid", gap: 16, gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))" }}>
         {days.map((day) => (
           <article
             key={day.dateIso}
-            className="rounded-2xl border border-stone-800 bg-stone-950/80 p-4"
+            style={{ border: "1px solid var(--color-border-light)", background: "var(--color-card-bg)", padding: 16 }}
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-stone-400">
+            <p className="font-mono" style={{ fontSize: 10, color: "var(--color-muted-mid)" }}>
               {day.label}
             </p>
-            <p className="mt-3 text-xl font-semibold text-stone-50">{day.band}</p>
-            <p className="mt-2 text-sm text-stone-300">{day.advice}</p>
+            <p className="font-serif" style={{ fontSize: 24, fontWeight: 600, lineHeight: 1.1, color: "var(--color-ink)", marginTop: 8 }}>{day.band}</p>
+            <p style={{ fontFamily: "var(--font-body)", fontSize: 13, lineHeight: 1.5, color: "var(--color-secondary)", marginTop: 8 }}>{day.advice}</p>
             {day.peakTimeMessage ? (
-              <p className="mt-3 text-xs text-rose-200">{day.peakTimeMessage}</p>
+              <p className="font-mono" style={{ fontSize: 10, color: "var(--color-muted-mid)", marginTop: 8 }}>{day.peakTimeMessage}</p>
             ) : null}
           </article>
         ))}

@@ -237,8 +237,8 @@ export default async function LocationPage({ params }: PageProps) {
 
           <ForecastCalendar
             days={sevenDayForecast}
-            intro={`This 5-day forecast runs the live midge scoring engine against predicted conditions for ${page.name}, so you can compare likely day-by-day nuisance before you travel.`}
-            title={`5-day forecast for ${page.name}`}
+            intro={`Planning-outlook estimate — uses the wind-watch scoring engine (Low / Guarded / Moderate / High / Very High), not the live 0–10 index. See the "Check current ${page.name} midge risk" link above for the authoritative forecast.`}
+            title={`5-day outlook for ${page.name}`}
           />
 
           <FaqSection faqs={page.faqs} />
