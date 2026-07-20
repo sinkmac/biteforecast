@@ -465,7 +465,7 @@ export default async function ForecastPage({ params }: PageProps) {
                   {day.peakIndex}/10
                 </p>
                 <p style={{ fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 600, letterSpacing: "0.14em", color: getRiskColor(day.peakIndex) }}>
-                  {day.label}
+                  {getRiskLabel(day.peakIndex)}
                 </p>
                 <p style={{ fontFamily: "var(--font-body)", fontSize: 13, lineHeight: 1.5, color: "var(--color-secondary)", marginTop: 8 }}>
                   {day.recommendation}
