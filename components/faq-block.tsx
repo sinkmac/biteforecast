@@ -14,7 +14,7 @@ export function FaqSection(args: {
 
   return (
     <section className="rounded-2xl border border-stone-800 bg-stone-900 p-6">
-      <h2 className="text-2xl font-semibold">{title}</h2>
+      <h2 className="text-2xl font-semibold text-stone-50">{title}</h2>
       <div className="mt-4 space-y-4">
         {faqs.map((faq) => (
           <div key={faq.question}>
