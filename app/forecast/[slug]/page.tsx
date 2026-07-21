@@ -80,7 +80,7 @@ export default async function ForecastPage({ params }: PageProps) {
 
   const grieveLevel = getGrieveLevel(forecast.current.index);
   const grieveStateName = getGrieveStateName(grieveLevel);
-  const shareText = ` 🏴󠁧󠁢󠁳󠁣󠁴󠁿 ${forecast.location.name} midge forecast: ${forecast.current.label.toUpperCase()} (${forecast.current.index}/10)\\\\n${grieveStateName}\\\\nbiteforecast.scot/forecast/${forecast.location.slug}`;
+  const shareText = ` 🏴󠁧󠁢󠁳󠁣󠁴󠁿 ${forecast.location.name} midge forecast: ${forecast.current.label.toUpperCase()} (${forecast.current.index}/10)\n${grieveStateName}\nbiteforecast.scot/forecast/${forecast.location.slug}`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
