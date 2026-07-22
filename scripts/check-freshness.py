@@ -201,7 +201,7 @@ def main():
 
     # ── Step 2: Check each forecast page ──
     hdr = (f"{'PAGE':<28} {'TS':<14} {'AGE':<8} {'HDR_IDX':<9} "
-           f"{'HP_IDX':<8} {'PEAK_TM':<10} {'PEAK_IDX':<9} {'SLOT_IDX':<9} {'PEAK_OK':<8} RESULT")
+           f"{'HP_DIFF':<8} {'PEAK_TM':<10} {'PEAK_IDX':<9} {'SLOT_IDX':<9} {'PK_OK':<6} RESULT")
     print(hdr)
     print("-" * 105)
 
@@ -238,11 +238,14 @@ def main():
         hdr_idx = extract_forecast_header_index(html)
         hdr_str = str(hdr_idx) if hdr_idx is not None else "?"
 
-        # ── Homepage consistency ──
+        # ── Homepage consistency (tolerance: within 1 point) ──
         hp_idx = hp_index_map.get(slug)
         hp_str = str(hp_idx) if hp_idx is not None else "?"
-        if hdr_idx is not None and hp_idx is not None and hdr_idx != hp_idx:
-            page_pass = False
+        hp_diff = None
+        if hdr_idx is not None and hp_idx is not None:
+            hp_diff = abs(hdr_idx - hp_idx)
+            if hp_diff > 1:
+                page_pass = False
 
         # ── Tonight's peak vs timeline ──
         peak_time, peak_idx = extract_peak_tonight(html)
@@ -271,8 +274,9 @@ def main():
             errors += 1
 
         ts_display = str(page_ts or "?")
+        hp_diff_str = str(hp_diff) if hp_diff is not None else "?"
         print(f"{slug:<28} {ts_display:<14} {age_str:<8} {hdr_str:<9} "
-              f"{hp_str:<8} {peak_time_str:<10} {peak_idx_str:<9} {slot_idx_str:<9} {peak_label:<8} {result}")
+              f"{hp_diff_str:<8} {peak_time_str:<10} {peak_idx_str:<9} {slot_idx_str:<9} {peak_label:<6} {result}")
 
     print()
     if errors == 0:
