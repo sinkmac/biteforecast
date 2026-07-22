@@ -5,15 +5,16 @@ check-freshness.py — BiteForecast production freshness checker
 Fetches https://biteforecast.scot (homepage) + all 20 /forecast/[slug]
 pages and asserts:
   a) Header timestamp is within 3.5 hours of script runtime
-  b) Forecast page header index matches the homepage card index
-  c) Forecast page header index matches its own 5-day outlook today entry
+  b) Forecast page header index matches the homepage card for that location
+  c) Page's own "Tonight's peak" figure matches the corresponding
+     timeline slot (genuine internal consistency — catches data-mismatch
+     bugs without comparing two intentionally different metrics)
 
 Usage:  python3 scripts/check-freshness.py
 Exit 0: all pages pass
 Exit 1: any page fails (prints table)
 """
 
-import locale
 import re
 import sys
 import urllib.error
@@ -36,8 +37,6 @@ MONTHS = {
     "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12,
 }
 
-WEEKDAYS_SHORT = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-
 NOW = datetime.now(timezone.utc)
 CURRENT_YEAR = NOW.year
 
@@ -51,15 +50,9 @@ def fetch(url: str) -> str:
         return f"FETCH_ERROR: {e}"
 
 
-def strip_rsc(html: str) -> str:
-    """Remove HTML comments and RSC script blocks for clean text parsing."""
-    s = re.sub(r'<!--[\s\S]*?-->', '', html)
-    s = re.sub(r'<script[^>]*>[\s\S]*?</script>', '', s)
-    return s
-
-
 def extract_timestamps(html: str) -> list[str]:
-    cleaned = strip_rsc(html)
+    cleaned = re.sub(r'<!--[\s\S]*?-->', '', html)
+    cleaned = re.sub(r'<script[^>]*>[\s\S]*?</script>', '', cleaned)
     pattern = r'(?:Updated\s*)?(\d{1,2}:\d{2}\s*[·.]\s*\d{1,2}\s+[A-Z][a-z]{2})'
     return [m.strip() for m in re.findall(pattern, cleaned)]
 
@@ -113,69 +106,66 @@ def extract_forecast_header_index(html: str) -> int | None:
     return None
 
 
-def extract_outlook_today_index(html: str) -> int | None:
+def extract_peak_tonight(html: str) -> tuple[str | None, int | None]:
     """
-    Parse the 5-day outlook block and return today's peak index.
+    Extract the 'Tonight's peak' time and index.
 
-    The outlook renders day cards like:
-      <p class="font-mono" ...>Wed 22 Jul</p>
-      <p class="font-serif" style="font-size:32px;...">INDEX<!-- -->/10</p>
+    RSC format (inline JSON in script payload):
+      "Peak activity tonight: ","10:00pm"," — ",8,"/10"
 
-    Today's date is computed in the same format the site uses:
-      Intl.DateTimeFormat("en-GB", { weekday:"short", day:"numeric", month:"short" })
+    Plain HTML format (with RSC comments stripped):
+      Peak activity tonight: 10:00pm — 8/10
     """
-    # Compute today's date in site format (Europe/London timezone)
-    # The site uses en-GB locale: weekday short (Wed), day numeric (22), month short (Jul)
-    now_london = datetime.now(timezone.utc) + timedelta(hours=1)  # BST = UTC+1 in July
-    today_str = now_london.strftime("%a %-d %b")  # "Wed 22 Jul" on Linux
-    # strftime %-d removes leading zero on Linux/macOS. Fallback just in case:
-    if today_str.endswith(" 22 Jul"):
-        pass  # all good
+    # Strip RSC comments so plain text is readable
+    cleaned = re.sub(r'<!--[\s\S]*?-->', '', html)
 
-    # Find outlook entries: date label followed by font-size:32 index
-    # The HTML has multiple date-label + font-size:32 sequences
-    # Extract all {date_label: index} pairs from the page
-    outlook_dates = re.findall(
-        r'font-mono[^>]*>([A-Z][a-z]{2}\s+\d{1,2}\s+[A-Z][a-z]{2})</p>'
-        r'[\s\S]{0,200}?'
-        r'font-size:32[^>]*>(\d+)<',
+    # Plain HTML: "Peak activity tonight: 10:00pm — 8/10"
+    m = re.search(
+        r'Peak activity tonight:\s*(\d{1,2}:\d{2}(?:am|pm))\s*[—–-]\s*(\d+)/10',
+        cleaned
+    )
+    if m:
+        return m.group(1).strip(), int(m.group(2))
+
+    # RSC JSON array format: "Peak activity tonight: ","10:00pm"," — ",8,"/10"
+    m = re.search(
+        r'Peak activity tonight:[^"]*"(\d{1,2}:\d{2}(?:am|pm))"[^,]*,\s*(\d+)',
         html
     )
-    if not outlook_dates:
-        # Try RSC format: "children":"Wed 22 Jul" ... fontSize:32 ... children:INDEX
-        outlook_dates = re.findall(
-            r'"children":"([A-Z][a-z]{2}\s+\d{1,2}\s+[A-Z][a-z]{2})"'
-            r'[\s\S]{0,300}?"fontSize":32[^}]*>(?:(\d+)|"children":(\d+))',
-            html
-        )
+    if m:
+        return m.group(1).strip(), int(m.group(2))
 
-    # Try each variant
-    for match in re.finditer(
-        r'font-mono[^>]*>([A-Z][a-z]{2}\s+\d{1,2}\s+[A-Z][a-z]{2})</p>'
-        r'[\s\S]{0,200}?'
-        r'font-size:32[^>]*>(\d+)<',
-        html
-    ):
-        date_str = match.group(1)
-        peak_idx = int(match.group(2))
-        if date_str == today_str:
-            return peak_idx
+    return None, None
 
-    # Fallback: also try without the year check, match day+month
-    today_day = now_london.day
-    today_mon_abbr = now_london.strftime("%b")
-    for match in re.finditer(
-        r'font-mono[^>]*>([A-Z][a-z]{2}\s+\d{1,2}\s+[A-Z][a-z]{2})</p>'
-        r'[\s\S]{0,200}?'
-        r'font-size:32[^>]*>(\d+)<',
+
+def extract_timeline_index_at(html: str, target_time: str) -> int | None:
+    """
+    Find the index shown in the 24-hour timeline at a given time.
+
+    Desktop timeline (font-size:22):
+      10:00pm</div>...<span class="font-serif" style="font-weight:600;font-size:22;...">8</span>
+
+    Mobile timeline (font-size:20):
+      10:00pm</div>...<span class="font-serif" style="font-weight:600;font-size:20;...">8</span>
+    """
+    target_lower = target_time.lower().replace(" ", "")
+
+    # Plain HTML format: find the time label, then look ahead for font-size:22 or font-size:20
+    m = re.search(
+        re.escape(target_time) + r'[\s\S]{0,300}?font-size:2[02][^>]*>(\d+)<',
         html
-    ):
-        date_str = match.group(1)
-        peak_idx = int(match.group(2))
-        # Check if this matches today's day+month (ignore weekday)
-        parts = date_str.split()
-        if len(parts) == 3 and int(parts[1]) == today_day and parts[2] == today_mon_abbr:
-            return peak_idx
+    )
+    if m:
+        return int(m.group(1))
+
+    # RSC format: "children":"10:00pm" ... "children":INDEX nearby
+    pairs = re.findall(
+        r'"children":"(\d{1,2}:\d{2}(?:am|pm))"[\s\S]{0,300}?"children":(\d+)',
+        html
+    )
+    for time_str, idx_str in pairs:
+        if time_str.lower().replace(" ", "") == target_lower:
+            return int(idx_str)
 
     return None
 
@@ -210,16 +200,17 @@ def main():
     print(f" Homepage index map: {len(hp_index_map)} locations found\n")
 
     # ── Step 2: Check each forecast page ──
-    hdr = f"{'PAGE':<28} {'TIMESTAMP':<14} {'AGE':<8} {'HDR_IDX':<8} {'HP_IDX':<7} {'OUTLK_IDX':<10} {'SELF':<12} {'RESULT'}"
+    hdr = (f"{'PAGE':<28} {'TS':<14} {'AGE':<8} {'HDR_IDX':<9} "
+           f"{'HP_IDX':<8} {'PEAK_TM':<10} {'PEAK_IDX':<9} {'SLOT_IDX':<9} {'PEAK_OK':<8} RESULT")
     print(hdr)
-    print("-" * 97)
+    print("-" * 105)
 
     for slug in FORECAST_SLUGS:
         url = f"{ROOT_URL}/forecast/{slug}"
         html = fetch(url)
 
         if html.startswith("FETCH_ERROR"):
-            print(f"{slug:<28} {'FETCH ERROR':<14} {'':<8} {'':<8} {'':<7} {'':<10} {'':<12} FAIL")
+            print(f"{slug:<28} {'FETCH ERROR':<14} {'':<8} {'':<9} {'':<8} {'':<10} {'':<9} {'':<9} {'':<8} FAIL")
             errors += 1
             continue
 
@@ -243,42 +234,45 @@ def main():
                 if page_age > MAX_AGE:
                     page_pass = False
 
-        # ── Header index (RIGHT NOW) ──
+        # ── Header index ──
         hdr_idx = extract_forecast_header_index(html)
         hdr_str = str(hdr_idx) if hdr_idx is not None else "?"
 
         # ── Homepage consistency ──
         hp_idx = hp_index_map.get(slug)
         hp_str = str(hp_idx) if hp_idx is not None else "?"
-        hp_ok = True
         if hdr_idx is not None and hp_idx is not None and hdr_idx != hp_idx:
-            hp_ok = False
+            page_pass = False
 
-        # ── 5-day outlook today entry ──
-        out_idx = extract_outlook_today_index(html)
-        out_str = str(out_idx) if out_idx is not None else "?"
-        self_ok = True
-        self_label = ""
-        if hdr_idx is not None and out_idx is not None:
-            if hdr_idx == out_idx:
-                self_label = "MATCH"
+        # ── Tonight's peak vs timeline ──
+        peak_time, peak_idx = extract_peak_tonight(html)
+        peak_time_str = str(peak_time or "?")
+        peak_idx_str = str(peak_idx) if peak_idx is not None else "?"
+
+        slot_idx = None
+        peak_ok = True
+        if peak_time is not None and peak_idx is not None:
+            slot_idx = extract_timeline_index_at(html, peak_time)
+            slot_idx_str = str(slot_idx) if slot_idx is not None else "?"
+            if slot_idx is not None:
+                if slot_idx != peak_idx:
+                    peak_ok = False
+                    page_pass = False
             else:
-                self_label = f"MISMATCH({hdr_idx}v{out_idx})"
-                self_ok = False
-        elif out_idx is None:
-            self_label = "NO_OUTLK"
+                # Couldn't find slot at that time — not necessarily a fail
+                pass
         else:
-            self_label = "NO_HDR"
+            slot_idx_str = "?"
 
-        # ── Overall ──
-        if page_pass and hp_ok and self_ok:
-            result = "PASS"
-        else:
-            result = "FAIL"
+        peak_label = "MATCH" if peak_ok else "MISMATCH"
+
+        result = "PASS" if page_pass else "FAIL"
+        if result == "FAIL":
             errors += 1
 
         ts_display = str(page_ts or "?")
-        print(f"{slug:<28} {ts_display:<14} {age_str:<8} {hdr_str:<8} {hp_str:<7} {out_str:<10} {self_label:<12} {result}")
+        print(f"{slug:<28} {ts_display:<14} {age_str:<8} {hdr_str:<9} "
+              f"{hp_str:<8} {peak_time_str:<10} {peak_idx_str:<9} {slot_idx_str:<9} {peak_label:<8} {result}")
 
     print()
     if errors == 0:
