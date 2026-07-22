@@ -20,7 +20,14 @@ export const metadata: Metadata = {
   }),
 };
 
-export default function ContactPage() {
+type PageProps = {
+  searchParams?: Promise<{ success?: string }>;
+};
+
+export default async function ContactPage({ searchParams }: PageProps) {
+  const sp = (await searchParams) ?? {};
+  const submitted = sp.success === "true";
+
   return (
     <main className="px-6 py-16">
       <article className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -50,59 +57,84 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="border border-almanac-border bg-almanac-card p-6 ">
-          <form action="https://formspree.io/f/xkoqkkbw" className="grid gap-4" method="POST">
-            <input name="_subject" type="hidden" value="BiteForecast contact form" />
-            <label className="grid gap-2 text-sm text-almanac-secondary">
-              Name
-              <input
-                className="border border-almanac-border bg-almanac-card px-4 py-3 text-base text-almanac-ink"
-                name="name"
-                required
-                type="text"
-              />
-            </label>
-            <label className="grid gap-2 text-sm text-almanac-secondary">
-              Email
-              <input
-                className="border border-almanac-border bg-almanac-card px-4 py-3 text-base text-almanac-ink"
-                name="email"
-                required
-                type="email"
-              />
-            </label>
-            <label className="grid gap-2 text-sm text-almanac-secondary">
-              Topic
-              <select
-                className="border border-almanac-border bg-almanac-card px-4 py-3 text-base text-almanac-ink"
-                name="topic"
-                defaultValue="General enquiry"
+        <section className="border border-almanac-border bg-almanac-card p-6">
+          {submitted ? (
+            <div className="space-y-4 py-8 text-center">
+              <h2 className="text-2xl font-semibold text-almanac-ink">Message sent</h2>
+              <p className="text-almanac-secondary">
+                Thanks for getting in touch. BiteForecast will review your message and reply if needed.
+              </p>
+              <Link
+                className="mt-4 inline-flex rounded-full bg-almanac-green px-5 py-3 font-medium text-almanac-card transition hover:bg-almanac-green"
+                href="/"
               >
-                <option>General enquiry</option>
-                <option>Forecast accuracy</option>
-                <option>Privacy request</option>
-                <option>Advertising or partnership</option>
-                <option>Legal or policy question</option>
-              </select>
-            </label>
-            <label className="grid gap-2 text-sm text-almanac-secondary">
-              Message
-              <textarea
-                className="min-h-40 border border-almanac-border bg-almanac-card px-4 py-3 text-base text-almanac-ink"
-                name="message"
-                required
-              />
-            </label>
-            <button
-              className="inline-flex w-fit rounded-full bg-almanac-green px-5 py-3 font-medium text-almanac-card transition hover:bg-almanac-green"
-              type="submit"
+                Back to forecast
+              </Link>
+            </div>
+          ) : (
+            <form
+              action="/netlify-forms.html"
+              className="grid gap-4"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              method="POST"
+              name="contact"
             >
-              Send message
-            </button>
-            <p className="text-sm text-almanac-ink0">
-              By submitting this form, you are sending the details you enter to BiteForecast via Formspree for the purpose of responding to your enquiry.
-            </p>
-          </form>
+              <input name="form-name" type="hidden" value="contact" />
+              <input name="bot-field" style={{ display: "none" }} />
+              <input name="_next" type="hidden" value="/contact?success=true" />
+
+              <label className="grid gap-2 text-sm text-almanac-secondary">
+                Name
+                <input
+                  className="border border-almanac-border bg-almanac-card px-4 py-3 text-base text-almanac-ink"
+                  name="name"
+                  required
+                  type="text"
+                />
+              </label>
+              <label className="grid gap-2 text-sm text-almanac-secondary">
+                Email
+                <input
+                  className="border border-almanac-border bg-almanac-card px-4 py-3 text-base text-almanac-ink"
+                  name="email"
+                  required
+                  type="email"
+                />
+              </label>
+              <label className="grid gap-2 text-sm text-almanac-secondary">
+                Topic
+                <select
+                  className="border border-almanac-border bg-almanac-card px-4 py-3 text-base text-almanac-ink"
+                  name="topic"
+                  defaultValue="General enquiry"
+                >
+                  <option>General enquiry</option>
+                  <option>Forecast accuracy</option>
+                  <option>Privacy request</option>
+                  <option>Advertising or partnership</option>
+                  <option>Legal or policy question</option>
+                </select>
+              </label>
+              <label className="grid gap-2 text-sm text-almanac-secondary">
+                Message
+                <textarea
+                  className="min-h-40 border border-almanac-border bg-almanac-card px-4 py-3 text-base text-almanac-ink"
+                  name="message"
+                  required
+                />
+              </label>
+              <button
+                className="inline-flex w-fit rounded-full bg-almanac-green px-5 py-3 font-medium text-almanac-card transition hover:bg-almanac-green"
+                type="submit"
+              >
+                Send message
+              </button>
+              <p className="text-sm text-almanac-ink0">
+                By submitting this form, you are sending the details you enter to BiteForecast for the purpose of responding to your enquiry.
+              </p>
+            </form>
+          )}
         </section>
       </article>
     </main>

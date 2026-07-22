@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- Netlify form detection + success redirect page
+
+     Netlify's form-detection bot scans deployed HTML for
+     <form data-netlify="true"> at build time. Next.js App Router
+     pages are server-rendered on demand, so the visible form at
+     /contact is not present in the static bundle. This file
+     ensures Netlify detects the form and accepts submissions
+     POSTed to it.
+
+     After submission, Netlify serves this page again. A brief
+     meta-refresh sends the user to /contact?success=true where
+     the React component renders the confirmation message. -->
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Contact BiteForecast — Message sent</title>
+  <meta http-equiv="refresh" content="1; url=/contact?success=true" />
+  <style>
+    body { background: #f7f4ec; color: #22281f; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+    .card { background: #fcfaf4; border: 1px solid #22281f; padding: 2rem; text-align: center; }
+    p { color: #4c5347; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Message sent</h1>
+    <p>Thanks for getting in touch. Redirecting back...</p>
+  </div>
+
+  <form action="/netlify-forms.html" data-netlify="true" data-netlify-honeypot="bot-field" method="POST" name="contact">
+    <input name="form-name" type="hidden" value="contact" />
+    <input name="bot-field" />
+    <input name="_next" type="hidden" value="/contact?success=true" />
+    <input name="name" type="text" />
+    <input name="email" type="email" />
+    <select name="topic"><option>General enquiry</option></select>
+    <textarea name="message"></textarea>
+  </form>
+</body>
+</html>
