@@ -84,7 +84,7 @@ export default async function Home() {
               Will there be midges where I&rsquo;m going?
             </h1>
             <p style={{ fontFamily: "var(--font-body)", fontSize: 16, lineHeight: 1.6, color: "var(--color-secondary)", margin: 0, maxWidth: "54ch" } as React.CSSProperties}>
-              Plain-English midge risk for twenty Highland destinations, updated every three hours. Free, no registration. Click any location for current conditions on the ground.
+              Midge risk forecast for twenty Highland destinations, updated every three hours. Free, no registration. Click any location for current conditions on the ground.
             </p>
           </div>
           <div style={{ alignSelf: "end", borderLeft: "2px solid var(--color-risk-low)", paddingLeft: 20 }}>
@@ -178,7 +178,7 @@ export default async function Home() {
             Will there be midges where I&rsquo;m going?
           </h1>
           <p style={{ fontFamily: "var(--font-body)", fontSize: 14.5, lineHeight: 1.6, color: "var(--color-secondary)", margin: 0 }}>
-            Plain-English midge risk for twenty Highland destinations. Free, no registration. Tap a location for conditions on the ground.
+            Midge risk forecast for twenty Highland destinations. Free, no registration. Tap a location for conditions on the ground.
           </p>
         </div>
 
