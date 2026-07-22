@@ -5,6 +5,12 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# Forms: ensure ignore_html_forms is false in the Netlify dashboard under
+# Site settings > Build & deploy > Processing > Advanced settings.
+# Without this, Netlify won't detect or accept any <form> submissions.
+# This MUST also be set via the API (processing_settings.ignore_html_forms=false)
+# to take effect — the TOML alone cannot set this field.
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
